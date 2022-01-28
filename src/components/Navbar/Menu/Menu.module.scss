@@ -1,0 +1,22 @@
+.list {
+    list-style-type: none;
+    padding-left: 0;
+    
+    .item {
+      margin-bottom: 0.75em;
+       
+      a {
+        display: block;
+        color: #000;
+        text-decoration: none;
+      }      
+      .active {
+        color: #fff;
+      }
+    }
+    
+    .item:nth-child(5) {
+      margin-top: 2em;
+      margin-bottom: 2em;      
+    }
+  }

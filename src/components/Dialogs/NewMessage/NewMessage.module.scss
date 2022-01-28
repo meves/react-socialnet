@@ -1,0 +1,17 @@
+.newMessage {
+    padding: 1em;
+
+    .heading {
+        color: #fff;
+    }
+
+    .btnBlock {
+        margin-bottom: 2em;
+
+        button {
+            font-size: 0.75rem;
+            padding: 0.35em;
+            cursor: pointer;
+        }
+    }
+}

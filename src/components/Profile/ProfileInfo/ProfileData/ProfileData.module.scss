@@ -1,0 +1,40 @@
+.profileData {
+    padding: 0.5;
+   
+    .profileBlock {
+
+        .imageBlock {
+            padding: 1em;
+        
+            img {
+                max-width: 5em;
+            }
+        }
+    }
+    
+    .socialBlock {
+
+        .list {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            padding-left: 0;
+            
+            .item {
+                padding: 0.5em 1em;
+                border: 1px solid gray;
+                border-radius: 0.5em;
+                text-align: center;
+                cursor: pointer;
+                
+                .link {
+                    display: block;
+                    margin-left: 0;
+                    font-size: 0.75rem;
+                    text-decoration: none;
+                    color: #000;
+                }
+            }
+        }
+    }
+}

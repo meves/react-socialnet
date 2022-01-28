@@ -1,0 +1,13 @@
+.header {
+    grid-area: header;
+    background-color: var(--bg-color-medium);
+
+    .image {
+        max-width: 100px;
+    }
+
+    .loginBlock {
+        float: right;
+    }    
+}    
+

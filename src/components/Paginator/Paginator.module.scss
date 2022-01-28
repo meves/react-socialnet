@@ -1,0 +1,25 @@
+.paginatorWrapper {
+    width: 100%;
+    display: flex;
+    padding: 0.5em;
+
+    .paginator {
+        width: 100%;
+        overflow-x: hidden;
+        display: flex;
+        justify-content: center;
+
+        .pages {
+            
+            .pageNumber {
+                font-size: 0.75rem;
+                padding-left: 0.3em;
+                padding-right: 0.3em;
+                cursor: pointer;
+            }
+            .pageNumber.selectedPage {
+                font-weight: bold;
+            }
+        }    
+    }
+}

@@ -1,0 +1,10 @@
+.wrapper {
+    padding: 0 1em;
+    margin-top: 5em;
+    margin-bottom: 3em;
+
+    .itemsBlock {
+        display: flex;
+        justify-content: space-around;        
+    }
+}
