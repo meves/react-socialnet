@@ -1,5 +1,6 @@
 import React from 'react';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
+import { compose } from 'redux';
 
 export const Music = props => {
     return (
@@ -9,4 +10,4 @@ export const Music = props => {
     )
 }
 
-export default withAuthNavigate(Music);
+export default compose( withAuthNavigate )(Music);

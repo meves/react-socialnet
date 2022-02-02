@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
 import { Navigate } from 'react-router-dom';
 import styles from '../common/FormControls/FormControls.module.scss';
-import { recieveIsAuth, receiveCaptchaUrl } from '../../redux/selectors';
+import { recieveIsAuth, receiveCaptchaUrl } from '../../redux/selectors/auth-selectors';
+import { compose } from 'redux';
 
 const LoginForm = props => {
     return (
@@ -64,4 +65,4 @@ const mapStateToProps = state => ({
     captchaUrl: receiveCaptchaUrl(state)
 })
 
-export default connect(mapStateToProps, { login })(Login);
+export default compose( connect(mapStateToProps, { login }) )(Login);

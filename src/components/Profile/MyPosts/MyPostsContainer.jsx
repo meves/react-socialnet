@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import MyPosts from './MyPosts';
 import { addPost } from '../../../redux/profile-reducer';
-import { recieveProfilePage } from '../../../redux/selectors';
+import { recievePosts } from '../../../redux/selectors/profile-selectors';
+import { compose } from 'redux';
 
 class MyPostsContainer extends PureComponent {
     /* shouldComponentUpdate(nextProps, nextState) {
@@ -19,9 +20,9 @@ class MyPostsContainer extends PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        posts: recieveProfilePage(state)
+        posts: recievePosts(state)
         
     }
 }
 
-export default connect(mapStateToProps, { addPost })(MyPostsContainer);
+export default compose( connect(mapStateToProps, { addPost }) )(MyPostsContainer);

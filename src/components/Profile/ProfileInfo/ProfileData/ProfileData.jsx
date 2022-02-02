@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProfileData.module.scss';
-import UserIcon from './../../../../assets/images/user_icon.png';
+import UserIcon from '../../../../assets/images/user_icon.png';
 import SocialBlock from './Social/SocialBlock';
 
 const ProfileData = props => {

@@ -5,7 +5,7 @@ import Users from './Users';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { compose } from 'redux';
 import { recieveUsers, recievePageSize, recieveTotalUsersCount, recieveCurrentPage, 
-         recieveIsFetching, recieveFollowingInProgress, recieveCurrentId } from '../../redux/selectors';
+         recieveIsFetching, recieveFollowingInProgress, recieveCurrentId } from '../../redux/selectors/users-selectors';
 
 class UsersAPIContainer extends Component {
     componentDidMount() {

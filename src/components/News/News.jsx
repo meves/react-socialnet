@@ -1,5 +1,6 @@
 import React from 'react';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
+import { compose } from 'redux';
 
 const News = props => {
     return (
@@ -9,4 +10,4 @@ const News = props => {
     )
 }
 
-export default withAuthNavigate(News);
+export default compose( withAuthNavigate )(News);

@@ -3,6 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { required } from '../../../../utils/validators/validators';
 import { Checkbox, Input, Textarea } from '../../../common/FormControls/FormControls';
 import Contact from './Contact';
+import { compose } from 'redux';
 
 const ProfileForm = props => {
     const contactInputs = Object.keys(props.contacts).map(contact => <Contact contact={contact}/>)
@@ -25,6 +26,4 @@ const ProfileForm = props => {
     )
 }
 
-const ProfileReduxForm = reduxForm({form: 'profileForm'})(ProfileForm);
-
-export default ProfileReduxForm;
+export default compose( reduxForm({form: 'profileForm'}) )(ProfileForm);

@@ -7,7 +7,7 @@ import Message from './Message/Message';
 import NewMessage from './NewMessage/NewMessage';
 import { addMessage } from '../../redux/dialog-reducer';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
-import { recieveDialogsPage } from '../../redux/selectors';
+import { recieveDialogsPage } from '../../redux/selectors/dialogs-selectors';
 
 const Dialogs = props => {
     const dialogsPage = props.dialogsPage;
@@ -34,7 +34,4 @@ const mapStateToProps = state => ({
     dialogsPage: recieveDialogsPage(state)
 })
 
-export default compose(
-    withAuthNavigate,
-    connect(mapStateToProps, { addMessage })
-)(Dialogs); 
+export default compose( withAuthNavigate, connect(mapStateToProps, { addMessage }) )(Dialogs); 

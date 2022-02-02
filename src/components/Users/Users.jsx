@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './User.module.scss';
-import UserImage from './../../assets/images/user_image.jpeg';
+import UserImage from '../../assets/images/user_image.jpeg';
 import Preloader from '../common/Preloader/Preloader';
 import Paginator from '../Paginator/Paginator';
 import { NavLink } from 'react-router-dom';

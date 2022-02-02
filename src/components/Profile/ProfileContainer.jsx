@@ -5,7 +5,8 @@ import { getProfile, updateUserStatus, getUserStatus, updatePhoto, saveProfileDa
 import { withRouter } from '../../hoc/withRouter';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { compose } from 'redux';
-import { recieveUserId, recieveUserProfile, recieveStatus } from '../../redux/selectors';
+import { recieveUserId } from '../../redux/selectors/auth-selectors';
+import { recieveUserProfile, recieveStatus } from '../../redux/selectors/profile-selectors';
 
 class ProfileContainer extends Component {
     userId = this.props.params.userId || this.props.userId;
@@ -31,8 +32,6 @@ const mapStateToProps = state => ({
     userId: recieveUserId(state)
 })
 
-export default compose(
-    withAuthNavigate,
-    connect(mapStateToProps, { getProfile, updateUserStatus, getUserStatus, updatePhoto, saveProfileData }),
-    withRouter
-)(ProfileContainer);
+export default compose( withAuthNavigate,
+                        connect(mapStateToProps, { getProfile, updateUserStatus, getUserStatus, updatePhoto, saveProfileData }),
+                        withRouter )(ProfileContainer);

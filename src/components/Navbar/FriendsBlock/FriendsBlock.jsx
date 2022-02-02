@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './FriendsBlock.module.scss';
 import FriendItem from './FriendItem/FriendItem';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { receiveFriendsNames } from '../../../redux/selectors/navbar-selectors';
 
 const FriendsBlock = props => {
     const friendsNamesItems = props.friendsNames.map(friend => <FriendItem name={friend.name} key={friend.id} />)
@@ -16,7 +18,7 @@ const FriendsBlock = props => {
 }
 
 const mapStateToProps = state => ({
-    friendsNames: state.navbar.friendsNames
+    friendsNames: receiveFriendsNames(state)
 })
 
-export default connect(mapStateToProps)(FriendsBlock);
+export default compose( connect(mapStateToProps) )(FriendsBlock);

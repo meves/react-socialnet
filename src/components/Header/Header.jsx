@@ -4,7 +4,8 @@ import Logo from './../../assets/images/logo.png';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/auth-reducer';
 import { NavLink } from 'react-router-dom';
-import { recieveLogin, recieveIsAuth } from '../../redux/selectors';
+import { recieveLogin, recieveIsAuth } from '../../redux/selectors/auth-selectors';
+import { compose } from 'redux';
 
 const Header = props => {
     const handleLogout = () => {
@@ -32,4 +33,4 @@ const mapStateToProps = state => ({
   isAuth: recieveIsAuth(state)
 })
 
-export default connect(mapStateToProps, { logout })(Header);
+export default compose( connect(mapStateToProps, { logout }) )(Header);
