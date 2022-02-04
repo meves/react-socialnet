@@ -1,3 +1,5 @@
+import { PersonType, IMessageType } from "../types/types";
+
 const ADD_MESSAGE = 'ADD_MESSAGE';
 
 const initialState = {    
@@ -6,15 +8,16 @@ const initialState = {
             {id: 2, name: 'Thomas'},
             {id: 3, name: 'Leopold'},
             {id: 4, name: 'Elizabeth'}
-        ],
+        ] as Array<PersonType>,
         messages: [
             {id: 1, message: 'Hi'},
             {id: 2, message: 'How are you'},
             {id: 3, message: 'Yo-yo-yo'}
-        ]
+        ] as Array<IMessageType>
 }
+type InitialStateType = typeof initialState
 
-export const dialogReducer = (state = initialState, action) => {
+export const dialogReducer = (state=initialState, action: any): InitialStateType => {
     switch(action.type) {
         case ADD_MESSAGE:
             return {
@@ -32,7 +35,12 @@ export const dialogReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessage = newMessage => ({
+// action-creators
+type AddMessageType = {
+    type: typeof ADD_MESSAGE
+    newMessage: string
+}
+export const addMessage = (newMessage: string): AddMessageType => ({
     type: ADD_MESSAGE,
     newMessage
 })

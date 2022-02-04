@@ -5,8 +5,9 @@ const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 const initialState = {
     initialized: false
 }
+type InitialStateType = typeof initialState
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: AppReducerActionType): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
             return {
@@ -18,11 +19,18 @@ const appReducer = (state = initialState, action) => {
     }
 }
 
-const initializeAppSuccess = () => ({
+// action-creators
+type AppReducerActionType = InitializeAppSuccessActionType
+
+type InitializeAppSuccessActionType = {
+    type: typeof INITIALIZED_SUCCESS
+}
+const initializeAppSuccess = (): InitializeAppSuccessActionType => ({
     type: INITIALIZED_SUCCESS
 })
 
-export const initializeApp = () => async dispatch => {
+// thunk-creators
+export const initializeApp = () => async (dispatch: any) => {
     const promises = [];
     promises.push(dispatch(auth()));
     // promises.push(dispatch(getTheme()));
