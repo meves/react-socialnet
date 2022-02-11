@@ -36,7 +36,7 @@ export const dialogReducer = (state=initialState, action: any): InitialStateType
 }
 
 // action-creators
-type AddMessageType = {
+export type AddMessageType = {
     type: typeof ADD_MESSAGE
     newMessage: string
 }

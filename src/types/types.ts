@@ -9,7 +9,7 @@ export interface IMessageType {
 export interface IPostType extends IMessageType {
     likesCount: number
 }
-type ContactsType = {
+export type ContactsType = {
     github: string
     vk: string
     facebook: string
@@ -24,14 +24,6 @@ export type PhotosType = {
     large: string
 }
 export type UserProfileType = {
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    aboutMe: string
-    contacts: ContactsType
-}
-export type UserProfileWithPhotosType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string

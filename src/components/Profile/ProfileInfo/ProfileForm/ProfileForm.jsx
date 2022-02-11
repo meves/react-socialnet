@@ -2,11 +2,11 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { required } from '../../../../utils/validators/validators';
 import { Checkbox, Input, Textarea } from '../../../common/FormControls/FormControls';
-import Contact from './Contact';
+//import Contact from './Contact';
 import { compose } from 'redux';
 
 const ProfileForm = props => {
-    const contactInputs = Object.keys(props.contacts).map(contact => <Contact contact={contact}/>)
+    //const contactInputs = Object.keys(props.contacts).map(contact => <Contact contact={contact}/>)
     return (
         <form onSubmit={props.handleSubmit}>
             <button type="reset" onClick={props.deactivateEditMode}>Reset and Return</button>
@@ -20,7 +20,7 @@ const ProfileForm = props => {
             </fieldset>
             <fieldset>
                 <legend>Social contacts: </legend>
-                { contactInputs }
+               {/*  { contactInputs } */}
             </fieldset>
         </form>
     )

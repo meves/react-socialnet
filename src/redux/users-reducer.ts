@@ -16,6 +16,7 @@ const initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    blockSize: 20,
     isFetching: false,
     followingInProgress: [] as Array<number>
 }

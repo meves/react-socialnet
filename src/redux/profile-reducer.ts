@@ -1,7 +1,7 @@
 import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 import { createErrorObject } from "../utils/createErrorObject/createErrorObject";
-import { IPostType, UserProfileType, UserProfileWithPhotosType, PhotosType } from "../types/types";
+import { IPostType, UserProfileType, PhotosType } from "../types/types";
 
 const ADD_POST = 'ADD_POST';
 const DELETE_POST = 'DELETE_POST';
@@ -16,7 +16,7 @@ const initialState = {
             {id: 3, message: 'Send me your messages', likesCount: 0},
             {id: 4, message: 'Nice to meet you, friends', likesCount: 20}
         ] as Array<IPostType>,
-        userProfile: null as UserProfileWithPhotosType | null,
+        userProfile: null as UserProfileType | null,
         status: ''   
 }
 type InitialStateType = typeof initialState
@@ -56,7 +56,7 @@ const profileReducer = (state=initialState, action: any): InitialStateType => {
                 userProfile: {
                     ...state.userProfile,
                     photos: action.photos
-                } as UserProfileWithPhotosType
+                } as UserProfileType
             }
         default:
             return state;
@@ -64,7 +64,7 @@ const profileReducer = (state=initialState, action: any): InitialStateType => {
 }
 
 // action-creators
-type AddPostActionType = {
+export type AddPostActionType = {
     type: typeof ADD_POST
     newPostText: string
 }
@@ -84,9 +84,9 @@ export const deletePost = (postId: number): DeletePostActionType => ({
 
 type SetUserProfileActionType = {
     type: typeof SET_USER_PROFILE
-    userProfile: UserProfileWithPhotosType
+    userProfile: UserProfileType
 }
-const setUserProfile = (userProfile: UserProfileWithPhotosType): SetUserProfileActionType => ({
+const setUserProfile = (userProfile: UserProfileType): SetUserProfileActionType => ({
     type: SET_USER_PROFILE,
     userProfile
 })
