@@ -9,11 +9,17 @@ const initialState = {
 }
 type InitialStateType = typeof initialState
 
-const navbarReducer = (state = initialState, action: any): InitialStateType => {
+const navbarReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
         default:
             return state;
     }
+}
+
+type ActionsTypes = SomeActionType;
+
+type SomeActionType = {
+    type : string
 }
 
 export default navbarReducer;
