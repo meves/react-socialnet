@@ -1,5 +1,6 @@
 import { ThunkAction } from "redux-thunk";
 import { usersAPI } from "../api/api";
+import { ResponseDataEmptyDataType, ResponseDataGetUsersType } from "../types/apiTypes";
 import { UserType } from "../types/types";
 import { AppStateType } from "./redux-store";
 
@@ -153,7 +154,7 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 export const getUsers = (currentPage: number, pageSize: number): ThunkType => 
     async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        const data = await usersAPI.getUsers(currentPage, pageSize);
+        const data: ResponseDataGetUsersType = await usersAPI.getUsers(currentPage, pageSize);
         dispatch(setUsers(data.items));
         dispatch(setTotalUsersCount(data.totalCount));
         dispatch(toggleIsFetching(false));        
@@ -163,7 +164,7 @@ export const getUsersOnCurrentPage = (currentPage: number, pageSize: number): Th
     async (dispatch) => {
         dispatch(toggleIsFetching(true));
         dispatch(setCurrentPage(currentPage));
-        const data = await usersAPI.getUsers(currentPage, pageSize);
+        const data: ResponseDataGetUsersType = await usersAPI.getUsers(currentPage, pageSize);
         dispatch(setUsers(data.items));
         dispatch(toggleIsFetching(false));            
     }
@@ -171,7 +172,7 @@ export const getUsersOnCurrentPage = (currentPage: number, pageSize: number): Th
 export const followUser = (userId: number): ThunkType => 
     async (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
-        const data = await usersAPI.followUser(userId);
+        const data: ResponseDataEmptyDataType = await usersAPI.followUser(userId);
         if (data.resultCode === 0) {
             dispatch(follow(userId));
         }
@@ -181,7 +182,7 @@ export const followUser = (userId: number): ThunkType =>
 export const unfollowUser = (userId: number): ThunkType => 
     async (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
-        const data = await usersAPI.unfollowUser(userId);
+        const data: ResponseDataEmptyDataType = await usersAPI.unfollowUser(userId);
         if (data.resultCode === 0) {
             dispatch(unfollow(userId));
         }                

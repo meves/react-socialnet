@@ -2,6 +2,7 @@ import { authAPI, securityAPI } from "../api/api";
 import { FormAction, stopSubmit } from "redux-form";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "./redux-store";
+import { ResponseDataAuthMeType, ResponseDataEmptyDataType, ResponseDataGetCaptchaUrlType, ResponseDataLoginType } from "../types/apiTypes";
 
 const AUTH_ME = 'AUTH_ME';
 const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
@@ -64,7 +65,7 @@ const setCaptchaUrl = (captchaUrl: string): SetCaptchaUrlActionType => ({
 type AuthThunkType = ThunkAction<Promise<AuthMeActionType | undefined>, AppStateType, unknown, ActionsTypes>;
 export const auth = (): AuthThunkType => 
     async (dispatch) => {
-        const data = await authAPI.auth();
+        const data: ResponseDataAuthMeType = await authAPI.auth();
         if (data.resultCode === 0) {
             const {id, login, email} = data.data;
             return dispatch(authMe(id, login, email, true));
@@ -75,7 +76,7 @@ type LoginThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsT
 export const login = (email: string, password: string, rememberMe: boolean, captcha: boolean|undefined)
 : LoginThunkType => 
     async (dispatch) => {
-        const data = await authAPI.login(email, password, rememberMe, captcha);
+        const data: ResponseDataLoginType = await authAPI.login(email, password, rememberMe, captcha);
         if (data.resultCode === 0) {
             dispatch(auth());
         } else {
@@ -91,13 +92,13 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
     
 const getCaptchaUrl = (): ThunkType => 
     async (dispatch) => {
-        const data = await securityAPI.getCaptcha();    
+        const data: ResponseDataGetCaptchaUrlType = await securityAPI.getCaptcha();    
         dispatch(setCaptchaUrl(data.url));
     }
 
 export const logout = (): ThunkType => 
     async (dispatch) => {
-        const data = await authAPI.logout();
+        const data: ResponseDataEmptyDataType = await authAPI.logout();
         if (data.resultCode === 0) {
             dispatch(authMe(null, null, null, false));
         }

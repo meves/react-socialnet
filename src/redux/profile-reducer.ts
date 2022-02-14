@@ -4,6 +4,7 @@ import { createErrorObject } from "../utils/createErrorObject/createErrorObject"
 import { IPostType, UserProfileType, PhotosType } from "../types/types";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "./redux-store";
+import { ResponseDataEmptyDataType, ResponseDataPutProfilePhotoType } from "../types/apiTypes";
 
 const ADD_POST = 'ADD_POST';
 const DELETE_POST = 'DELETE_POST';
@@ -119,13 +120,13 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const getProfile = (userId: number): ThunkType => 
     async (dispatch) => {
-        const data = await profileAPI.getProfile(userId);
+        const data: UserProfileType = await profileAPI.getProfile(userId);
         dispatch(setUserProfile(data));        
     }
 
 export const updateUserStatus = (status: string): ThunkType => 
     async (dispatch) => {
-        const data = await profileAPI.updateStatus(status);
+        const data: ResponseDataEmptyDataType = await profileAPI.updateStatus(status);
         if (data.resultCode === 0) {
             dispatch(setUserStatus(status));
         }
@@ -133,13 +134,13 @@ export const updateUserStatus = (status: string): ThunkType =>
 
 export const getUserStatus = (userId: number): ThunkType => 
     async (dispatch) => {
-        const status = await profileAPI.getStatus(userId);
+        const status: string = await profileAPI.getStatus(userId);
         dispatch(setUserStatus(status));
     }
 
 export const updatePhoto = (profilePhoto: any): ThunkType => 
     async (dispatch) => {
-        const data = await profileAPI.updatePhoto(profilePhoto);
+        const data: ResponseDataPutProfilePhotoType = await profileAPI.updatePhoto(profilePhoto);
         if (data.resultCode === 0) {
             dispatch(savePhoto(data.data.photos));
         }
@@ -147,16 +148,17 @@ export const updatePhoto = (profilePhoto: any): ThunkType =>
 
 type SaveProfileDataThunkType = ThunkAction<Promise<boolean>, AppStateType, unknown, ActionsTypes | FormAction>;    
 
-export const saveProfileData = (profileData: UserProfileType) => async (dispatch: any) => {
-    const data = await profileAPI.saveProfile(profileData);
-    if (data.resultCode === 0) {
-        dispatch(getProfile(profileData.userId));
-        return false;
-    } else {
-        dispatch(stopSubmit('profileForm', createErrorObject(data)));
-        return true;
+export const saveProfileData = (profileData: UserProfileType): SaveProfileDataThunkType => 
+    async (dispatch: any) => {
+        const data: ResponseDataEmptyDataType = await profileAPI.saveProfile(profileData);
+        if (data.resultCode === 0) {
+            dispatch(getProfile(profileData.userId));
+            return false;
+        } else {
+            dispatch(stopSubmit('profileForm', createErrorObject(data)));
+            return true;
+        }
     }
-}
 
 export default profileReducer;
             
