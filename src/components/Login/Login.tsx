@@ -24,7 +24,7 @@ const Login: FC<PropsType> = (props): JSX.Element => {
             <div>
                 <h1>Login</h1>
                 <LoginForm onSubmit={onSubmit} 
-                    //captchaUrl={props.captchaUrl}
+                    captchaUrl={props.captchaUrl}
                 />
             </div>
         )

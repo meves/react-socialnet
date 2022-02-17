@@ -1,4 +1,4 @@
-import { UserType } from "./types";
+import { UserType } from "../types/types";
 
 export type ResponseDataGetUsersType = {
     items: Array<UserType>

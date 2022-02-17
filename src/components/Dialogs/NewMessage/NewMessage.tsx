@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 import styles from './NewMessage.module.scss';
 import { AddMessageType } from '../../../redux/dialog-reducer';
 import MessageForm from './NewMessageForm';
+import { FormDataType } from './NewMessageForm';
 
 type PropsType = {
     addMessage: (newMessage: string) => AddMessageType
 }
 
 const NewMessage: FC<PropsType> = (props): JSX.Element => {
-    const onAddMessage = (formData: any) => {
+    const onAddMessage = (formData: FormDataType) => {
         props.addMessage(formData.newMessage);
     }
     

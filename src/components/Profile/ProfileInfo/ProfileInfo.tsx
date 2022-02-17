@@ -26,7 +26,7 @@ const ProfileInfo: FC<PropsType> = (props): JSX.Element => {
     const deactivateEditMode = () => {
         setEditMode(false);
     }
-    const onSubmit = (formData: any) => {
+    const onSubmit = (formData: UserProfileType) => {
         props.saveProfileData(formData)
             .then((modeResult: boolean) => setEditMode(modeResult));
     }
@@ -43,8 +43,8 @@ const ProfileInfo: FC<PropsType> = (props): JSX.Element => {
             />  :
             <ProfileReduxForm onSubmit={onSubmit} 
                               initialValues={profile}
-                              //contacts={profile.contacts}
-                              //deactivateEditMode={deactivateEditMode}
+                              contacts={profile.contacts}
+                              deactivateEditMode={deactivateEditMode}
             />}
         </>
     )

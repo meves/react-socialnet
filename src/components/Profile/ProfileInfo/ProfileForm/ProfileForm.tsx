@@ -1,12 +1,17 @@
-import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import React, { FC } from 'react';
+import { reduxForm, Field, InjectedFormProps } from 'redux-form';
 import { required } from '../../../../utils/validators/validators';
 import { Checkbox, Input, Textarea } from '../../../common/FormControls/FormControls';
-//import Contact from './Contact';
-import { compose } from 'redux';
+import Contact from './Contact';
+import { ContactsType, UserProfileType } from '../../../../types/types';
 
-const ProfileForm = props => {
-    //const contactInputs = Object.keys(props.contacts).map(contact => <Contact contact={contact}/>)
+type OwnPropsType = {
+    contacts: ContactsType
+    deactivateEditMode: () => void
+}
+
+const ProfileForm: FC<InjectedFormProps<UserProfileType, OwnPropsType> & OwnPropsType> = (props) => {
+    const contactInputs = Object.keys(props.contacts).map(contact => <Contact contact={contact}/>)
     return (
         <form onSubmit={props.handleSubmit}>
             <button type="reset" onClick={props.deactivateEditMode}>Reset and Return</button>
@@ -20,10 +25,10 @@ const ProfileForm = props => {
             </fieldset>
             <fieldset>
                 <legend>Social contacts: </legend>
-               {/*  { contactInputs } */}
+                { contactInputs }
             </fieldset>
         </form>
     )
 }
 
-export default compose( reduxForm({form: 'profileForm'}) )(ProfileForm);
+export default reduxForm<UserProfileType, OwnPropsType>({form: 'profileForm'})(ProfileForm);

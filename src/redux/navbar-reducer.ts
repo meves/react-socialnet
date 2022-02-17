@@ -1,4 +1,5 @@
 import { PersonType } from "../types/types";
+import { ActionsTypes } from "./redux-store";
 
 const initialState = {
     friendsNames: [
@@ -9,17 +10,11 @@ const initialState = {
 }
 type InitialStateType = typeof initialState
 
-const navbarReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+const navbarReducer = (state = initialState, action: any): InitialStateType => {
     switch(action.type) {
         default:
             return state;
     }
-}
-
-type ActionsTypes = SomeActionType;
-
-type SomeActionType = {
-    type : string
 }
 
 export default navbarReducer;

@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './FormControls.module.scss';
+import { WrappedFieldInputProps, WrappedFieldMetaProps } from 'redux-form';
 
-export const Input = ({input, type, placeholder, label, meta: {touched, error, warning}}) => {
+type PropsType = {
+    input: WrappedFieldInputProps
+    meta: WrappedFieldMetaProps
+    type?: string
+    placeholder?: string
+    label?: string
+    cols?: number
+    rows?: number
+}
+
+export const Input: FC<PropsType> = ({input, type, placeholder, label, meta: {touched, error, warning}}) => {
     const hasError = touched && (error || warning);
     return (
         <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
@@ -13,7 +24,7 @@ export const Input = ({input, type, placeholder, label, meta: {touched, error, w
     )
 }
 
-export const Textarea = ({input, placeholder, cols, rows, meta: {touched, error, warning}}) => {
+export const Textarea: FC<PropsType> = ({input, placeholder, cols, rows, meta: {touched, error, warning}}) => {
     const hasError = touched && (error || warning);
     return (
         <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
@@ -23,7 +34,7 @@ export const Textarea = ({input, placeholder, cols, rows, meta: {touched, error,
     )
 }
 
-export const Checkbox = ({input, type, meta: {touched, error, warning}}) => {
+export const Checkbox: FC<PropsType> = ({input, type, meta: {touched, error, warning}}) => {
     const hasError = touched && (error || warning);
     return (
         <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>

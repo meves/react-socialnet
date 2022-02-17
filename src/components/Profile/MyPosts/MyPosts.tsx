@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './MyPosts.module.scss';
 import Post from './Post/Post';
-import MyPostForm from './MyPostsForm';
+import MyPostForm, { FormDataType } from './MyPostsForm';
 import { IPostType } from '../../../types/types';
 import { AddPostActionType } from '../../../redux/profile-reducer';
 
@@ -14,7 +14,7 @@ const MyPosts: FC<PropsType> = (props):JSX.Element => {
     const postsItems: Array<JSX.Element> = [...props.posts].reverse().map((post: IPostType): JSX.Element => (
         <Post key={post.id} message={post.message} likesCount={post.likesCount} />
     )) 
-    const onAddPost = (formData: any) => {
+    const onAddPost = (formData: FormDataType) => {
         props.addPost(formData.newPost);
     }
     return (       
