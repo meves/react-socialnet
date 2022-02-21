@@ -1,13 +1,11 @@
 import { FormAction, stopSubmit } from "redux-form";
-import { profileAPI } from "../api/api";
+import { profileAPI } from "../api/profile-api";
 import { createErrorObject } from "../utils/createErrorObject/createErrorObject";
 import { IPostType, UserProfileType, PhotosType } from "../types/types";
-import { ThunkAction } from "redux-thunk";
-import { ActionsTypes, AppStateType } from "./redux-store";
-import { ResponseDataEmptyDataType, ResponseDataPutProfilePhotoType } from "../api/types";
+import { InferActionsTypes, ThunkActionType } from "./redux-store";
 import { ResultCodes } from "../enums/responseCodes";
 
-const initialState = {    
+export const initialState = {    
         posts: [
             {id: 1, message: '"Hi, how are you?', likesCount: 15},
             {id: 2, message: 'It\'s my first post', likesCount: 5},
@@ -17,9 +15,11 @@ const initialState = {
         userProfile: null as UserProfileType | null,
         status: ''   
 }
-type InitialStateType = typeof initialState
+type InitialStateType = typeof initialState;
 
-const profileReducer = (state=initialState, action: ActionsTypes<ActionType>): InitialStateType => {
+type ActionsTypes = InferActionsTypes<typeof actions>;
+
+const profileReducer = (state=initialState, action: ActionsTypes): InitialStateType => {
     switch(action.type) {
         case "ADD_POST":
             return {
@@ -61,7 +61,7 @@ const profileReducer = (state=initialState, action: ActionsTypes<ActionType>): I
     }
 }
 
-export const action = {
+export const actions = {
     addPost: (newPostText: string) => ({
         type: "ADD_POST", newPostText
     } as const),
@@ -78,45 +78,42 @@ export const action = {
         type: "SAVE_PHOTOS", photos
     } as const)
 }
-type ActionType = typeof action;
-export type AddPostActionType = ReturnType<typeof action.addPost>;
 
-// thunk-creators
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes<ActionType>>;
+export type AddPostActionType = ReturnType<typeof actions.addPost>;
+
+type ThunkType = ThunkActionType<ActionsTypes | FormAction, void | boolean>;
 
 export const getProfile = (userId: number): ThunkType => 
     async (dispatch) => {
-        const data: UserProfileType = await profileAPI.getProfile(userId);
-        dispatch(action.setUserProfile(data));        
+        const data = await profileAPI.getProfile(userId);
+        dispatch(actions.setUserProfile(data));        
     }
 
 export const updateUserStatus = (status: string): ThunkType => 
     async (dispatch) => {
-        const data: ResponseDataEmptyDataType = await profileAPI.updateStatus(status);
+        const data = await profileAPI.updateStatus(status);
         if (data.resultCode === ResultCodes.Success) {
-            dispatch(action.setUserStatus(status));
+            dispatch(actions.setUserStatus(status));
         }
     }
 
 export const getUserStatus = (userId: number): ThunkType => 
     async (dispatch) => {
         const status: string = await profileAPI.getStatus(userId);
-        dispatch(action.setUserStatus(status));
+        dispatch(actions.setUserStatus(status));
     }
 
-export const updatePhoto = (profilePhoto: any): ThunkType => 
+export const updatePhoto = (profilePhoto: File): ThunkType => 
     async (dispatch) => {
-        const data: ResponseDataPutProfilePhotoType = await profileAPI.updatePhoto(profilePhoto);
+        const data = await profileAPI.updatePhoto(profilePhoto);
         if (data.resultCode === ResultCodes.Success) {
-            dispatch(action.savePhoto(data.data.photos));
+            dispatch(actions.savePhoto(data.data.photos));
         }
     }
 
-type SaveProfileDataThunkType = ThunkAction<Promise<boolean>, AppStateType, unknown, ActionsTypes<ActionType> | FormAction>;    
-
-export const saveProfileData = (profileData: UserProfileType): SaveProfileDataThunkType => 
-    async (dispatch: any) => {
-        const data: ResponseDataEmptyDataType = await profileAPI.saveProfile(profileData);
+export const saveProfileData = (profileData: UserProfileType): ThunkType => 
+    async (dispatch) => {
+        const data = await profileAPI.saveProfile(profileData);
         if (data.resultCode === ResultCodes.Success) {
             dispatch(getProfile(profileData.userId));
             return false;

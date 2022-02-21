@@ -1,10 +1,8 @@
-import { authAPI, securityAPI } from "../api/api";
+import { authAPI } from "../api/auth-api"; 
+import { securityAPI } from "../api/security-api";
 import { FormAction, stopSubmit } from "redux-form";
-import { ThunkAction } from "redux-thunk";
-import { ActionsTypes, AppStateType } from "./redux-store";
-import { ResponseDataAuthMeType, ResponseDataEmptyDataType, 
-         ResponseDataGetCaptchaUrlType, ResponseDataLoginType } from "../api/types";
-import { ResultCodeForGetCaptcha, ResultCodes } from "../enums/responseCodes";
+import { InferActionsTypes, ThunkActionType } from "./redux-store";
+import { ResultCodeCaptcha, ResultCodes } from "../enums/responseCodes";
 
 const initialState = {
     id: null as number | null,
@@ -16,9 +14,11 @@ const initialState = {
 }
 type InitialStateType = typeof initialState
 
-const authReducer = (state = initialState, action: ActionsTypes<ActionType>): InitialStateType => {
+type ActionsTypes = InferActionsTypes<typeof actions>;
+
+const authReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case "AUTH_ME":
+        case "SET_AUTH_ME":
             return {
                 ...state,
                 ...action.payload
@@ -28,42 +28,47 @@ const authReducer = (state = initialState, action: ActionsTypes<ActionType>): In
                 ...state, 
                 captchaUrl: action.captchaUrl
             }
+        case "SET_USERID":
+            return {
+                ...state,
+                id: action.userId
+            }
         default:
             return state
     }
 }
 
-const action = {
-    authMe: (id: number|null, login: string|null, email: string|null, isAuth: boolean) => ({
-        type: "AUTH_ME", payload: { id, login, email, isAuth }
+const actions = {
+    setAuthMe: (id: number|null, login: string|null, email: string|null, isAuth: boolean) => ({
+        type: "SET_AUTH_ME", payload: { id, login, email, isAuth }
     } as const),
     setCaptchaUrl: (captchaUrl: string) => ({
         type: "SET_CAPTCHA_URL", captchaUrl
-    } as const) 
+    } as const),
+    setUserId: (userId: number) => ({
+        type: "SET_USERID", userId
+    } as const)
 }
-type ActionType = typeof action;
-export type AuthMeActionType = ReturnType<typeof action.authMe>;
 
-// thunk-creators
-type AuthThunkType = ThunkAction<Promise<AuthMeActionType | undefined>, AppStateType, unknown, ActionsTypes<ActionType>>;
-export const auth = (): AuthThunkType => 
+type ThunkType = ThunkActionType<ActionsTypes | FormAction, void | ReturnType<typeof actions.setAuthMe>>;
+
+export const auth = (): ThunkType => 
     async (dispatch) => {
-        const data: ResponseDataAuthMeType = await authAPI.auth();
+        const data = await authAPI.auth();
         if (data.resultCode === ResultCodes.Success) {
             const {id, login, email} = data.data;
-            return dispatch(action.authMe(id, login, email, true));
+            return dispatch(actions.setAuthMe(id, login, email, true));
         }    
     }
 
-type LoginThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes<ActionType> | FormAction>;    
-export const login = (email: string, password: string, rememberMe: boolean, captcha: boolean|undefined)
-: LoginThunkType => 
+export const login = (email: string, password: string, rememberMe: boolean, captcha: boolean|undefined): ThunkType => 
     async (dispatch) => {
-        const data: ResponseDataLoginType = await authAPI.login(email, password, rememberMe, captcha);
+        const data = await authAPI.login(email, password, rememberMe, captcha);
         if (data.resultCode === ResultCodes.Success) {
+            dispatch(actions.setUserId(data.data.userId));
             dispatch(auth());
         } else {
-            if (data.resultCode === ResultCodeForGetCaptcha.CaptchaUrl) {
+            if (data.resultCode === ResultCodeCaptcha.CaptchaUrlIsRequired) {
                 dispatch(getCaptchaUrl());
             }
             const message: string = data.messages.length > 0 ? data.messages[0] : 'Incorrect Email or Password';
@@ -71,19 +76,18 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
         }    
     }
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes<ActionType>>;
     
 const getCaptchaUrl = (): ThunkType => 
     async (dispatch) => {
-        const data: ResponseDataGetCaptchaUrlType = await securityAPI.getCaptcha();    
-        dispatch(action.setCaptchaUrl(data.url));
+        const data = await securityAPI.getCaptcha();    
+        dispatch(actions.setCaptchaUrl(data.url));
     }
 
 export const logout = (): ThunkType => 
     async (dispatch) => {
-        const data: ResponseDataEmptyDataType = await authAPI.logout();
+        const data = await authAPI.logout();
         if (data.resultCode === ResultCodes.Success) {
-            dispatch(action.authMe(null, null, null, false));
+            dispatch(actions.setAuthMe(null, null, null, false));
         }
     }
 

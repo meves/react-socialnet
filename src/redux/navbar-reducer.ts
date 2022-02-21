@@ -1,5 +1,4 @@
 import { PersonType } from "../types/types";
-import { ActionsTypes } from "./redux-store";
 
 const initialState = {
     friendsNames: [

@@ -19,7 +19,7 @@ type PropsType = {
     getProfile: (userId: number) => void // !
     updateUserStatus: (status: string) => void // ->
     getUserStatus: (userId: number) => void // !
-    updatePhoto: (profilePhoto: any) => void // ->
+    updatePhoto: (profilePhoto: File) => void // ->
     saveProfileData:  (profileData: UserProfileType) => Promise<boolean> // ->
 }
 
@@ -59,7 +59,7 @@ type MapDispatchPropsType = {
     getProfile: (userId: number) => void
     updateUserStatus: (status: string) => void
     getUserStatus: (userId: number) => void
-    updatePhoto: (profilePhoto: any) => void
+    updatePhoto: (profilePhoto: File) => void
     saveProfileData:  (profileData: UserProfileType) => void
 }
 

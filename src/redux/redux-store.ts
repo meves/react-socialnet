@@ -1,5 +1,5 @@
-import { createStore, combineReducers, applyMiddleware, Store } from "redux";
-import thunkMiddleWare from "redux-thunk";
+import { createStore, combineReducers, applyMiddleware, Store, Action } from "redux";
+import thunkMiddleWare, { ThunkAction } from "redux-thunk";
 import dialogReducer from "./dialog-reducer";
 import profileReducer from "./profile-reducer";
 import navbarReducer from "./navbar-reducer";
@@ -22,7 +22,8 @@ const store = createStore(rootReducer, applyMiddleware(thunkMiddleWare));
 
 export type AppStateType = ReturnType<typeof store.getState>;
 
-type PropertiesTypes<T> = T extends {[key: string] : infer U} ? U : "never";
-export type ActionsTypes<T extends {[key: string] : (...args: any[]) => any}> = ReturnType<PropertiesTypes<T>>;
+export type InferActionsTypes<T> = T extends {[key: string] : (...args: any[]) => infer U} ? U : "never";
+
+export type ThunkActionType<A extends Action, R=void> = ThunkAction<Promise<R>, AppStateType, unknown, A>;
 
 export default store;

@@ -1,40 +1,25 @@
-import { UserType } from "../types/types";
+import { PhotosType, UserType } from "../types/types";
 
-export type ResponseDataGetUsersType = {
+export type GetUsersType = {
     items: Array<UserType>
     totalCount: number
     error: string
 }
-export type ResponseDataEmptyDataType = {
+export type ResponseDataType<D={}> = {
     resultCode: number
     messages: string[]
-    data: { }
+    data: D
 }
-export type ResponseDataPutProfilePhotoType = {
-    data: {
-        photos: {
-            small: string
-            large: string
-        }
-    }
-    resultCode: number
-    messages: Array<string>
+export type PhotosDataType = {
+    photos: PhotosType    
 }
-export type ResponseDataAuthMeType = {
-    resultCode: number
-    messages: Array<string>,
-    data: {
-      id: number
-      email: string
-      login: string
-    }
+export type AuthMeDataType = {
+    id: number
+    email: string
+    login: string    
 }
-export type ResponseDataLoginType = {
-    resultCode: number
-    messages: Array<string>
-    data: {
-      userId: number
-    }
+export type LoginDataType = {
+    userId: number
 }
 export type ResponseDataGetCaptchaUrlType = {
     url: string

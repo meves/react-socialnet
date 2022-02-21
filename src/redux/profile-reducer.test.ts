@@ -1,16 +1,8 @@
-import profileReducer, { addPost, deletePost } from "./profile-reducer";
+import profileReducer, { actions, initialState } from "./profile-reducer";
 
-
+const { addPost, deletePost } = actions;
 
 describe('profileReducer', () => {
-    const initialState = {    
-        posts: [
-            {id: 1, message: '"Hi, how are you?', likesCount: 15},
-            {id: 2, message: 'It\'s my first post', likesCount: 5},
-            {id: 3, message: 'Send me your messages', likesCount: 0},
-            {id: 4, message: 'Nice to meet you, friends', likesCount: 20}
-        ]  
-    }
     const message = 'Hi there, it is a new post';
     test('addPost', () => {
         const action = addPost(message);
