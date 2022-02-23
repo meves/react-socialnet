@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import MyPosts from './MyPosts';
-import { action } from '../../../redux/profile-reducer';
+import { actions } from '../../../redux/profile-reducer';
 import { recievePosts } from '../../../redux/selectors/profile-selectors';
 import { IPostType } from '../../../types/types';
 import { AppStateType } from '../../../redux/redux-store';
@@ -37,7 +37,7 @@ type MapDispatchPropsType = {
     addPost: (newPostText: string) => AddPostActionType
 }
 
-const { addPost } = action;
+const { addPost } = actions;
 
 export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps,
     { addPost } )(MyPostsContainer);

@@ -63,7 +63,7 @@ type MapDispatchPropsType = {
     saveProfileData:  (profileData: UserProfileType) => void
 }
 
-export default compose( 
+export default compose<React.ComponentType>( 
     withAuthNavigate,
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps,
         { getProfile, updateUserStatus, getUserStatus, updatePhoto, saveProfileData }),

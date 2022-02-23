@@ -82,7 +82,7 @@ type MapDispatchPropsType = {
     unfollowUser: (userId: number) => void
 }
 
-export default compose(
+export default compose<React.ComponentType>(
     withAuthNavigate,
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, 
         { getUsers, getUsersOnCurrentPage, followUser, unfollowUser })

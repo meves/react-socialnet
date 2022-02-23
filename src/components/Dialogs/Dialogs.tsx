@@ -5,7 +5,7 @@ import styles from './Dialogs.module.scss';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import NewMessage from './NewMessage/NewMessage';
-import { action, AddMessageType } from '../../redux/dialog-reducer';
+import { actions, AddMessageType } from '../../redux/dialog-reducer';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { recieveDialogs, receiveMessages } from '../../redux/selectors/dialogs-selectors';
 import { IMessageType, PersonType } from '../../types/types';
@@ -51,9 +51,9 @@ type MapDispatchPropsType = {
     addMessage: (newMessage: string) => AddMessageType 
 }
 
-const { addMessage } = action;
+const { addMessage } = actions;
 
-export default compose( 
+export default compose<React.ComponentType>( 
     withAuthNavigate, 
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, 
         { addMessage }) )(Dialogs); 

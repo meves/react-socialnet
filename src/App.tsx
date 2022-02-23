@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from 'react';
+import React, { FC, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Preloader from './components/common/Preloader/Preloader';
@@ -10,6 +10,7 @@ import NotFound from './components/NotFound/NotFound';
 import { initializeApp } from './redux/app-reducer';
 import './App.scss';
 import { withSuspense } from './hoc/withSuspense';
+import { AppStateType } from './redux/redux-store';
 
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
 const DialogsContainer = lazy(() => import('./components/Dialogs/Dialogs'));
@@ -18,7 +19,12 @@ const Music = lazy(() => import('./components/Music/Music'));
 const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
 
-const App = props => {
+type AppPropsType = {
+  initializeApp: () => void
+  initialized: boolean
+}
+
+const App: FC<AppPropsType> = (props) => {
   useEffect(() => {    
     props.initializeApp();
     // eslint-disable-next-line
@@ -40,7 +46,7 @@ const App = props => {
           <Route path="music" element={withSuspense(Music)} />
           <Route path="users" element={withSuspense(UsersContainer)} />
           <Route path="settings" element={withSuspense(Settings)} />
-          <Route path="login" element={<Login/>} />
+          <Route path="login" element={withSuspense(Login)} />
           <Route path="*" element={withSuspense(NotFound)}/>
         </Routes>
       </div>
@@ -49,8 +55,11 @@ const App = props => {
   
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, { initializeApp })(App);
+type MapStatePropsType = ReturnType<typeof mapStateToProps>;
+type MapDispatchPropsType = { initializeApp: () => void }
+
+export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, { initializeApp })(App);
