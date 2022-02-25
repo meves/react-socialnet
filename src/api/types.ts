@@ -1,3 +1,4 @@
+import { ResultCodes } from "../enums/responseCodes";
 import { PhotosType, UserType } from "../types/types";
 
 export type GetUsersType = {
@@ -5,8 +6,8 @@ export type GetUsersType = {
     totalCount: number
     error: string
 }
-export type ResponseDataType<D={}> = {
-    resultCode: number
+export type ResponseDataType<D={}, RC=ResultCodes> = {
+    resultCode: RC
     messages: string[]
     data: D
 }
