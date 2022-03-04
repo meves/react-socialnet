@@ -5,6 +5,8 @@ import Preloader from '../common/Preloader/Preloader';
 import Paginator from '../Paginator/Paginator';
 import { NavLink } from 'react-router-dom';
 import { UserType } from '../../types/types';
+import UserSearchForm from './UserSearchForm';
+import { FilterType } from '../../redux/users-reducer';
 
 type PropsType = {
     users: Array<UserType>  
@@ -15,13 +17,15 @@ type PropsType = {
     isFetching: boolean
     followingInProgress: Array<number>
     changeCurrentPage:  (currentPage: number) => void
+    changeFilter: (filter: FilterType) => void
     setFollowUser: (userId: number) => void
     setUnfollowUser: (userId: number) => void 
 }
 
 const Users: FC<PropsType> = (props): JSX.Element => {
     return (
-        <div className={styles.usersPage}>      
+        <div className={styles.usersPage}>  
+            <UserSearchForm changeFilter={props.changeFilter}/>    
             <Paginator totalUsersCount={props.totalUsersCount}
                        pageSize={props.pageSize}
                        currentPage={props.currentPage}

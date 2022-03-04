@@ -2,7 +2,7 @@ import { authAPI } from "../api/auth-api";
 import { securityAPI } from "../api/security-api";
 import { FormAction, stopSubmit } from "redux-form";
 import { InferActionsTypes, ThunkActionType } from "./redux-store";
-import { ResultCodeCaptcha, ResultCodes } from "../enums/responseCodes";
+import { ResultCodes } from "../enums/responseCodes";
 
 const initialState = {
     id: null as number | null,
@@ -68,7 +68,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
             dispatch(actions.setUserId(data.data.userId));
             dispatch(auth());
         } else {
-            if (data.resultCode === ResultCodeCaptcha.CaptchaUrlIsRequired) {
+            if (data.resultCode === ResultCodes.CaptchaUrlIsRequired) {
                 dispatch(getCaptchaUrl());
             }
             const message: string = data.messages.length > 0 ? data.messages[0] : 'Incorrect Email or Password';

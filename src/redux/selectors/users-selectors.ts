@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 import { UserType } from "../../types/types";
 import { AppStateType } from "../redux-store";
+import { FilterType } from "../users-reducer";
 
 const getUsers = (state: AppStateType): Array<UserType> => state.usersPage.users;
 export const recieveUsers = createSelector(getUsers, (users: Array<UserType>): Array<UserType> => {
@@ -12,3 +13,4 @@ export const recieveCurrentPage = (state: AppStateType): number => state.usersPa
 export const recieveIsFetching = (state: AppStateType): boolean => state.usersPage.isFetching;
 export const recieveFollowingInProgress = (state: AppStateType): Array<number> => state.usersPage.followingInProgress;
 export const receiveBlockSize = (state: AppStateType): number => state.usersPage.blockSize;
+export const receiveFilter = (state: AppStateType): FilterType => state.usersPage.filter;

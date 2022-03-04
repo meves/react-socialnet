@@ -11,10 +11,14 @@ const initialState = {
     currentPage: 1,
     blockSize: 20,
     isFetching: false,
-    followingInProgress: [] as Array<number>
+    followingInProgress: [] as Array<number>,
+    filter: {
+        term: "",
+        friend: null as boolean | null
+    }
 }
 export type InitialStateType = typeof initialState
-
+export type FilterType = typeof initialState.filter;
 type ActionsTypes = InferActionsTypes<typeof actions>;
 
 export const usersReducer = (state=initialState, action: ActionsTypes): InitialStateType => {
@@ -66,6 +70,11 @@ export const usersReducer = (state=initialState, action: ActionsTypes): InitialS
                     ? [...state.followingInProgress, action.userId] 
                     : state.followingInProgress.filter(id => id !== action.userId)
             }
+        case "SET_FILTER":
+            return {
+                ...state,
+                filter: {...action.payload.filter}
+            }
         default:
             return state;
     }
@@ -92,6 +101,9 @@ export const actions = {
     } as const),
     toggleFollowingInProgress: (isFetching: boolean, userId: number) => ({
         type: "TOGGLE_FOLLOWING_IN_PROGRESS", isFetching, userId
+    } as const),
+    setFilter: (filter: FilterType) => ({
+        type: "SET_FILTER", payload: { filter }
     } as const)
 }
 
@@ -106,11 +118,12 @@ export const getUsers = (currentPage: number, pageSize: number): ThunkType =>
         dispatch(actions.toggleIsFetching(false));        
     }
 
-export const getUsersOnCurrentPage = (currentPage: number, pageSize: number): ThunkType =>
+export const getUsersOnCurrentPage = (currentPage: number, pageSize: number, filter: FilterType): ThunkType =>
     async (dispatch) => {
         dispatch(actions.toggleIsFetching(true));
         dispatch(actions.setCurrentPage(currentPage));
-        const data = await usersAPI.getUsers(currentPage, pageSize);
+        dispatch(actions.setFilter(filter));
+        const data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend);
         dispatch(actions.setUsers(data.items));
         dispatch(actions.toggleIsFetching(false));            
     }

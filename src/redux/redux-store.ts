@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, Store, Action } from "redux";
+import { createStore, combineReducers, applyMiddleware, Action } from "redux";
 import thunkMiddleWare, { ThunkAction } from "redux-thunk";
 import dialogReducer from "./dialog-reducer";
 import profileReducer from "./profile-reducer";

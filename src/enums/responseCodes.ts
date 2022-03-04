@@ -1,8 +1,5 @@
 export enum ResultCodes {
     Success = 0,
-    Error = 1
-}
-
-export enum ResultCodeCaptcha {
+    Error = 1,
     CaptchaUrlIsRequired = 10
 }

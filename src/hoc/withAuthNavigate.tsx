@@ -17,7 +17,7 @@ export function withAuthNavigate<PropsType>(Component: React.ComponentType<Props
         if (!props.isAuth) {
             return <Navigate replace to="/login" /> 
         } else { 
-            return <Component {...props} /> 
+            return <Component {...restProps} /> 
         }
     }
     return connect<MapStatePropsType, {}, {}, AppStateType>( mapStateToProps, {} )(NavigateComponent);
