@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { getProfile, updateUserStatus, getUserStatus, updatePhoto, saveProfileData } from '../../redux/profile-reducer';
 import { withRouter } from '../../hoc/withRouter';
-import { withAuthNavigate } from '../../hoc/withAuthNavigate';
+//import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { compose } from 'redux';
 import { recieveUserId } from '../../redux/selectors/auth-selectors';
 import { recieveUserProfile, recieveStatus } from '../../redux/selectors/profile-selectors';
@@ -24,7 +24,7 @@ type PropsType = {
 }
 
 class ProfileContainer extends Component<PropsType> {
-    userId: number = Number(this.props.params.userId) || this.props.userId;
+    userId: number = Number(this.props.params.userId) || this.props.userId || 19836;
     componentDidMount() {
         this.props.getProfile(this.userId);
         this.props.getUserStatus(this.userId);
@@ -64,7 +64,7 @@ type MapDispatchPropsType = {
 }
 
 export default compose<React.ComponentType>( 
-    withAuthNavigate,
+    //withAuthNavigate,
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps,
         { getProfile, updateUserStatus, getUserStatus, updatePhoto, saveProfileData }),
     withRouter )(ProfileContainer);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUsers, getUsersOnCurrentPage, followUser, unfollowUser, FilterType } from '../../redux/users-reducer';
 import Users from './Users';
-import { withAuthNavigate } from '../../hoc/withAuthNavigate';
+//import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { compose } from 'redux';
 import { recieveUsers, recievePageSize, recieveTotalUsersCount, recieveCurrentPage, 
          recieveIsFetching, recieveFollowingInProgress, receiveBlockSize, receiveFilter } from '../../redux/selectors/users-selectors';
@@ -92,7 +92,7 @@ type MapDispatchPropsType = {
 }
 
 export default compose<React.ComponentType>(
-    withAuthNavigate,
+    /* withAuthNavigate, */
     connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, 
         { getUsers, getUsersOnCurrentPage, followUser, unfollowUser })
 )(UsersAPIContainer);

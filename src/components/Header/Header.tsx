@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import styles from './Header.module.scss';
-import Logo from './../../assets/images/logo.png';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/auth-reducer';
 import { NavLink } from 'react-router-dom';
@@ -19,15 +18,17 @@ const Header: FC<PropsType> = (props): JSX.Element => {
     }
     return (
       <header className={styles.header}>
-        <img className={styles.image} src={Logo} alt="logo" />        
+        <h1 className={styles.title}>Social net project</h1>       
           <div className={styles.loginBlock}>
             {props.isAuth 
-            ? <div>
-                <div>{props.login}</div>
-                <button onClick={handleLogout}>Logout</button>
+            ? <div className={styles.loginWrapper}>
+                <div className={styles.login}>{props.login}</div>
+                <button className={styles.button} onClick={handleLogout}>Logout</button>
               </div> 
             : <NavLink to="/login">
-                <button>Login</button>
+                <div className={styles.loginWrapper}>
+                  <button className={styles.button}>Login</button>                  
+                </div>
               </NavLink>}
           </div>
       </header>

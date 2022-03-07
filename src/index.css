@@ -9,6 +9,13 @@
   box-sizing: inherit;
 }
 
+html {
+  /* colors */
+  --bg-color-dark: hsl(225, 58%, 35%);
+  --bg-color-medium: hsl(231, 44%, 56%);
+  --bg-color-light: hsl(233, 81%, 75%);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,11 +23,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  /* colors */
-  --bg-color-dark: hsl(225, 58%, 35%);
-  --bg-color-medium: hsl(231, 44%, 56%);
-  --bg-color-light: hsl(233, 81%, 75%);
 }
 
 code {

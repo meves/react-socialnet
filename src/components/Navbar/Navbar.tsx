@@ -5,7 +5,7 @@ import FriendsBlockContainer from './FriendsBlock/FriendsBlock';
 
 const Navbar: FC = (props): JSX.Element => {
     return (
-        <nav className={styles.nav}>
+        <nav className={styles.navbar}>
             <Menu />
             <FriendsBlockContainer />
         </nav>
