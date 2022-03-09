@@ -24,20 +24,20 @@ const ProfileData: FC<PropsType> = (props): JSX.Element => {
         <div className={styles.profileData}>
             <div className={styles.profileBlock}>
                 <h2>{profile?.fullName}</h2>
-                { props.isOwner && 
-                    <div><button onClick={props.activateEditMode}>Edit Profile</button></div>
-                }
+                <p>{profile?.lookingForAJob ? 'Ищу работу' : 'Не ищу работу'}</p>
+                <div>{profile?.aboutMe}</div>
+                <p>{profile?.lookingForAJobDescription}</p>
                 <div className={styles.imageBlock}>
                     <img src={profile?.photos.large || profile?.photos.small || UserIcon} alt={profile?.fullName} />                                
                 </div>
                 { props.isOwner && 
-                    <div><input type="file" onChange={saveProfilePhoto} /></div>
+                    <input className={styles.fileInput} type="file" onChange={saveProfilePhoto} />
                 }
-                <div>{profile?.aboutMe}</div>
-                <p>{profile?.lookingForAJob ? 'Ищу работу' : 'Не ищу работу'}</p>
-                <p>{profile?.lookingForAJobDescription}</p>
             </div>
             <SocialBlock profile={profile}/>
+                { props.isOwner && 
+                    <button className="button" onClick={props.activateEditMode}>Edit Profile</button>
+                }
         </div>
     )
 }

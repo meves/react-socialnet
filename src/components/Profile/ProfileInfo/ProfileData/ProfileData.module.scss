@@ -1,11 +1,25 @@
 .profileData {
-    padding: 0.5;
-   
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
     .profileBlock {
+
+        .fileInput {
+            outline: none;
+            border-radius: 10%;
+            padding: 0.5em;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: aliceblue;
+            cursor: pointer;
+        }
 
         .imageBlock {
             padding: 1em;
-        
+            
+
             img {
                 max-width: 5em;
             }

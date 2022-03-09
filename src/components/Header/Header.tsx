@@ -18,16 +18,16 @@ const Header: FC<PropsType> = (props): JSX.Element => {
     }
     return (
       <header className={styles.header}>
-        <h1 className={styles.title}>Social net project</h1>       
+        <h1 className={styles.title}>Social net</h1>       
           <div className={styles.loginBlock}>
             {props.isAuth 
             ? <div className={styles.loginWrapper}>
                 <div className={styles.login}>{props.login}</div>
-                <button className={styles.button} onClick={handleLogout}>Logout</button>
+                <button className="button" onClick={handleLogout}>Logout</button>
               </div> 
             : <NavLink to="/login">
                 <div className={styles.loginWrapper}>
-                  <button className={styles.button}>Login</button>                  
+                  <button className="button">Login</button>                  
                 </div>
               </NavLink>}
           </div>

@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect, ChangeEvent } from 'react';
+import styles from './ProfileStatus.module.scss';
 
 type PropsType = {
     status: string
@@ -22,12 +23,12 @@ const ProfileStatus: FC<PropsType> = (props): JSX.Element => {
         setStatus(event.target.value);        
     }    
     return (
-        <div> 
+        <div className={styles.statusInputWrapper}> 
         { !editMode 
-            ? <div>
+            ? <div className={styles.statusWrapper}>
                 <span onDoubleClick={activateEditMode}>{props.status}</span>
               </div>
-            : <div>
+            : <div className={styles.inputWrapper}>
                 <input onBlur={deactivateEditMode} 
                         value={status}
                         onChange={handleChangeStatus}
