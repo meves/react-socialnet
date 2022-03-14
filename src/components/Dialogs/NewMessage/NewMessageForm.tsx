@@ -18,7 +18,7 @@ const NewMessageForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                        validate={[required, maxLength300]} />
             </div>
             <div className={styles.btnBlock} >
-                <button>
+                <button className="sendButton">
                     Add new message
                 </button>
             </div>

@@ -49,13 +49,13 @@ const Paginator: FC<PropsType> = ({totalUsersCount, pageSize, currentPage, chang
     return (
         <div className={styles.paginatorWrapper}>
             <div className={styles.paginator}>
-                <button onClick={handleStartClick}>start</button>
-                <button onClick={handlePrevClick}>prev</button>
+                <button className={`button ${styles.start}`} onClick={handleStartClick}>start</button>
+                <button className="button" onClick={handlePrevClick}>prev</button>
                 <div className={styles.pages}>
                 { pagesItems }
                 </div>
-                <button onClick={handleNextClick}>next</button>
-                <button onClick={handleLastClick}>end</button>
+                <button className="button" onClick={handleNextClick}>next</button>
+                <button className={`button ${styles.end}`} onClick={handleLastClick}>end</button>
             </div>
         </div>  
     )

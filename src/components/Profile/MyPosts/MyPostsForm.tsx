@@ -19,7 +19,7 @@ const MyPostForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                         validate={[required, maxLength300]} />
             </div>
             <div className={styles.btnBlock} >
-                <button>
+                <button className="sendButton">
                     Add new post
                 </button>
             </div> 

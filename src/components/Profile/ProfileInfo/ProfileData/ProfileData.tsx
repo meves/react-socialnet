@@ -23,21 +23,26 @@ const ProfileData: FC<PropsType> = (props): JSX.Element => {
     return (
         <div className={styles.profileData}>
             <div className={styles.profileBlock}>
-                <h2>{profile?.fullName}</h2>
-                <p>{profile?.lookingForAJob ? 'Ищу работу' : 'Не ищу работу'}</p>
-                <div>{profile?.aboutMe}</div>
-                <p>{profile?.lookingForAJobDescription}</p>
-                <div className={styles.imageBlock}>
-                    <img src={profile?.photos.large || profile?.photos.small || UserIcon} alt={profile?.fullName} />                                
+                <div className={styles.titleInfo}>
+                    <h2>{profile?.fullName}</h2>
+                    <p>{profile?.lookingForAJob ? 'Ищу работу' : 'Не ищу работу'}</p>
+                    <div>{profile?.aboutMe}</div>
+                    <p>{profile?.lookingForAJobDescription}</p>
                 </div>
-                { props.isOwner && 
-                    <input className={styles.fileInput} type="file" onChange={saveProfilePhoto} />
-                }
+                <div className={styles.userImage}>
+                    { props.isOwner && 
+                        <button className="button" onClick={props.activateEditMode}>Edit Profile</button>
+                    }
+                    <div className={styles.imageBlock}>
+                        <img src={profile?.photos.large || profile?.photos.small || UserIcon} alt={profile?.fullName} 
+                             title="user profile photo"/>                                
+                    </div>
+                    { props.isOwner && 
+                        <input className={styles.fileInput} type="file" onChange={saveProfilePhoto} />
+                    }
+                </div>
             </div>
             <SocialBlock profile={profile}/>
-                { props.isOwner && 
-                    <button className="button" onClick={props.activateEditMode}>Edit Profile</button>
-                }
         </div>
     )
 }

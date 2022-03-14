@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import React, { FC } from "react";
 import { FilterType } from "../../redux/users-reducer";
+import styles from './User.module.scss';
 
 const userSearchFormValidate = (values: any) => {
     const errors = {};
@@ -26,7 +27,7 @@ const UserSearchForm: FC<PropsType> = (props) => {
         setSubmitting(false);
     }
     return (
-        <div>
+        <div className={styles.userSearchForm}>
             <Formik
                 initialValues={{term: "", friend: "null"}}
                 validate={userSearchFormValidate}
@@ -34,13 +35,13 @@ const UserSearchForm: FC<PropsType> = (props) => {
             >
             {({isSubmitting}) => (
                 <Form>
-                    <Field type="text" name="term"/>
-                    <Field as="select" name="friend">
+                    <Field className={styles.term} type="text" name="term"/>
+                    <Field className={styles.select} as="select" name="friend">
                             <option value="null">All users</option> 
                             <option value="true">Followed</option>
                             <option value="false">Unfollowed</option>   
                     </Field>
-                    <button type="submit" disabled={isSubmitting}>
+                    <button className={`${styles.searchButton} button`} type="submit" disabled={isSubmitting}>
                         Submit
                     </button>
                 </Form>

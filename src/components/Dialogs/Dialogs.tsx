@@ -26,12 +26,14 @@ const Dialogs: FC<PropsType> = (props): JSX.Element => {
     ))    
     return (
         <div className={styles.dialogs}>
-            <div className={styles.dialogsItems}>
-               {dialogsItems}                
-            </div>            
-            <div className={styles.messages}>
-                {messagesItems}
-            </div>  
+            <div className={styles.dialogBlock}>
+                <div className={styles.dialogsItems}>
+                {dialogsItems}                
+                </div>            
+                <div className={styles.messages}>
+                    {messagesItems}
+                </div>  
+            </div>
             <NewMessage addMessage={props.addMessage} />        
         </div>
     )

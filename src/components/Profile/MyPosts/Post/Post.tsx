@@ -10,9 +10,13 @@ type PropsType = {
 const Post: FC<PropsType> = (props): JSX.Element => {
     return (
         <div className={styles.item}>
-            <img src={UserIcon} alt="User-icon" />
-            <span>{props.message}</span>
-            <p>Like {props.likesCount}</p>
+            <figure className={styles.imageFigure}>
+                <img src={UserIcon} alt="User-icon" />
+            </figure>
+            <div className={styles.message}>
+                <div>{props.message}</div>
+                <p>Like {props.likesCount}</p>
+            </div>
         </div>
     )
 }

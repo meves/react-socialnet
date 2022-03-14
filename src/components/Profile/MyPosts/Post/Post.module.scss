@@ -1,8 +1,18 @@
 .item {
-    display: block;
+    display: flex;
+    padding: 1em;
+    background-color: var(--wthite-color);
+    margin-bottom: 1em;
+    border-radius: 1em;
 
-    img {
-        max-width: 4em;
-        border-radius: 50%;
+    .imageFigure {
+        margin: 0 5em 0 0;
+
+        img {
+            max-width: 5em;
+            border-radius: 50%;
+            object-fit: contain;
+        }
     }
+    
 }

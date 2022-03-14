@@ -32,10 +32,11 @@ const Users: FC<PropsType> = (props): JSX.Element => {
                        changeCurrentPage={props.changeCurrentPage}
                        blockSize={props.blockSize}
             />
-            {props.isFetching && <Preloader />}                
+            {props.isFetching && <Preloader />}  
+            <div className={styles.userItems}>             
             {props.users.map((user: UserType): JSX.Element => (
                 <div key={user.id} className={styles.userItem}>
-                    <div>
+                    <div className={styles.photoWrapper}>
                         <NavLink to={`/profile/${user.id}`}>
                             <img className={styles.userPhoto} 
                                 src={user.photos.large || user.photos.small || UserImage} 
@@ -43,24 +44,27 @@ const Users: FC<PropsType> = (props): JSX.Element => {
                         </NavLink>
                         { user.followed
                             ? <button disabled={props.followingInProgress.some(id => id === user.id)} 
-                                      onClick={() => props.setUnfollowUser(user.id)}>Unfollow</button>
+                                      onClick={() => props.setUnfollowUser(user.id)}
+                                      className="button">Unfollow</button>
                             : <button disabled={props.followingInProgress.some(id => id === user.id)} 
-                                      onClick={() => props.setFollowUser(user.id)}>Follow</button>
+                                      onClick={() => props.setFollowUser(user.id)}
+                                      className="button">Follow</button>
                         }                            
                     </div>
-                    <div>
-                        <div>
+                    <div className={styles.infoWrapper}>
+                        <div className={styles.userInfo}>
                             <div>{user.name}</div>
                             <div>{user.status}</div>
                         </div>
-                        <div>
+                        <div className={styles.userLocation}>
                             <div>user.location.country</div>
                             <div>user.location.city</div>
-                            <a href={'user.uniqueUrlName'}>site</a>
+                            <a href={'user.uniqueUrlName'}>User site</a>
                         </div>
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     )
 }

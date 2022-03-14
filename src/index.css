@@ -10,10 +10,26 @@
 }
 
 html {
-  /* colors */
+  /* background colors */
   --bg-color-dark: hsl(225, 58%, 35%);
   --bg-color-medium: hsl(231, 44%, 56%);
   --bg-color-light: hsl(233, 81%, 75%);
+  --bg-item-color: hsl(180, 81%, 26%);
+  /* text colors */
+  --white-text-color: hsl(0, 0%, 100%);
+  --dark-text-color: hsl(10, 4%, 10%);
+  --selected-text-solor: hsl(310, 80%, 31%);
+  --gray-text-color: hsl(240, 21%, 85%);
+  --link-color: rgb(17, 151, 175);
+  /* other colors */
+  --wthite-color: hsl(0, 0%, 100%);
+  --gray-color: hsl(0, 0%, 50%);
+  --black-color: hsl(0, 0%, 0%);
+  /* buttons */
+  --bg-button: navy;
+  --color-button: aliceblue;
+  --bg-hover-button: rgba(0, 0, 128, 0.384);
+  --color-hover-button: rgb(233, 57, 13);
 }
 
 body {

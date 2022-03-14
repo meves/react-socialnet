@@ -24,6 +24,9 @@ const MyPosts: FC<PropsType> = (props):JSX.Element => {
                 <div className={styles.posts}>
                     {postsItems}
                 </div>
+                <div className={styles.more}>
+                    <button className={styles.moreButton}>More ...</button>
+                </div>
             </div>         
         )
     }

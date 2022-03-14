@@ -18,7 +18,7 @@ const Header: FC<PropsType> = (props): JSX.Element => {
     }
     return (
       <header className={styles.header}>
-        <h1 className={styles.title}>Social net</h1>       
+        <h1 className={styles.title}>Social network</h1>       
           <div className={styles.loginBlock}>
             {props.isAuth 
             ? <div className={styles.loginWrapper}>

@@ -1,9 +1,96 @@
 .usersPage {
 
-    .userItem {
+    .userSearchForm {
+        background-color: var(--bg-color-medium);
+        display: flex;
+        padding: 0.5em;
+        font-size: 1rem;
+        border-radius: 0.3em;
+        margin-bottom: 2em;
 
-        .userPhoto {
-            max-width: 3em;
+        .term {
+            margin-right: 1em;
+            font-size: 0.75rem;
+            padding: 0.5em;
+            width: 20em;
+            border-radius: 0.3em;
+            border: none;
+        }
+
+        .select {
+            margin-right: 1em;
+            font-size: 0.75rem;
+            padding: 0.5em;
+            background-color: var(--bg-color-light);
+        }
+        
+        .searchButton {
+            font-size: 0.75rem;
+        }
+    }
+
+    .userItems {
+        margin-top: 3.5em;
+
+        .userItem {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            align-self: center;
+            justify-content: flex-start;
+            margin-bottom: 1.5em;
+            padding: 0.5em;
+            background-color: var(--bg-color-light);
+            border-radius: 0.3em;
+
+            .photoWrapper {
+                margin-right: 2em;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .userPhoto {
+                    object-fit: contain;
+                    max-width: 4.5em;
+                    padding: 0.3em;
+                    border-radius: 1em;
+                    background-color: var(--bg-color-light);
+                }
+
+            }
+
+            .infoWrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                color: var(--white-text-color);
+
+                .userInfo {
+                    background-color: var(--bg-color-dark);
+                    margin-right: 2em;
+                    padding: 0.5em 0 0.5em 0.75em;
+                    border-radius: 0.3em;
+                }
+
+                .userLocation {
+                    background-color: var(--bg-color-dark);
+                    padding: 0.5em 0 0.5em 0.75em;
+                    border-radius: 0.3em;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    a {
+                        color: var(--link-color);
+                        text-decoration: none;
+
+                        &:hover {
+                            color: var(--gray-text-color);
+                        }
+                    }
+
+                }
+            }
+
         }
     }
 }

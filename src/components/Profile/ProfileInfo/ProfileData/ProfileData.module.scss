@@ -2,8 +2,26 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    color: var(--white-text-color);
+    border-bottom: 3px solid var(--wthite-color);
+    padding-bottom: 3em;
+    border-top: 3px solid var(--wthite-color);
+    padding-top: 3em;
     
     .profileBlock {
+        display: flex;
+        justify-content: space-between;
+
+        .titleInfo {
+
+            h2 {
+                margin-top: 0;
+            }
+        }
+
+        .userImage {
+            object-fit: contain;
+        }
 
         .fileInput {
             outline: none;
@@ -22,6 +40,12 @@
 
             img {
                 max-width: 5em;
+                transition: transform 0.3s;
+
+                &:hover {
+                    transform: scale(1.15);
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -36,17 +60,23 @@
             
             .item {
                 padding: 0.5em 1em;
-                border: 1px solid gray;
+                border: 1px solid var(--gray-color);
                 border-radius: 0.5em;
                 text-align: center;
-                cursor: pointer;
+                transition: font-weight 0.3s, border-color 0.3s;
+
+                &:hover {
+                    cursor: pointer;
+                    font-weight: bold;
+                    border-color: var(--wthite-color);
+                }
                 
                 .link {
                     display: block;
                     margin-left: 0;
                     font-size: 0.75rem;
                     text-decoration: none;
-                    color: #000;
+                    color: var(--white-text-color);
                 }
             }
         }
