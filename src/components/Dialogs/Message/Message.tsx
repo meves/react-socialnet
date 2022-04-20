@@ -5,12 +5,10 @@ type PropsType = {
     message: string
 }
 
-const Message: FC<PropsType> = (props): JSX.Element => {
+export const Message: FC<PropsType> = (props) => {
     return (
         <div className={styles.message}>
             {props.message}
         </div>
     )
 }
-
-export default Message;

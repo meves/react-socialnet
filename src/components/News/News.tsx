@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
-const News: FC = (props): JSX.Element => {
+const News: FC = () => {
     return (
         <div>
             <h1>News</h1>

@@ -7,7 +7,7 @@ type PropsType = {
     likesCount: number
 }
 
-const Post: FC<PropsType> = (props): JSX.Element => {
+export const Post: FC<PropsType> = (props) => {
     return (
         <div className={styles.item}>
             <figure className={styles.imageFigure}>
@@ -20,5 +20,3 @@ const Post: FC<PropsType> = (props): JSX.Element => {
         </div>
     )
 }
-
-export default Post;

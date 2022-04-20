@@ -1,23 +1,26 @@
 import React, { ChangeEvent, FC } from 'react';
 import styles from './ProfileData.module.scss';
 import UserIcon from '../../../../assets/images/user_icon.png';
-import SocialBlock from './Social/SocialBlock';
+import { SocialBlock } from './Social/SocialBlock';
 import { UserProfileType } from '../../../../types/types';
+import { useDispatch } from 'react-redux';
+import { updatePhoto } from '../../../../redux/profile-reducer';
 
 type PropsType = {
     userProfile: UserProfileType
     isOwner: boolean
-    updatePhoto: (profilePhoto: File) => void
     activateEditMode: () => void  
 }
 
-const ProfileData: FC<PropsType> = (props): JSX.Element => {
+export const ProfileData: FC<PropsType> = (props) => {
     const profile: UserProfileType = props.userProfile;
     
+    const dispatch = useDispatch();
+
     const saveProfilePhoto = (event: ChangeEvent<HTMLInputElement>) => {
         const files: FileList | null = event.target.files;
         if (files?.length === 1) {
-            props.updatePhoto(files[0]);
+            dispatch(updatePhoto(files[0]));
         }
     }
     return (
@@ -34,17 +37,16 @@ const ProfileData: FC<PropsType> = (props): JSX.Element => {
                         <button className="button" onClick={props.activateEditMode}>Edit Profile</button>
                     }
                     <div className={styles.imageBlock}>
-                        <img src={profile?.photos.large || profile?.photos.small || UserIcon} alt={profile?.fullName} 
-                             title="user profile photo"/>                                
+                        <img src={profile?.photos.large || profile?.photos.small || UserIcon} 
+                             alt={profile?.fullName} 
+                             title="user profile photo"/>                           
                     </div>
                     { props.isOwner && 
                         <input className={styles.fileInput} type="file" onChange={saveProfilePhoto} />
                     }
                 </div>
             </div>
-            <SocialBlock profile={profile}/>
+            <SocialBlock profile={ profile }/>
         </div>
     )
 }
-
-export default ProfileData;

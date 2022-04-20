@@ -6,7 +6,7 @@ type PropsType = {
     name: string
 }
 
-const FriendItem: FC<PropsType> = (props): JSX.Element => {
+export const FriendItem: FC<PropsType> = (props) => {
     return (
         <div className={styles.item} >
             <img className={styles.image} src={UserImage} alt="User" />
@@ -14,5 +14,3 @@ const FriendItem: FC<PropsType> = (props): JSX.Element => {
         </div>
     )
 }
-
-export default FriendItem;

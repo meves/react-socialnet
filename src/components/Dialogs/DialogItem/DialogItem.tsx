@@ -8,7 +8,7 @@ type PropsType = {
     name: string
 }
 
-const DialogItem: FC<PropsType> = (props): JSX.Element => {
+export const DialogItem: FC<PropsType> = (props) => {
     const path: string = `/dialogs/${props.id}`;
     return (
         <div className={styles.dialog}>
@@ -19,5 +19,3 @@ const DialogItem: FC<PropsType> = (props): JSX.Element => {
         </div>
     )
 }
-
-export default DialogItem;

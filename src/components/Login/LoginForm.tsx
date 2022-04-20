@@ -1,21 +1,20 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { reduxForm, Field, InjectedFormProps } from 'redux-form';
+import { receiveCaptchaUrl } from '../../redux/selectors/auth-selectors';
 import { email, maxLength30, minLength6, required } from '../../utils/validators/validators';
 import { Input, Checkbox } from '../common/FormControls/FormControls';
 import styles from '../common/FormControls/FormControls.module.scss';
 
-type FormDataType = {
+export type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
     captcha: boolean | undefined
 }
 
-type PropsType = {
-    captchaUrl: string | null
-}
-
-const LoginForm: FC<InjectedFormProps<FormDataType, PropsType> & PropsType> = (props) => {
+const LoginForm: FC<InjectedFormProps<FormDataType, {}> & {}> = (props) => {
+    const captchaUrl = useSelector(receiveCaptchaUrl);
     return (
         <form onSubmit={props.handleSubmit}>
             <fieldset>
@@ -29,8 +28,8 @@ const LoginForm: FC<InjectedFormProps<FormDataType, PropsType> & PropsType> = (p
                 <div>
                     <Field type="checkbox" label="rememberMe" name="rememberMe" component={Checkbox}/>                    
                 </div>
-                { props.captchaUrl && <div>
-                        <img src={props.captchaUrl} alt="Captcha" />
+                { captchaUrl && <div>
+                        <img src={captchaUrl} alt="Captcha" />
                         <Field component={Input} name="captcha" validate={[required]} />
                     </div>
                 }
@@ -47,4 +46,4 @@ const LoginForm: FC<InjectedFormProps<FormDataType, PropsType> & PropsType> = (p
     )
 }
 
-export default reduxForm<FormDataType, PropsType>({form: 'loginForm'})(LoginForm);
+export default reduxForm<FormDataType, {}>({form: 'loginForm'})(LoginForm);

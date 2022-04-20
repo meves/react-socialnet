@@ -1,15 +1,13 @@
 import React, { FC } from 'react';
 import styles from './Navbar.module.scss';
-import Menu from './Menu/Menu';
-import FriendsBlockContainer from './FriendsBlock/FriendsBlock';
+import { Menu } from './Menu/Menu';
+import { FriendsBlock } from './FriendsBlock/FriendsBlock';
 
-const Navbar: FC = (props): JSX.Element => {
+export const Navbar: FC = () => {
     return (
         <nav className={styles.navbar}>
             <Menu />
-            <FriendsBlockContainer />
+            <FriendsBlock />
         </nav>
     )
 }
-
-export default Navbar;

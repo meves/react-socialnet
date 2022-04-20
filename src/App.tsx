@@ -1,22 +1,24 @@
 import React, { FC, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Preloader from './components/common/Preloader/Preloader';
-import Login from './components/Login/Login';
-import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import NotFound from './components/NotFound/NotFound';
+// components
+import { Header } from './components/Header/Header';
+import { Navbar } from './components/Navbar/Navbar';
+import { Home } from './components/Home/Home';
+import { Login } from './components/Login/Login';
+import { Preloader } from './components/common/Preloader/Preloader';
+import { NotFound } from './components/NotFound/NotFound';
+// utils
 import { initializeApp } from './redux/app-reducer';
 import './App.scss';
 import { withSuspense } from './hoc/withSuspense';
 import { AppStateType } from './redux/redux-store';
-
-const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
-const DialogsContainer = lazy(() => import('./components/Dialogs/Dialogs'));
+// lazy components
+const ProfilePage = lazy(() => import('./components/Profile/Profile'));
+const DialogsPage = lazy(() => import('./components/Dialogs/Dialogs'));
 const News = lazy(() => import('./components/News/News'));
 const Music = lazy(() => import('./components/Music/Music'));
-const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
+const UsersPage = lazy(() => import('./components/Users/Users'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
 
 type AppPropsType = {
@@ -38,13 +40,13 @@ const App: FC<AppPropsType> = (props) => {
       <Navbar />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="profile" element={withSuspense(ProfileContainer)} />
-          <Route path="profile/:userId" element={withSuspense(ProfileContainer)} />
-          <Route path="dialogs/*" element={withSuspense(DialogsContainer)} />
+          <Route path="/" element={<Home/>}/>
+          <Route path="profile" element={withSuspense(ProfilePage)} />
+          <Route path="profile/:userId" element={withSuspense(ProfilePage)} />
+          <Route path="dialogs/*" element={withSuspense(DialogsPage)} />
           <Route path="news" element={withSuspense(News)} />
           <Route path="music" element={withSuspense(Music)} />
-          <Route path="users" element={withSuspense(UsersContainer)} />
+          <Route path="users" element={withSuspense(UsersPage)} />
           <Route path="settings" element={withSuspense(Settings)} />
           <Route path="login" element={withSuspense(Login)} />
           <Route path="*" element={withSuspense(NotFound)}/>

@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 import styles from './NewMessage.module.scss';
-import { AddMessageType } from '../../../redux/dialog-reducer';
 import MessageForm from './NewMessageForm';
 import { FormDataType } from './NewMessageForm';
+import { actions } from '../../../redux/dialog-reducer';
+import { useDispatch } from 'react-redux';
 
-type PropsType = {
-    addMessage: (newMessage: string) => AddMessageType
-}
+export const NewMessage: FC = () => {
+    const dispatch = useDispatch();
+    const { addMessage } = actions;
 
-const NewMessage: FC<PropsType> = (props): JSX.Element => {
     const onAddMessage = (formData: FormDataType) => {
-        props.addMessage(formData.newMessage);
+        dispatch(addMessage(formData.newMessage));
     }
     
     return (
@@ -20,5 +20,3 @@ const NewMessage: FC<PropsType> = (props): JSX.Element => {
         </div> 
     )
 }
-
-export default NewMessage;

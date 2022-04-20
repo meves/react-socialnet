@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
-import AboutMe from './AboutMe';
+import { AboutMe } from './AboutMe';
 import styles from './Home.module.scss';
-import MySkills from './MySkills';
+import { MySkills } from './MySkills';
 
-const Home: FC = (props): JSX.Element => {
+export const Home: FC = () => {
     const [isAbout, setAbout] = useState(true);
     return (
         <div className={styles.homePage}>
@@ -15,5 +15,3 @@ const Home: FC = (props): JSX.Element => {
         </div>
     )
 }
-
-export default Home;

@@ -1,33 +1,37 @@
 import React, { FC, useState, useEffect, ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserStatus } from '../../../../redux/profile-reducer';
+import { recieveStatus } from '../../../../redux/selectors/profile-selectors';
 import styles from './ProfileStatus.module.scss';
 
-type PropsType = {
-    status: string
-    updateUserStatus: (status: string) => void 
-}
+export const ProfileStatus: FC = () => {
+    const statusFromState = useSelector(recieveStatus);
 
-const ProfileStatus: FC<PropsType> = (props): JSX.Element => {
     const [editMode, setEditMode] = useState(false);
-    const [status, setStatus] = useState(props.status);
+    const [status, setStatus] = useState(statusFromState);
+    
+    const dispatch = useDispatch();
     useEffect(() => {
-        setStatus(props.status)
-    }, [props.status]);
+        setStatus(statusFromState)
+    }, [statusFromState]);
+    
     const activateEditMode = () => {
         setEditMode(true);
     }
     const deactivateEditMode = () => {
         setEditMode(false);
-        props.updateUserStatus(status);
+        dispatch(updateUserStatus(status));
     }
     const handleChangeStatus = (event: ChangeEvent<HTMLInputElement>) => {
         setStatus(event.target.value);        
     }    
+    
     return (
         <div className={styles.statusInputWrapper}> 
         { !editMode 
             ? <div className={styles.statusWrapper}>
                 <span onDoubleClick={activateEditMode} className={styles.status} title="double click to change status">
-                    {props.status}
+                    {statusFromState}
                 </span>
               </div>
             : <div className={styles.inputWrapper}>
@@ -40,5 +44,3 @@ const ProfileStatus: FC<PropsType> = (props): JSX.Element => {
         </div>
     )    
 }
-
-export default ProfileStatus;

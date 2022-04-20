@@ -1,72 +1,73 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './User.module.scss';
-import UserImage from '../../assets/images/user_image.jpeg';
-import Preloader from '../common/Preloader/Preloader';
+import { Preloader } from '../common/Preloader/Preloader';
 import Paginator from '../Paginator/Paginator';
-import { NavLink } from 'react-router-dom';
-import { UserType } from '../../types/types';
+import { useNavigate } from 'react-router-dom';
 import UserSearchForm from './UserSearchForm';
-import { FilterType } from '../../redux/users-reducer';
+import { FilterType, followUser, getUsers, getUsersOnCurrentPage, unfollowUser } from '../../redux/users-reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { receiveBlockSize, receiveFilter, recieveCurrentPage, recieveFollowingInProgress, recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
+import { User } from './User';
 
-type PropsType = {
-    users: Array<UserType>  
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    blockSize: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-    changeCurrentPage:  (currentPage: number) => void
-    changeFilter: (filter: FilterType) => void
-    setFollowUser: (userId: number) => void
-    setUnfollowUser: (userId: number) => void 
-}
+const UsersPage: FC = (props) => {
+    const users = useSelector(recieveUsers);
+    const totalUsersCount = useSelector(recieveTotalUsersCount);
+    const blockSize = useSelector(receiveBlockSize);
+    const isFetching = useSelector(recieveIsFetching);
+    const followingInProgress = useSelector(recieveFollowingInProgress);
+    const pageSize = useSelector(recievePageSize);
+    const currentPage = useSelector(recieveCurrentPage);
+    const filter = useSelector(receiveFilter);
 
-const Users: FC<PropsType> = (props): JSX.Element => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getUsers(currentPage, pageSize));
+    }, []);
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate(`/users?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`);
+    }, [filter.term, filter.friend, currentPage]);
+    
+    const changeCurrentPage = (currentPage: number) => {
+        dispatch(getUsersOnCurrentPage(currentPage, pageSize, filter));
+    }
+    const changeFilter = (filter: FilterType) => {
+        dispatch(getUsersOnCurrentPage(currentPage, pageSize, filter));        
+    }
+    const setFollowUser = (userId: number) => {
+        dispatch(followUser(userId));
+    }
+    const setUnfollowUser = (userId: number) => {
+        dispatch(unfollowUser(userId));
+    }
     return (
         <div className={styles.usersPage}>  
-            <UserSearchForm changeFilter={props.changeFilter}/>    
-            <Paginator totalUsersCount={props.totalUsersCount}
-                       pageSize={props.pageSize}
-                       currentPage={props.currentPage}
-                       changeCurrentPage={props.changeCurrentPage}
-                       blockSize={props.blockSize}
+            <UserSearchForm 
+                        changeFilter={changeFilter}/>    
+            <Paginator 
+                       pageSize={pageSize}
+                       currentPage={currentPage}
+                       totalUsersCount={totalUsersCount}
+                       changeCurrentPage={changeCurrentPage}
+                       blockSize={blockSize}
             />
-            {props.isFetching && <Preloader />}  
+
+            {isFetching && <Preloader />}  
+            
             <div className={styles.userItems}>             
-            {props.users.map((user: UserType): JSX.Element => (
-                <div key={user.id} className={styles.userItem}>
-                    <div className={styles.photoWrapper}>
-                        <NavLink to={`/profile/${user.id}`}>
-                            <img className={styles.userPhoto} 
-                                src={user.photos.large || user.photos.small || UserImage} 
-                                alt="user" />
-                        </NavLink>
-                        { user.followed
-                            ? <button disabled={props.followingInProgress.some(id => id === user.id)} 
-                                      onClick={() => props.setUnfollowUser(user.id)}
-                                      className="button">Unfollow</button>
-                            : <button disabled={props.followingInProgress.some(id => id === user.id)} 
-                                      onClick={() => props.setFollowUser(user.id)}
-                                      className="button">Follow</button>
-                        }                            
-                    </div>
-                    <div className={styles.infoWrapper}>
-                        <div className={styles.userInfo}>
-                            <div>{user.name}</div>
-                            <div>{user.status}</div>
-                        </div>
-                        <div className={styles.userLocation}>
-                            <div>user.location.country</div>
-                            <div>user.location.city</div>
-                            <a href={'user.uniqueUrlName'}>User site</a>
-                        </div>
-                    </div>
-                </div>
-            ))}
+                {users.map(user => ( 
+                    <User key={user.id}
+                          user={user}
+                          followingInProgress={followingInProgress}
+                          setFollowUser={setFollowUser}
+                          setUnfollowUser={setUnfollowUser}
+                    />
+                 ))}
             </div>
         </div>
     )
 }
 
-export default Users;
+export default UsersPage;

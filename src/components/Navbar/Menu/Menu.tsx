@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import styles from './Menu.module.scss';
 import { NavLink } from 'react-router-dom';
+import styles from './Menu.module.scss';
 
-const Menu: FC = (props): JSX.Element => {
+export const Menu: FC = () => {
     return (
         <ul className={styles.list}>
             <li className={styles.item}>
@@ -29,5 +29,3 @@ const Menu: FC = (props): JSX.Element => {
         </ul>
     )
 }
-
-export default Menu;

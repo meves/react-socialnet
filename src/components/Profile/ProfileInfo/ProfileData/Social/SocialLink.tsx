@@ -5,12 +5,12 @@ type PropsType = {
     linkName: string
     linkValue: string
 }
-const SocialLink: FC<PropsType> = (props): JSX.Element => {
+export const SocialLink: FC<PropsType> = (props) => {
     return (
         <li className={styles.item}>
-            <a className={styles.link} href={props.linkValue}>{props.linkName}</a>
+            <a className={styles.link} 
+               href={props.linkValue}>{props.linkName}
+            </a>
         </li>
     )
 }
-
-export default SocialLink;

@@ -31,7 +31,7 @@
         background-color: var(--bg-color-medium);
         border-radius: 0.5em;
 
-        .text {
+        .textWrapper {
             max-width: 75%;
             margin-right: 2em;
             margin-left: 1em;
@@ -62,8 +62,9 @@
         }
     }
 
-    .mySkillsSection {
+    .mySkillsWrapper {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -71,19 +72,26 @@
         background-color: var(--bg-color-medium);
         border-radius: 0.5em;
 
-        .skill {
-            padding: 0.5em;
-            margin: 0.2em;
-            flex: 1 1 10em;
-            border-radius: 0.3em;
-            background-color: var(--bg-color-dark);
-            transition: transform 0.2s, border-radius 0.2s;
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items:center;
 
-            &:hover {
-                cursor: pointer;
-                transform: scale(1.02);
-                border-radius: 0.2em;
-                background-color: var(--selected-text-solor);
+            .skill {
+                padding: 0.5em;
+                margin: 0.5em 0.25em;
+                flex: 1 1 10em;
+                border-radius: 0.3em;
+                background-color: var(--bg-color-dark);
+                transition: transform 0.2s, border-radius 0.2s;
+    
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.02);
+                    border-radius: 0.2em;
+                    background-color: var(--selected-text-solor);
+                }
             }
         }
     }

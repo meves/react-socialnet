@@ -1,32 +1,32 @@
-import React, { FC } from 'react';
-import { UserProfileType } from '../../types/types';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
+import React, { FC, useEffect } from 'react';
+import { MyPostsPage } from './MyPosts/MyPosts';
+import { ProfileInfo } from './ProfileInfo/ProfileInfo';
 import styles from './Profile.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { recieveUserId } from '../../redux/selectors/auth-selectors';
+import { getProfile, getUserStatus } from '../../redux/profile-reducer';
 
+const ProfilePage: FC = () => {
+    const userId = useSelector(recieveUserId);
+    const params = useParams();
 
-type PropsType = {
-    userProfile: UserProfileType | null
-    status: string
-    isOwner: boolean
-    updateUserStatus: (status: string) => void
-    updatePhoto: (profilePhoto: File) => void
-    saveProfileData:  (profileData: UserProfileType) => Promise<boolean> 
-}
+    const id: number = Number(params.userId) || Number(userId);
 
-const Profile: FC<PropsType> = (props): JSX.Element => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProfile(id));
+        dispatch(getUserStatus(id));
+    }, [userId]);
+
     return (
         <div className={styles.profile}>
-            <ProfileInfo userProfile={props.userProfile}
-                status={props.status}
-                updateUserStatus={props.updateUserStatus} 
-                isOwner={props.isOwner}
-                updatePhoto={props.updatePhoto}
-                saveProfileData={props.saveProfileData}
+            <ProfileInfo isOwner={!params.userId}
             />
-            <MyPostsContainer/> 
+            <MyPostsPage /> 
         </div>
     )
 }
 
-export default Profile;
+export default ProfilePage;

@@ -1,43 +1,46 @@
 import React, { FC, useState } from 'react';
-import Preloader from '../../common/Preloader/Preloader';
-import ProfileData from './ProfileData/ProfileData';
-import ProfileStatus from './ProfileStatus/ProfileStatus';
+import { Preloader } from '../../common/Preloader/Preloader';
+import { ProfileData } from './ProfileData/ProfileData';
+import { ProfileStatus } from './ProfileStatus/ProfileStatus';
 import ProfileReduxForm from './ProfileForm/ProfileForm';
 import { UserProfileType } from '../../../types/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { recieveUserProfile } from '../../../redux/selectors/profile-selectors';
+import { saveProfileData } from '../../../redux/profile-reducer';
 
 type PropsType = {
-    userProfile: UserProfileType | null
-    status: string
-    isOwner: boolean
-    updateUserStatus: (status: string) => void 
-    updatePhoto: (profilePhoto: File) => void
-    saveProfileData:  (profileData: UserProfileType) => Promise<boolean> 
+    isOwner: boolean     
 }
 
-const ProfileInfo: FC<PropsType> = (props): JSX.Element => {
+export const ProfileInfo: FC<PropsType> = (props) => {
+    const profile = useSelector(recieveUserProfile);
     const [editMode, setEditMode] = useState(false);
-    const profile: UserProfileType | null = props.userProfile;
+    const dispatch = useDispatch();
     if (!profile) {
         return (<Preloader/>)
-    }
+    } 
+
     const activateEditMode = () => {
         setEditMode(true);
-    }// eslint-disable-next-line
+    }
+    // eslint-disable-next-line
     const deactivateEditMode = () => {
         setEditMode(false);
     }
-    const onSubmit = (formData: UserProfileType) => {
-        props.saveProfileData(formData)
-            .then((modeResult: boolean) => setEditMode(modeResult));
+    const onSubmit = async (formData: UserProfileType) => {
+        try {
+            await dispatch(saveProfileData(formData));
+            
+            activateEditMode();  
+        } catch (error) {
+            setEditMode(false);        
+        }        
     }
     return (
         <>
-            <ProfileStatus status={props.status}
-                           updateUserStatus={props.updateUserStatus} 
-            />
+            <ProfileStatus />
             { !editMode ? 
             <ProfileData userProfile={profile}
-                         updatePhoto={props.updatePhoto}
                          isOwner={props.isOwner}
                          activateEditMode={activateEditMode}             
             />  :
@@ -49,5 +52,3 @@ const ProfileInfo: FC<PropsType> = (props): JSX.Element => {
         </>
     )
 }
-
-export default ProfileInfo;
