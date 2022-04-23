@@ -9,6 +9,7 @@
 
   .app-wrapper-content {
     grid-area: content;
+    width: 100%;
     background-color: var(--bg-color-dark);
     padding: 3em 2em;
   }

@@ -73,7 +73,7 @@ export const usersReducer = (state=initialState, action: ActionsTypes): InitialS
         case "SET_FILTER":
             return {
                 ...state,
-                filter: {...action.payload.filter}
+                filter: action.payload.filter
             }
         default:
             return state;
@@ -109,22 +109,23 @@ export const actions = {
 
 type ThunkType = ThunkActionType<ActionsTypes>;
 
-export const getUsers = (currentPage: number, pageSize: number): ThunkType => 
-    async (dispatch) => {
-        dispatch(actions.toggleIsFetching(true));
-        const data = await usersAPI.getUsers(currentPage, pageSize);
-        dispatch(actions.setUsers(data.items));
-        dispatch(actions.setTotalUsersCount(data.totalCount));
-        dispatch(actions.toggleIsFetching(false));        
-    }
+// export const getUsersStarted = (currentPage: number, pageSize: number): ThunkType => 
+//     async (dispatch) => {
+//         dispatch(actions.toggleIsFetching(true));
+//         const data = await usersAPI.getUsers(currentPage, pageSize);
+//         dispatch(actions.setUsers(data.items));
+//         dispatch(actions.setTotalUsersCount(data.totalCount));
+//         dispatch(actions.toggleIsFetching(false));        
+//     }
 
-export const getUsersOnCurrentPage = (currentPage: number, pageSize: number, filter: FilterType): ThunkType =>
+export const getUsersChanged = (currentPage: number, pageSize: number, filter: FilterType): ThunkType =>
     async (dispatch) => {
         dispatch(actions.toggleIsFetching(true));
         dispatch(actions.setCurrentPage(currentPage));
         dispatch(actions.setFilter(filter));
         const data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend);
         dispatch(actions.setUsers(data.items));
+        dispatch(actions.setTotalUsersCount(data.totalCount));
         dispatch(actions.toggleIsFetching(false));            
     }
 

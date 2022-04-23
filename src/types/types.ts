@@ -39,3 +39,9 @@ export type UserType = {
     photos: PhotosType
     followed: boolean
 }
+
+export type SearchStringType = {
+    term: string
+    friend: boolean | null
+    page: number
+}

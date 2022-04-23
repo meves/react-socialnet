@@ -7,14 +7,12 @@ import './index.css';
 import store from "./redux/redux-store";
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-    
+ReactDOM.render(    
         <Provider store={store}>
             <BrowserRouter>        
                 <App />
             </BrowserRouter>
-        </Provider>
-    ,
+        </Provider>,
 document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function

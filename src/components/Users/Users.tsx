@@ -2,12 +2,15 @@ import React, { FC, useEffect } from 'react';
 import styles from './User.module.scss';
 import { Preloader } from '../common/Preloader/Preloader';
 import Paginator from '../Paginator/Paginator';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UserSearchForm from './UserSearchForm';
-import { FilterType, followUser, getUsers, getUsersOnCurrentPage, unfollowUser } from '../../redux/users-reducer';
+import { FilterType, followUser, getUsersChanged, unfollowUser } from '../../redux/users-reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { receiveBlockSize, receiveFilter, recieveCurrentPage, recieveFollowingInProgress, recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
+import { receiveBlockSize, receiveFilter, recieveCurrentPage, recieveFollowingInProgress,
+         recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
 import { User } from './User';
+import { parseSearchString } from '../../utils/processSearchString/processSearchString';
+import queryString from 'query-string';
 
 const UsersPage: FC = (props) => {
     const users = useSelector(recieveUsers);
@@ -20,21 +23,28 @@ const UsersPage: FC = (props) => {
     const filter = useSelector(receiveFilter);
 
     const dispatch = useDispatch();
-
+    const location = useLocation();
     useEffect(() => {
-        dispatch(getUsers(currentPage, pageSize));
-    }, []);
+        const {term, friend, page} = parseSearchString(location.search);
+        console.log(`term: ${term} friend: ${friend} page: ${page}`);
+        
+        dispatch(getUsersChanged(page, pageSize, {term, friend}));    
+    }, 
+    // eslint-disable-next-line
+    []); 
 
     const navigate = useNavigate();
+    
     useEffect(() => {
+        //queryString.stringify();
         navigate(`/users?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`);
-    }, [filter.term, filter.friend, currentPage]);
+    }, [filter, currentPage, navigate]);
     
     const changeCurrentPage = (currentPage: number) => {
-        dispatch(getUsersOnCurrentPage(currentPage, pageSize, filter));
+        dispatch(getUsersChanged(currentPage, pageSize, filter));
     }
     const changeFilter = (filter: FilterType) => {
-        dispatch(getUsersOnCurrentPage(currentPage, pageSize, filter));        
+        dispatch(getUsersChanged(currentPage, pageSize, filter));        
     }
     const setFollowUser = (userId: number) => {
         dispatch(followUser(userId));
@@ -43,7 +53,9 @@ const UsersPage: FC = (props) => {
         dispatch(unfollowUser(userId));
     }
     return (
-        <div className={styles.usersPage}>  
+        <div className={styles.usersPage}>
+            {console.log(`render Users`)}
+            
             <UserSearchForm 
                         changeFilter={changeFilter}/>    
             <Paginator 

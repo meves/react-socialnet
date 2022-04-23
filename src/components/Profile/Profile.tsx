@@ -18,12 +18,11 @@ const ProfilePage: FC = () => {
     useEffect(() => {
         dispatch(getProfile(id));
         dispatch(getUserStatus(id));
-    }, [userId]);
+    }, [id, dispatch]);
 
     return (
         <div className={styles.profile}>
-            <ProfileInfo isOwner={!params.userId}
-            />
+            <ProfileInfo isOwner={!params.userId} />
             <MyPostsPage /> 
         </div>
     )

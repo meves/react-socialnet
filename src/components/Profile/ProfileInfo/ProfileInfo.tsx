@@ -29,9 +29,8 @@ export const ProfileInfo: FC<PropsType> = (props) => {
     }
     const onSubmit = async (formData: UserProfileType) => {
         try {
-            await dispatch(saveProfileData(formData));
-            
-            activateEditMode();  
+            const result: any = await dispatch(saveProfileData(formData));
+            setEditMode(result);  
         } catch (error) {
             setEditMode(false);        
         }        
