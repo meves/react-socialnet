@@ -1,11 +1,17 @@
 import React, { FC } from 'react';
+import styled from 'styled-components';
 import PreloaderGif from './../../../assets/images/preloader.gif';
-import styles from './Preloader.module.scss';
+
+const Wrapper = styled.div`
+    max-width: 3em;
+`;
+
+const Image = styled.img``;
 
 export const Preloader: FC = () => {    
     return (
-        <div className={styles.preloaderWrapper}>
-            <img src={PreloaderGif} alt="Preloader"/>
-        </div>
+        <Wrapper >
+            <Image src={PreloaderGif} alt="Preloader"/>
+        </Wrapper>
     )
 }

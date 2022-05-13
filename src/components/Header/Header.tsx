@@ -1,10 +1,56 @@
 import React, { FC } from 'react';
-import styles from './Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth-reducer';
 import { NavLink } from 'react-router-dom';
 import { recieveLogin, recieveIsAuth } from '../../redux/selectors/auth-selectors';
+import { Button } from '../../styles/components';
+import styled from 'styled-components';
 
+/**
+ * * styled-components
+ */
+const HeaderWrapper = styled.header`
+  grid-area: header;
+  background-color: var(--bg-color-medium);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 0.5em;
+`;
+
+const Title = styled.h1`
+  flex: 8 8 80%;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 3rem;
+  font-weight: 900;
+  color: aliceblue;
+  text-shadow: 0.01em 0.01em 0.1em rgb(236, 223, 203);
+`;
+
+const LoginLogoutWrapper = styled.div`
+  flex: 1 1 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LoginWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  letter-spacing: 0.1em;
+`;
+
+const Login = styled.div`
+  color: aliceblue;
+  padding-bottom: 1em;
+`;
+
+/**
+ * * React Component
+*/
 export const Header: FC = (props) => {
   const login = useSelector(recieveLogin);
   const isAuth = useSelector(recieveIsAuth);
@@ -14,20 +60,18 @@ export const Header: FC = (props) => {
     dispatch(logout());
   }
   return (
-    <header className={styles.header}>
-      <h1 className={styles.title}>Social network</h1>       
-        <div className={styles.loginBlock}>
+    <HeaderWrapper>
+      <Title>Social network</Title>
+        <LoginLogoutWrapper>
          { isAuth 
-          ? <div className={styles.loginWrapper}>
-              <div className={styles.login}>{login}</div>
-              <button className="button" onClick={handleLogout}>Logout</button>
-            </div> 
+          ? <LoginWrapper>
+              <Login>{login}</Login>
+              <Button onClick={handleLogout}>Logout</Button>
+            </LoginWrapper> 
           : <NavLink to="/login">
-              <div className={styles.loginWrapper}>
-                <button className="button">Login</button>                  
-              </div>
+                <Button>Login</Button>
             </NavLink>}
-        </div>
-    </header>
+        </LoginLogoutWrapper>
+    </HeaderWrapper>
   )
 }

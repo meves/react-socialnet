@@ -1,9 +1,17 @@
 import React, { FC } from 'react';
-import styles from './NewMessage.module.scss';
 import MessageForm from './NewMessageForm';
 import { FormDataType } from './NewMessageForm';
 import { actions } from '../../../redux/dialog-reducer';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+    padding: 1em;
+`;
+
+const Title = styled.h2`
+    color: var(--white-text-color);
+`;
 
 export const NewMessage: FC = () => {
     const dispatch = useDispatch();
@@ -14,9 +22,9 @@ export const NewMessage: FC = () => {
     }
     
     return (
-        <div className={styles.newMessage}>
-            <h2 className={styles.heading}>New message</h2>
+        <Wrapper>
+            <Title>New message</Title>
             <MessageForm onSubmit={onAddMessage}/>
-        </div> 
+        </Wrapper> 
     )
 }

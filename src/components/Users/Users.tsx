@@ -10,7 +10,6 @@ import { receiveBlockSize, receiveFilter, recieveCurrentPage, recieveFollowingIn
          recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
 import { User } from './User';
 import { parseSearchString } from '../../utils/processSearchString/processSearchString';
-import queryString from 'query-string';
 
 const UsersPage: FC = (props) => {
     const users = useSelector(recieveUsers);

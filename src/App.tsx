@@ -43,7 +43,8 @@ const App: FC<AppPropsType> = (props) => {
           <Route path="/" element={<Home/>}/>
           <Route path="profile" element={withSuspense(ProfilePage)} />
           <Route path="profile/:userId" element={withSuspense(ProfilePage)} />
-          <Route path="dialogs/*" element={withSuspense(DialogsPage)} />
+          <Route path="dialogs" element={withSuspense(DialogsPage)} />
+          <Route path="dialogs/:userId" element={withSuspense(ProfilePage)}/>
           <Route path="news" element={withSuspense(News)} />
           <Route path="music" element={withSuspense(Music)} />
           <Route path="users" element={withSuspense(UsersPage)} />

@@ -3,10 +3,10 @@ import { InferActionsTypes } from "./redux-store";
 
 const initialState = {    
         dialogs: [
-            {id: 1, name: 'Richard'},
-            {id: 2, name: 'Thomas'},
-            {id: 3, name: 'Leopold'},
-            {id: 4, name: 'Elizabeth'}
+            {id: 2, name: 'Dimych'},
+            {id: 3, name: 'Alexander'},
+            {id: 4, name: 'Marina'},
+            {id: 5, name: 'Essedger'}
         ] as Array<PersonType>,
         messages: [
             {id: 1, message: 'Hi'},

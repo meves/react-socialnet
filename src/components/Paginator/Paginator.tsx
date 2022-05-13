@@ -1,7 +1,61 @@
-import React, { FC, useState } from 'react';
-import styles from './Paginator.module.scss';
-import classNames from 'classnames';
+import React, { BaseSyntheticEvent, FC, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { Button } from '../../styles/components';
 
+const Wrapper = styled.div`
+    width: 100%;
+    display: flex;
+    padding: 0.4em 0.3em;
+    background-color: var(--bg-color-light);
+    border-radius: 0.3em;
+`;
+
+const Pagination = styled.div`
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: space-evenly;
+`;
+
+const Pages = styled.div`
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-start;
+`;
+
+const PageNumber = styled.span`
+    font-size: 0.75rem;
+    padding: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.2s, font-weight 0.2s;
+
+    &:hover {
+        background-color: #fff;
+        border-radius: 0.3em;
+    }
+`;
+
+const SelectedNumber = styled(PageNumber)`
+    font-weight: bold;
+`;
+
+const marginRight = css`
+    margin-right: 0.3em;
+`;
+const StartButton = styled(Button)`
+    ${marginRight}
+`;
+
+const marginLeft = css`
+    margin-left: 0.3em;
+`;
+const EndButton = styled(Button)`
+    ${marginLeft}
+`;    
+
+/**
+ * * React Component Paginator
+ */
 type PropsType = {
     totalUsersCount: number
     pageSize: number
@@ -39,25 +93,28 @@ const Paginator: FC<PropsType> = ({totalUsersCount, pageSize, currentPage, chang
     const handleLastClick = () => {
         setBlockNumber(blocksCount);
     }
-    const pagesItems: Array<JSX.Element> =  pages.map((page: number): JSX.Element => (
-        <span className={classNames(styles.pageNumber, {
-                    [styles.selectedPage]:currentPage === page})} 
-              key={page} onClick={() => changeCurrentPage(page)}>
-            {page}
-        </span>
+    const handleClick = (event: BaseSyntheticEvent) => {
+        changeCurrentPage(Number(event.target.innerText))
+    }
+    const pagesItems =  pages.map((page: number) => (
+        currentPage === page ? 
+        <SelectedNumber key={page}>
+            { page }
+        </SelectedNumber> :
+        <PageNumber key={page}>
+            { page }
+        </PageNumber>
     ))
     return (
-        <div className={styles.paginatorWrapper}>
-            <div className={styles.paginator}>
-                <button className={`button ${styles.start}`} onClick={handleStartClick}>start</button>
-                <button className="button" onClick={handlePrevClick}>prev</button>
-                <div className={styles.pages}>
-                { pagesItems }
-                </div>
-                <button className="button" onClick={handleNextClick}>next</button>
-                <button className={`button ${styles.end}`} onClick={handleLastClick}>end</button>
-            </div>
-        </div>  
+        <Wrapper>
+            <Pagination>
+                <StartButton onClick={handleStartClick}>start</StartButton>
+                <Button onClick={handlePrevClick}>prev</Button>
+                <Pages onClick={handleClick}>{ pagesItems }</Pages>
+                <Button onClick={handleNextClick}>next</Button>
+                <EndButton onClick={handleLastClick}>end</EndButton>
+            </Pagination>
+        </Wrapper>  
     )
 }
 

@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import './index.css';
 import store from "./redux/redux-store";
 import reportWebVitals from './reportWebVitals';
+import GlobalStyle from './styles/global';
 
 ReactDOM.render(    
         <Provider store={store}>
             <BrowserRouter>        
+                <GlobalStyle/>
                 <App />
             </BrowserRouter>
         </Provider>,

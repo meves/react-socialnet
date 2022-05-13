@@ -1,13 +1,18 @@
 import React, { FC } from 'react';
-import styles from './Navbar.module.scss';
 import { Menu } from './Menu/Menu';
-import { FriendsBlock } from './FriendsBlock/FriendsBlock';
+import { FriendsBlock } from './Friends/FriendsBlock';
+import styled from 'styled-components';
+
+const Nav = styled.nav`
+    grid-area: navbar;
+    background-color: var(--bg-color-light);  
+`;
 
 export const Navbar: FC = () => {
     return (
-        <nav className={styles.navbar}>
+        <Nav>
             <Menu />
             <FriendsBlock />
-        </nav>
+        </Nav>
     )
 }
