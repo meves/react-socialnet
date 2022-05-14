@@ -1,6 +1,28 @@
 import styled, { css } from "styled-components";
 
 /**
+ * * App
+ */
+ export const AppWrapper = styled.div`
+    max-width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas: "header header"
+                        "navbar content"; 
+ `;
+ 
+ export const AppContent = styled.div`
+    grid-area: content;
+    width: 100%;
+    background-color: var(--bg-color-dark);
+    padding: 3em 2em;    
+ `;  
+    
+
+
+/**
  * Button
  */
 const cursorPointer = css`
@@ -42,4 +64,25 @@ export const SendButton = styled.button`
         border-color: var(--bg-color-medium);
         ${cursorPointer}
     }
+`;
+
+export const MoreButton = styled.button`
+    margin-top: 2em;
+    padding: 0.5em 1em;
+    font-size: 1.5rem;
+    outline: none;
+    border: 7px solid var(--bg-color-light);
+    background-color: var(--bg-color-medium);
+    color: var(--wthite-color);
+    border-radius: 0.5em;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--bg-color-light);
+        color: var(--bg-color-dark);
+        border-color: var(--wthite-color);
+    }        
 `;

@@ -1,10 +1,23 @@
 import React, { FC } from 'react';
-import styles from './MyPosts.module.scss';
+import styled from 'styled-components';
 import { Post } from './Post/Post';
 import MyPostForm, { FormDataType } from './MyPostsForm';
 import { actions } from '../../../redux/profile-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { recievePosts } from '../../../redux/selectors/profile-selectors';
+import { MoreButton } from '../../../styles/components';
+
+const PostsWrapper = styled.div`
+    padding: 1em;
+`;
+
+const Title = styled.h2`
+    color: var(--wthite-color);
+`;
+
+const MoreButtonWrapper = styled.div`
+    text-align: center;
+`;
 
 export const MyPostsPage: FC = () => {   
     const posts = useSelector(recievePosts);
@@ -18,16 +31,14 @@ export const MyPostsPage: FC = () => {
         dispatch(addPost(formData.newPost));
     }
     return (       
-        <div className={styles.postsBlock}>
-            <h2 className={styles.heading}>New post</h2>
+        <PostsWrapper>
+            <Title>New post</Title>
             <MyPostForm onSubmit={onAddPost} />          
-            <div className={styles.posts}>
-                { postsItems }
-            </div>
-            <div className={styles.more}>
-                <button className={styles.moreButton}>More ...</button>
-            </div>
-        </div>         
+            <div>{ postsItems }</div>
+            <MoreButtonWrapper>
+                <MoreButton>More ...</MoreButton>
+            </MoreButtonWrapper>
+        </PostsWrapper>         
     )
 }
     

@@ -1,10 +1,63 @@
 import React, { ChangeEvent, FC } from 'react';
-import styles from './ProfileData.module.scss';
+import styled from 'styled-components';
 import UserIcon from '../../../../assets/images/user_icon.png';
 import { SocialBlock } from './Social/SocialBlock';
 import { UserProfileType } from '../../../../types/types';
 import { useDispatch } from 'react-redux';
 import { updatePhoto } from '../../../../redux/profile-reducer';
+import { Button } from '../../../../styles/components';
+
+const ProfileDataWrapper = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: var(--white-text-color);
+    border-bottom: 3px solid var(--wthite-color);
+    padding-bottom: 3em;
+    border-top: 3px solid var(--wthite-color);
+    padding-top: 3em;
+`;
+
+const ProfileBlock = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const FullName = styled.h2`
+    margin-top: 0;
+`;
+
+const UserImage = styled.div`
+    object-fit: contain;
+`;
+
+const Figure = styled.figure`
+    padding: 1em;
+    margin: 0;
+`;
+
+const UserInfo = styled.div``;
+
+const Image = styled.img`
+    max-width: 5em;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.15);
+        cursor: pointer;
+    }
+`;
+
+const FileInput = styled.input`
+    outline: none;
+    border-radius: 10%;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: aliceblue;
+    cursor: pointer;
+`;
 
 type PropsType = {
     userProfile: UserProfileType
@@ -24,29 +77,29 @@ export const ProfileData: FC<PropsType> = (props) => {
         }
     }
     return (
-        <div className={styles.profileData}>
-            <div className={styles.profileBlock}>
-                <div className={styles.titleInfo}>
-                    <h2>{profile?.fullName}</h2>
+        <ProfileDataWrapper>
+            <ProfileBlock>
+                <UserInfo>
+                    <FullName>{profile?.fullName}</FullName>
                     <p>{profile?.lookingForAJob ? 'Ищу работу' : 'Не ищу работу'}</p>
                     <div>{profile?.aboutMe}</div>
                     <p>{profile?.lookingForAJobDescription}</p>
-                </div>
-                <div className={styles.userImage}>
+                </UserInfo>
+                <UserImage>
                     { props.isOwner && 
-                        <button className="button" onClick={props.activateEditMode}>Edit Profile</button>
+                        <Button onClick={props.activateEditMode}>Edit Profile</Button>
                     }
-                    <div className={styles.imageBlock}>
-                        <img src={profile?.photos.large || profile?.photos.small || UserIcon} 
-                             alt={profile?.fullName} 
-                             title="user profile photo"/>                           
-                    </div>
+                    <Figure>
+                        <Image src={profile?.photos.large || profile?.photos.small || UserIcon} 
+                               alt={profile?.fullName} 
+                               title="user profile photo"/>                           
+                    </Figure>
                     { props.isOwner && 
-                        <input className={styles.fileInput} type="file" onChange={saveProfilePhoto} />
+                        <FileInput type="file" onChange={saveProfilePhoto} />
                     }
-                </div>
-            </div>
+                </UserImage>
+            </ProfileBlock>
             <SocialBlock profile={ profile }/>
-        </div>
+        </ProfileDataWrapper>
     )
 }

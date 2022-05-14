@@ -1,8 +1,13 @@
 import React, { FC } from 'react';
-import styles from './MyPosts.module.scss';
+import styled from 'styled-components';
 import { reduxForm, Field, InjectedFormProps } from 'redux-form';
 import { maxLength300, required } from '../../../utils/validators/validators';
 import { Textarea } from '../../common/FormControls/FormControls';
+import { SendButton } from '../../../styles/components';
+
+const ButtonWrapper = styled.div`
+    margin-bottom: 2em;
+`;
 
 export type FormDataType = {
     newPost: string
@@ -18,11 +23,11 @@ const MyPostForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                         cols="40" rows="7"
                         validate={[required, maxLength300]} />
             </div>
-            <div className={styles.btnBlock} >
-                <button className="sendButton">
+            <ButtonWrapper>
+                <SendButton>
                     Add new post
-                </button>
-            </div> 
+                </SendButton>
+            </ButtonWrapper> 
         </form>
     )
 }

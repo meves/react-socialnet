@@ -14,7 +14,7 @@ export default createGlobalStyle`
 
     html {
         /* background colors */
-        --bg-color-dark: hsl(223, 8%, 64%);
+        --bg-color-dark: hsl(223, 80%, 64%);
         --bg-color-medium: hsl(231, 44%, 56%);
         --bg-color-light: hsl(233, 81%, 75%);
         --bg-item-color: hsl(180, 81%, 26%);

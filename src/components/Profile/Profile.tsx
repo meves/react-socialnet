@@ -1,11 +1,15 @@
 import React, { FC, useEffect } from 'react';
 import { MyPostsPage } from './MyPosts/MyPosts';
 import { ProfileInfo } from './ProfileInfo/ProfileInfo';
-import styles from './Profile.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { recieveUserId } from '../../redux/selectors/auth-selectors';
 import { getProfile, getUserStatus } from '../../redux/profile-reducer';
+import styled from 'styled-components';
+
+const Wrapper = styled.section`
+    width: 100%;
+`;
 
 const ProfilePage: FC = () => {
     const userId = useSelector(recieveUserId);
@@ -21,10 +25,10 @@ const ProfilePage: FC = () => {
     }, [id, dispatch]);
 
     return (
-        <div className={styles.profile}>
+        <Wrapper>
             <ProfileInfo isOwner={!params.userId} />
             <MyPostsPage /> 
-        </div>
+        </Wrapper>
     )
 }
 

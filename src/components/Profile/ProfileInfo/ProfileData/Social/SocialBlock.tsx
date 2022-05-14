@@ -1,24 +1,28 @@
 import React, { FC } from 'react';
 import { SocialLink } from './SocialLink';
-import styles from './../ProfileData.module.scss';
+import styled from 'styled-components';
 import { ContactsType, UserProfileType } from '../../../../../types/types';
+
+const List = styled.ul`
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding-left: 0;
+`;
 
 type PropsTypes = {
     profile: UserProfileType
 }
 
 export const SocialBlock: FC<PropsTypes> = (props) => {
-    const contacts: ContactsType = props.profile.contacts;
-    const items: Array<JSX.Element> = [];
-    for (let [key, value] of Object.entries(contacts)) {
+    const items = [];
+    for (let [key, value] of Object.entries(props.profile.contacts)) {
         items.push(<SocialLink key={key} linkName={key} linkValue={value}/>);       
     }
     return (
-        <div className={styles.socialBlock}>
+        <div>
             <h3>Contacts: </h3>
-            <ul className={styles.list}>
-                    { items }
-            </ul>
+            <List>{ items }</List>
         </div>
     )
 }

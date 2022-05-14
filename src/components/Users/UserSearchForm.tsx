@@ -1,10 +1,46 @@
 import React, { FC } from "react";
 import { Field, Form, Formik } from "formik";
 import { FilterType } from "../../redux/users-reducer";
-import styles from './User.module.scss';
+import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 import { receiveFilter } from "../../redux/selectors/users-selectors";
+import { Button } from "../../styles/components";
 
+/**
+ * * styled-components
+ */
+const FormWrapper = styled.div`
+    background-color: var(--bg-color-medium);
+    display: flex;
+    padding: 0.5em;
+    font-size: 1rem;
+    border-radius: 0.3em;
+    margin-bottom: 2em;
+`;
+
+const FieldTerm = styled(Field)`
+    margin-right: 1em;
+    font-size: 0.75rem;
+    padding: 0.5em;
+    width: 20em;
+    border-radius: 0.3em;
+    border: none;
+`;
+
+const FieldSelect = styled(Field)`
+    margin-right: 1em;
+    font-size: 0.75rem;
+    padding: 0.5em;
+    background-color: var(--bg-color-light);
+`;
+
+const SearchButton = styled(Button)`
+    font-size: 0.5rem;
+`;
+
+/**
+ * * React Component UserSearchForm
+ */
 const userSearchFormValidate = (values: any) => {
     const errors = {};
     return errors;
@@ -31,7 +67,7 @@ const UserSearchForm: FC<PropsType> = (props) => {
         setSubmitting(false);
     }
     return (
-        <div className={styles.userSearchForm}>
+        <FormWrapper>
             <Formik
                 enableReinitialize={true}
                 initialValues={{ term: filter.term, friend: String(filter.friend)}}
@@ -40,19 +76,19 @@ const UserSearchForm: FC<PropsType> = (props) => {
             >
             {({isSubmitting}) => (
                 <Form>
-                    <Field className={styles.term} type="text" name="term"/>
-                    <Field className={styles.select} as="select" name="friend">
+                    <FieldTerm type="text" name="term"/>
+                    <FieldSelect as="select" name="friend">
                             <option value="null">All users</option> 
                             <option value="true">Followed</option>
                             <option value="false">Unfollowed</option>   
-                    </Field>
-                    <button className={`${styles.searchButton} button`} type="submit" disabled={isSubmitting}>
+                    </FieldSelect>
+                    <SearchButton type="submit" disabled={isSubmitting}>
                         Submit
-                    </button>
+                    </SearchButton>
                 </Form>
             )} 
             </Formik>
-        </div>
+        </FormWrapper>
     )
 }
 

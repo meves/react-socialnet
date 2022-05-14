@@ -2,7 +2,32 @@ import React, { FC, useState, useEffect, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserStatus } from '../../../../redux/profile-reducer';
 import { recieveStatus } from '../../../../redux/selectors/profile-selectors';
-import styles from './ProfileStatus.module.scss';
+import styled from 'styled-components';
+
+const StatusWrapper = styled.div`
+    margin-bottom: 2em;
+`;
+
+const StatusDisplay = styled.span`
+    background-color: var(--bg-color-light);
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    display: inline-block;
+    
+    &:hover {
+        cursor: auto;
+    }
+`;
+
+const StatusInput = styled.input`
+    &:focus {
+        font-size: 0.9rem;
+        outline: none;
+        padding: 0.5em 1em;
+        border-radius: 0.3em;
+    }
+`;
 
 export const ProfileStatus: FC = () => {
     const statusFromState = useSelector(recieveStatus);
@@ -27,20 +52,22 @@ export const ProfileStatus: FC = () => {
     }    
     
     return (
-        <div className={styles.statusInputWrapper}> 
+        <StatusWrapper> 
         { !editMode 
-            ? <div className={styles.statusWrapper}>
-                <span onDoubleClick={activateEditMode} className={styles.status} title="double click to change status">
+            ? <div>
+                <StatusDisplay onDoubleClick={activateEditMode} 
+                               title="double click to change status">
                     {statusFromState}
-                </span>
+                </StatusDisplay>
               </div>
-            : <div className={styles.inputWrapper}>
-                <input onBlur={deactivateEditMode} 
-                        value={status}
-                        onChange={handleChangeStatus}
-                        autoFocus />
+            : <div>
+                <StatusInput onBlur={deactivateEditMode} 
+                             value={status}
+                             onChange={handleChangeStatus}
+                             autoFocus 
+                />
               </div> 
         }
-        </div>
+        </StatusWrapper>
     )    
 }

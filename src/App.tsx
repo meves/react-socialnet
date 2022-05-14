@@ -10,7 +10,7 @@ import { Preloader } from './components/common/Preloader/Preloader';
 import { NotFound } from './components/NotFound/NotFound';
 // utils
 import { initializeApp } from './redux/app-reducer';
-import './App.scss';
+import { AppWrapper, AppContent } from './styles/components';
 import { withSuspense } from './hoc/withSuspense';
 import { AppStateType } from './redux/redux-store';
 // lazy components
@@ -20,6 +20,8 @@ const News = lazy(() => import('./components/News/News'));
 const Music = lazy(() => import('./components/Music/Music'));
 const UsersPage = lazy(() => import('./components/Users/Users'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
+
+
 
 type AppPropsType = {
   initializeApp: () => void
@@ -35,10 +37,10 @@ const App: FC<AppPropsType> = (props) => {
     return <Preloader/>
   }
   return (
-    <div className="app-wrapper">
+    <AppWrapper>
       <Header/>
       <Navbar />
-      <div className="app-wrapper-content">
+      <AppContent>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="profile" element={withSuspense(ProfilePage)} />
@@ -52,8 +54,8 @@ const App: FC<AppPropsType> = (props) => {
           <Route path="login" element={withSuspense(Login)} />
           <Route path="*" element={withSuspense(NotFound)}/>
         </Routes>
-      </div>
-    </div>    
+      </AppContent>
+    </AppWrapper>    
   );
   
 }

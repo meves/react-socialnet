@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import styles from './User.module.scss';
+import styled from 'styled-components';
 import { Preloader } from '../common/Preloader/Preloader';
 import Paginator from '../Paginator/Paginator';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,6 +10,10 @@ import { receiveBlockSize, receiveFilter, recieveCurrentPage, recieveFollowingIn
          recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
 import { User } from './User';
 import { parseSearchString } from '../../utils/processSearchString/processSearchString';
+
+const Users = styled.div`
+    margin-top: 3.5em;
+`;
 
 const UsersPage: FC = (props) => {
     const users = useSelector(recieveUsers);
@@ -52,9 +56,7 @@ const UsersPage: FC = (props) => {
         dispatch(unfollowUser(userId));
     }
     return (
-        <div className={styles.usersPage}>
-            {console.log(`render Users`)}
-            
+        <div>
             <UserSearchForm 
                         changeFilter={changeFilter}/>    
             <Paginator 
@@ -64,10 +66,8 @@ const UsersPage: FC = (props) => {
                        changeCurrentPage={changeCurrentPage}
                        blockSize={blockSize}
             />
-
             {isFetching && <Preloader />}  
-            
-            <div className={styles.userItems}>             
+             <Users>             
                 {users.map(user => ( 
                     <User key={user.id}
                           user={user}
@@ -76,7 +76,7 @@ const UsersPage: FC = (props) => {
                           setUnfollowUser={setUnfollowUser}
                     />
                  ))}
-            </div>
+            </Users>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Author from '../../assets/images/Sergey_Medvedkin.jpg';
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 /**
  * * styled-components
@@ -34,7 +35,7 @@ const Figure = styled.figure`
 
 const Image = styled.img`
     object-fit: contain;
-    border-radius: 0.5em;
+    border-radius: 40%;
 `;
 
 const Figcaption = styled.figcaption`
@@ -55,8 +56,10 @@ export const AboutMe: React.FC = () => {
                 </p>
             </TextBlock>
             <Figure>
-                <Image src={Author} alt="Sergey Medvedkin. Author of this site" title="Author Sergey Medvedkin"/>
-                <Figcaption>Author: Medvedkin Sergey</Figcaption>
+                <NavLink to="/profile">
+                    <Image src={Author} alt="Sergey Medvedkin. Author of this site" title="Author Sergey Medvedkin"/>
+                </NavLink>
+                <Figcaption>Author: Medvedkin Sergey</Figcaption>                    
             </Figure>
         </Wrapper>
     )
