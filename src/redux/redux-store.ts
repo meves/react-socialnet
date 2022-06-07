@@ -7,6 +7,7 @@ import usersReducer from "./reducers/users-reducer";
 import authReducer from "./reducers/auth-reducer";
 import { reducer as formReducer } from 'redux-form';
 import appReducer from "./reducers/app-reducer";
+import chatReducer from "./reducers/chat-reducer";
 
 const rootReducer = combineReducers({
     dialogsPage: dialogReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     usersPage: usersReducer, 
     auth: authReducer,
     form: formReducer,
-    app: appReducer
+    app: appReducer,
+    chatPage: chatReducer
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleWare));

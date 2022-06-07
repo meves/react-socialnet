@@ -45,3 +45,10 @@ export type SearchStringType = {
     friend: boolean | null
     page: number
 }
+
+export type ChatMessageType = {
+    userId: number
+    message: string
+    photo: string
+    userName: string
+}
