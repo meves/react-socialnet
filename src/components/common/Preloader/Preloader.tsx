@@ -4,9 +4,17 @@ import PreloaderGif from './../../../assets/images/preloader.gif';
 
 const Wrapper = styled.div`
     max-width: 3em;
+    padding: 0em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: black;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+    width: 100%;
+`;
 
 export const Preloader: FC = () => {    
     return (

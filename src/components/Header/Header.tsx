@@ -1,57 +1,45 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/auth-reducer';
+import { logout } from '../../redux/reducers/auth-reducer';
 import { NavLink } from 'react-router-dom';
 import { recieveLogin, recieveIsAuth } from '../../redux/selectors/auth-selectors';
-import { Button } from '../../styles/components';
 import styled from 'styled-components';
 
 /**
  * * styled-components
  */
-const HeaderWrapper = styled.header`
-  grid-area: header;
-  background-color: var(--bg-color-medium);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-left: 0.5em;
+const Header = styled.header`
+  background-color: blue;
 `;
 
 const Title = styled.h1`
-  flex: 8 8 80%;
-  text-align: center;
+text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   color: aliceblue;
   text-shadow: 0.01em 0.01em 0.1em rgb(236, 223, 203);
-`;
-
-const LoginLogoutWrapper = styled.div`
-  flex: 1 1 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 0;
+  margin-left: 2em;
 `;
 
 const LoginWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
   letter-spacing: 0.1em;
+  margin-left: auto;
 `;
 
-const Login = styled.div`
-  color: aliceblue;
-  padding-bottom: 1em;
+const AvatarIcon = styled.div`
+  background-color: #87d068;
+  margin-right: 1em;
 `;
 
 /**
  * * React Component
 */
-export const Header: FC = (props) => {
+export const AppHeader: FC = (props) => {
   const login = useSelector(recieveLogin);
   const isAuth = useSelector(recieveIsAuth);
 
@@ -60,18 +48,20 @@ export const Header: FC = (props) => {
     dispatch(logout());
   }
   return (
-    <HeaderWrapper>
+    <Header className="header" style={{display: 'flex', alignItems: 'center'}}>
+      <div className="logo"/>
       <Title>Social network</Title>
-        <LoginLogoutWrapper>
-         { isAuth 
-          ? <LoginWrapper>
-              <Login>{login}</Login>
-              <Button onClick={handleLogout}>Logout</Button>
-            </LoginWrapper> 
-          : <NavLink to="/login">
-                <Button>Login</Button>
-            </NavLink>}
-        </LoginLogoutWrapper>
-    </HeaderWrapper>
+      { isAuth 
+      ? <LoginWrapper>
+          <AvatarIcon title={login || ''}/>      
+          <button onClick={handleLogout} >Logout</button>
+        </LoginWrapper> 
+      : <LoginWrapper>
+          <NavLink to="/login">
+            <button >Login</button>
+          </NavLink>
+        </LoginWrapper>
+      }
+    </Header>        
   )
 }

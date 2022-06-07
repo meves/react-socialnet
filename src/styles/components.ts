@@ -1,28 +1,6 @@
 import styled, { css } from "styled-components";
 
 /**
- * * App
- */
- export const AppWrapper = styled.div`
-    max-width: 90%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 2fr 10fr;
-    grid-template-areas: "header header"
-                        "navbar content"; 
- `;
- 
- export const AppContent = styled.div`
-    grid-area: content;
-    width: 100%;
-    background-color: var(--bg-color-dark);
-    padding: 3em 2em;    
- `;  
-    
-
-
-/**
  * Button
  */
 const cursorPointer = css`

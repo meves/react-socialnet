@@ -2,26 +2,27 @@ import React, { FC, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 // components
-import { Header } from './components/Header/Header';
+import { AppHeader } from './components/Header/Header';
 import { Navbar } from './components/Navbar/Navbar';
-import { Home } from './components/Home/Home';
+import { Home } from './pages/Home/Home';
+import { AppFooter } from './components/Footer/Footer';
 import { Login } from './components/Login/Login';
 import { Preloader } from './components/common/Preloader/Preloader';
 import { NotFound } from './components/NotFound/NotFound';
 // utils
-import { initializeApp } from './redux/app-reducer';
-import { AppWrapper, AppContent } from './styles/components';
+import { initializeApp } from './redux/reducers/app-reducer';
 import { withSuspense } from './hoc/withSuspense';
 import { AppStateType } from './redux/redux-store';
+// styles
+import { Container, Grid } from '@mui/material'
 // lazy components
-const ProfilePage = lazy(() => import('./components/Profile/Profile'));
-const DialogsPage = lazy(() => import('./components/Dialogs/Dialogs'));
-const News = lazy(() => import('./components/News/News'));
-const Music = lazy(() => import('./components/Music/Music'));
-const UsersPage = lazy(() => import('./components/Users/Users'));
-const Settings = lazy(() => import('./components/Settings/Settings'));
-
-
+const ProfilePage = lazy(() => import('./pages/Profile/Profile'));
+const DialogsPage = lazy(() => import('./pages/Dialogs/Dialogs'));
+const Chat = lazy(() => import('./pages/Chat/ChatPage'));
+const News = lazy(() => import('./pages/News/News'));
+const Music = lazy(() => import('./pages/Music/Music'));
+const UsersPage = lazy(() => import('./pages/Users/Users'));
+const Settings = lazy(() => import('./pages/Settings/Settings'));
 
 type AppPropsType = {
   initializeApp: () => void
@@ -36,26 +37,37 @@ const App: FC<AppPropsType> = (props) => {
   if (!props.initialized) {
     return <Preloader/>
   }
+    
   return (
-    <AppWrapper>
-      <Header/>
-      <Navbar />
-      <AppContent>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="profile" element={withSuspense(ProfilePage)} />
-          <Route path="profile/:userId" element={withSuspense(ProfilePage)} />
-          <Route path="dialogs" element={withSuspense(DialogsPage)} />
-          <Route path="dialogs/:userId" element={withSuspense(ProfilePage)}/>
-          <Route path="news" element={withSuspense(News)} />
-          <Route path="music" element={withSuspense(Music)} />
-          <Route path="users" element={withSuspense(UsersPage)} />
-          <Route path="settings" element={withSuspense(Settings)} />
-          <Route path="login" element={withSuspense(Login)} />
-          <Route path="*" element={withSuspense(NotFound)}/>
-        </Routes>
-      </AppContent>
-    </AppWrapper>    
+    <Container maxWidth="lg">
+      <Grid container>
+        <Grid item xs={12}>
+          <AppHeader/>
+        </Grid>
+        <Grid item xs={2}>
+          <Navbar/>              
+        </Grid>
+        <Grid item xs={10}>
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="profile" element={withSuspense(ProfilePage)} />
+            <Route path="profile/:userId" element={withSuspense(ProfilePage)} />
+            <Route path="dialogs" element={withSuspense(DialogsPage)} />
+            <Route path="dialogs/:userId" element={withSuspense(ProfilePage)}/>
+            <Route path="chat" element={withSuspense(Chat)}/>
+            <Route path="news" element={withSuspense(News)} />
+            <Route path="music" element={withSuspense(Music)} />
+            <Route path="users" element={withSuspense(UsersPage)} />
+            <Route path="settings" element={withSuspense(Settings)} />
+            <Route path="login" element={withSuspense(Login)} />
+            <Route path="*" element={withSuspense(NotFound)}/>
+          </Routes>
+        </Grid>
+       <Grid item xs={12}>
+        <AppFooter/>
+       </Grid>
+      </Grid>
+    </Container>
   );
   
 }

@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { UserType } from "../../types/types";
 import { AppStateType } from "../redux-store";
-import { FilterType } from "../users-reducer";
+import { FilterType } from "../reducers/users-reducer";
 
 const getUsers = (state: AppStateType): Array<UserType> => state.usersPage.users;
 export const recieveUsers = createSelector(getUsers, (users: Array<UserType>): Array<UserType> => {

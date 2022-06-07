@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/auth-reducer';
+import { login } from '../../redux/reducers/auth-reducer';
 import { recieveIsAuth } from '../../redux/selectors/auth-selectors';
 import LoginForm, { FormDataType } from './LoginForm';
 import styled from 'styled-components';

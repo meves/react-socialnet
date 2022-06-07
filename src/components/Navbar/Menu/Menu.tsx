@@ -1,21 +1,11 @@
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 /**
  * * styled-components
  */
-const List = styled.ul`
-    list-style-type: none;
-    margin-top: 3em;
-    margin-bottom: 0;
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const Item = styled(NavLink)`
+export const Item = styled(Link)`
     display: block;
     width: 100%;
     margin-left: 0;  
@@ -39,16 +29,18 @@ const Item = styled(NavLink)`
 /**
  * * React Component "Menu"
  */
-export const Menu: FC = () => {
+
+export const AppMenu: FC = () => {
     return (
-        <List>
-            <Item to="/">Home</Item>
-            <Item to="/profile">Profile</Item>
-            <Item to="/dialogs">Messages</Item>
-            <Item to="/news">News</Item>
-            <Item to="/music">Music</Item>
-            <Item to="/users">Find users</Item>
-            <Item to="/settings">Settings</Item>
-        </List>
+      <div>
+        <Item to="/">Home</Item>
+        <Item to="/profile">Profile</Item>
+        <Item to="/dialogs">Messages</Item>
+        <Item to="/users">Find users</Item>
+        <Item to="/chat">Chat</Item>
+        <Item to="/news">News</Item> 
+        <Item to="/music">Music</Item>
+        <Item to="/settings">Settings</Item>
+      </div>
     )
 }

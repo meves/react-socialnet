@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Menu } from './Menu/Menu';
+import { AppMenu } from './Menu/Menu';
 import { FriendsBlock } from './Friends/FriendsBlock';
 import styled from 'styled-components';
 
@@ -11,7 +11,7 @@ const Nav = styled.nav`
 export const Navbar: FC = () => {
     return (
         <Nav>
-            <Menu />
+            <AppMenu />
             <FriendsBlock />
         </Nav>
     )
