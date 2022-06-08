@@ -13,8 +13,32 @@ export default createGlobalStyle`
     }
 
     html {
+        /** color palette #4438 colorpalettes.net */
+        /** backgroud colors */
+        --bluegray-dark: #202136;
+        --bluegray-lightdark: #545365;
+        --bluegray-medium: #878A99;
+        --bluegray-light: #DCDFEE;
+        --bluegray-superlight: #F7F8FC;
+
+        /** text colors */
+        --light-text-color: var(--bluegray-light);
+        --medium-text-color: var(--bluegray-medium);
+        --dark-text-color: var(--bluegray-dark);
+
+        /** color palette blue */
+
         /* background colors */
-        --bg-color-dark: hsl(223, 80%, 64%);
+        --bg-header: var(--bluegray-dark);
+        --bg-footer: var(--bluegray-dark);
+        --bg-navbar: var(--bluegray-medium);
+        --bg-menuitem: var(--bluegray-light);
+        --bg-page: var(--bluegray-light);
+        --bg-block: var(--bluegray-lightdark);
+        --bg-blockitem: var(--bluegray-lightdark);
+        --bg-imageblock: var(--bluegray-medium);
+
+
         --bg-color-medium: hsl(231, 44%, 56%);
         --bg-color-light: hsl(233, 81%, 75%);
         --bg-item-color: hsl(180, 81%, 26%);

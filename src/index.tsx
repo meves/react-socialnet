@@ -12,7 +12,7 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>        
             <GlobalStyle/>
-            <App />
+              <App />
         </BrowserRouter>
     </Provider>,
 document.getElementById('root'));

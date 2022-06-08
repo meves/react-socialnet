@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Preloader } from '../../../components/common/Preloader/Preloader';
+import { Loading } from '../../../components/common/Preloader/Loading';
 import { ProfileData } from './ProfileData/ProfileData';
 import { ProfileStatus } from './ProfileStatus/ProfileStatus';
 import ProfileReduxForm from './ProfileForm/ProfileForm';
@@ -17,7 +17,7 @@ export const ProfileInfo: FC<PropsType> = (props) => {
     const [editMode, setEditMode] = useState(false);
     const dispatch = useDispatch();
     if (!profile) {
-        return (<Preloader/>)
+        return (<Loading/>)
     } 
 
     const activateEditMode = () => {

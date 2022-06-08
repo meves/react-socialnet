@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Preloader } from "../components/common/Preloader/Preloader";
+import { Loading } from "../components/common/Preloader/Loading";
 
 type InjectedProps = any;
 
@@ -7,7 +7,7 @@ export function withSuspense<PropsType>(Component: React.ComponentType<PropsType
     function SuspenseComponent(props: InjectedProps) {
         return (
             <div>
-                <Suspense fallback={<div><Preloader/></div>}>
+                <Suspense fallback={<div><Loading/></div>}>
                     <Component {...props as PropsType}/>
                 </Suspense>
             </div>

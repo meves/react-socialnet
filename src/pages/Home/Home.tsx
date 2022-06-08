@@ -8,6 +8,7 @@ import styled from 'styled-components';
  */
 const HomePage = styled.section`
     color: var(--white-text-color);
+    background-color: var(--bg-page)
 `;
 
 const TitleGroup = styled.hgroup`
@@ -17,7 +18,7 @@ const TitleGroup = styled.hgroup`
 `;
 
 const Title = styled.h2`
-    background-color: var(--bg-color-medium);
+    background-color: var(--bg-blockitem);
     text-transform: uppercase;
     font-size: 1rem;
     padding: 0.5em 0.75em;
@@ -25,20 +26,17 @@ const Title = styled.h2`
     margin-top: 0;
     margin-bottom: 0.9em;
     
-    &:hover {
+    Title:hover {
         cursor: pointer;
     }
 
-    &:first-child {
+    Title:first-child {
         margin-right: 0.3em;
         margin-left: 0.1em;
     }
 `;
 
-/**
- * * React Component
- */
-export const Home: FC = () => {
+export const Home: FC = (props) => {
     const [isAbout, setAbout] = useState(true);
     return (
         <HomePage>

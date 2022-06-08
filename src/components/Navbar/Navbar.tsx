@@ -3,16 +3,17 @@ import { AppMenu } from './Menu/Menu';
 import { FriendsBlock } from './Friends/FriendsBlock';
 import styled from 'styled-components';
 
-const Nav = styled.nav`
-    grid-area: navbar;
-    background-color: var(--bg-color-light);  
+const Navbar = styled.nav`
+    width: 320px;
+    max-width: 100%;
+    background-color: var(--bg-navbar);  
 `;
 
-export const Navbar: FC = () => {
+export const AppNavbar: FC = () => {
     return (
-        <Nav>
+        <Navbar>
             <AppMenu />
             <FriendsBlock />
-        </Nav>
+        </Navbar>
     )
 }

@@ -9,7 +9,7 @@ import styled from "styled-components";
 const Wrapper = styled.section`
     display: flex;
     align-items: center;
-    background-color: var(--bg-color-medium);
+    background-color: var(--bg-block);
     border-radius: 0.5em;
 `;
 
@@ -21,25 +21,25 @@ const TextBlock = styled.article`
 `;
 
 const Figure = styled.figure`
-    transform: scale(1);
-    transition: transform 1s;
-    background-color: var(--bg-color-light);
-    padding:0.5em;
+    transform: scale(0.9);
+    transition: transform 0.5s;
+    padding: 0;
     border-radius: 0.5em;
     &:hover {
-        transform: scale(1.1);
-        transition: transform 1s;
+        transform: scale(0.95);
+        transition: transform 0.5s;
         cursor: pointer;
     }
 `;
 
 const Image = styled.img`
-    object-fit: contain;
-    border-radius: 40%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 `;
 
 const Figcaption = styled.figcaption`
-    font-size: 0.75rem;
+    font-size: 0.5rem;
     text-align: center;
 `;
 
@@ -50,9 +50,10 @@ export const AboutMe: React.FC = () => {
     return (
         <Wrapper>
             <TextBlock>
-                <h2>Hello, it's about me</h2>
-                <p> Hello, My name is Sergey Medvedkin. I am a web developer. This site was created by myself as 
-                    an example of my skills. I specialize in React. I also have practice in JavaScript ES-5, ES-6+
+                <h2>My name is Sergey Medvedkin</h2>
+                <p> Hello, I am Sergey Medvedkin. I practice in web development. This is my personal web-site. 
+                    About my skills you can find out on my skills page. I specialize in front-end, but I also 
+                    make backend API server on Node using Express and Nest. My site hosts on Timeweb servers.
                 </p>
             </TextBlock>
             <Figure>

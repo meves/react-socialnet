@@ -8,7 +8,7 @@ const Wrapper = styled.section`
     justify-content: space-around;
     flex-wrap: wrap;
     padding: 0.5em;
-    background-color: var(--bg-color-medium);
+    background-color: var(--bg-block);
     border-radius: 0.5em;
 `;
 

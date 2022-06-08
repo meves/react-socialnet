@@ -3,18 +3,18 @@ import { Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 // components
 import { AppHeader } from './components/Header/Header';
-import { Navbar } from './components/Navbar/Navbar';
+import { AppNavbar } from './components/Navbar/Navbar';
 import { Home } from './pages/Home/Home';
 import { AppFooter } from './components/Footer/Footer';
 import { Login } from './components/Login/Login';
-import { Preloader } from './components/common/Preloader/Preloader';
+import { Loading } from './components/common/Preloader/Loading';
 import { NotFound } from './components/NotFound/NotFound';
 // utils
 import { initializeApp } from './redux/reducers/app-reducer';
 import { withSuspense } from './hoc/withSuspense';
 import { AppStateType } from './redux/redux-store';
 // styles
-import { Container, Grid } from '@mui/material'
+import { Container, Grid } from '@mui/material';
 // lazy components
 const ProfilePage = lazy(() => import('./pages/Profile/Profile'));
 const DialogsPage = lazy(() => import('./pages/Dialogs/Dialogs'));
@@ -35,17 +35,17 @@ const App: FC<AppPropsType> = (props) => {
     // eslint-disable-next-line
   }, []);  
   if (!props.initialized) {
-    return <Preloader/>
+    return <Loading/>
   }
     
   return (
     <Container maxWidth="lg">
-      <Grid container>
+      <Grid container spacing={1}>
         <Grid item xs={12}>
           <AppHeader/>
         </Grid>
         <Grid item xs={2}>
-          <Navbar/>              
+          <AppNavbar/>              
         </Grid>
         <Grid item xs={10}>
           <Routes>

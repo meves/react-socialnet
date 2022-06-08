@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { Preloader } from '../../components/common/Preloader/Preloader';
+import { Loading } from '../../components/common/Preloader/Loading';
 import Paginator from '../../components/Paginator/Paginator';
 import { useLocation, useNavigate } from 'react-router-dom';
 import UserSearchForm from './UserSearchForm';
@@ -65,7 +65,7 @@ const UsersPage: FC = (props) => {
                        changeCurrentPage={changeCurrentPage}
                        blockSize={blockSize}
             />
-            {isFetching && <Preloader />}  
+            {isFetching && <Loading />}  
              <Users>             
                 {users.map(user => ( 
                     <User key={user.id}
