@@ -5,6 +5,7 @@ export const Music: FC = () => {
     return (
         <div>
             <h1>Music</h1>
+            <div>The component is in development porocess</div>
         </div>
     )
 }

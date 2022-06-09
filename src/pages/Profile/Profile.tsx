@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
     width: 100%;
+    background-color: var(--bg-page);
 `;
 
 const ProfilePage: FC = () => {

@@ -3,7 +3,11 @@ import { NewMessage } from './NewMessage/NewMessage';
 import { useGenerateDialogsElements, useGenerateMessagesElements } from './hooks/dialogs-hooks';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const DialogsPageWrapper = styled.section`
+    background-color: var(--bg-page);
+`;
+
+const DialogsWrapper = styled.div`
     display: flex;
     padding: 1em;
 `;
@@ -24,13 +28,13 @@ const DialogsPage: FC = () => {
     const dialogs = useGenerateDialogsElements();
     const messages = useGenerateMessagesElements();
     return (
-        <section>
-            <Wrapper>
+        <DialogsPageWrapper>
+            <DialogsWrapper>
                 <Dialogs>{dialogs}</Dialogs>            
                 <Messages>{messages}</Messages>  
-            </Wrapper>
+            </DialogsWrapper>
             <NewMessage/>        
-        </section>
+        </DialogsPageWrapper>
     )
 }
 export default DialogsPage; 

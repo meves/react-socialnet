@@ -1,4 +1,4 @@
-import { Box, Button, CardContent, Input, TextField, Typography } from '@mui/material';
+import { Box, Button, CardContent, TextField, Typography } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -33,11 +33,11 @@ const MessageWrapper = styled.section`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 1em 2em;
-    background-color: var(--bg-chat-message-item);
+    background-color: var(--bg-post-item);
     margin-bottom: 0.5em;
     margin-right: 0.5em;
     border-radius: 0.5em;
-    box-shadow: 0.1em 0.1em var(--bg-chat-message-item-shadow);
+    box-shadow: 0.1em 0.1em var(--bg-post-item-shadow);
 `;
 
 const Image = styled.img`

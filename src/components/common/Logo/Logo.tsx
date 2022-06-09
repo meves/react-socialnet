@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-export const Logo = () => {
+export const Logo: FC = () => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="50.0pt" height="40.0pt" viewBox="0 0 50.0pt 40.0pt"

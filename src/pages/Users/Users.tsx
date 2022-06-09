@@ -1,15 +1,19 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { Loading } from '../../components/common/Preloader/Loading';
-import Paginator from '../../components/Paginator/Paginator';
 import { useLocation, useNavigate } from 'react-router-dom';
 import UserSearchForm from './UserSearchForm';
 import { FilterType, followUser, getUsersChanged, unfollowUser } from '../../redux/reducers/users-reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { receiveBlockSize, receiveFilter, recieveCurrentPage, recieveFollowingInProgress,
+import { receiveFilter, recieveCurrentPage, recieveFollowingInProgress,
          recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
 import { User } from './User';
 import { parseSearchString } from '../../utils/processSearchString/processSearchString';
+import { Pagination } from '@mui/material';
+
+const UsersWrapper = styled.section`
+    background-color: var(--bg-page);
+`;
 
 const Users = styled.div`
     margin-top: 3.5em;
@@ -18,32 +22,27 @@ const Users = styled.div`
 const UsersPage: FC = (props) => {
     const users = useSelector(recieveUsers);
     const totalUsersCount = useSelector(recieveTotalUsersCount);
-    const blockSize = useSelector(receiveBlockSize);
-    const isFetching = useSelector(recieveIsFetching);
-    const followingInProgress = useSelector(recieveFollowingInProgress);
     const pageSize = useSelector(recievePageSize);
     const currentPage = useSelector(recieveCurrentPage);
+    const isFetching = useSelector(recieveIsFetching);
+    const followingInProgress = useSelector(recieveFollowingInProgress);
     const filter = useSelector(receiveFilter);
 
     const dispatch = useDispatch();
     const location = useLocation();
     useEffect(() => {
-        const {term, friend, page} = parseSearchString(location.search);
-        
+        const {term, friend, page} = parseSearchString(location.search);        
         dispatch(getUsersChanged(page, pageSize, {term, friend}));    
     }, 
     // eslint-disable-next-line
     []); 
-
-    const navigate = useNavigate();
-    
+    const navigate = useNavigate();    
     useEffect(() => {
-        //queryString.stringify();
         navigate(`/users?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`);
     }, [filter, currentPage, navigate]);
     
-    const changeCurrentPage = (currentPage: number) => {
-        dispatch(getUsersChanged(currentPage, pageSize, filter));
+    const changeCurrentPage = (event: React.ChangeEvent<unknown>, page: number) => {
+        dispatch(getUsersChanged(page, pageSize, filter));
     }
     const changeFilter = (filter: FilterType) => {
         dispatch(getUsersChanged(currentPage, pageSize, filter));        
@@ -54,29 +53,26 @@ const UsersPage: FC = (props) => {
     const setUnfollowUser = (userId: number) => {
         dispatch(unfollowUser(userId));
     }
+    const pagesCount: number = Math.ceil(totalUsersCount / pageSize);
     return (
-        <div>
+        <UsersWrapper>
             <UserSearchForm 
-                        changeFilter={changeFilter}/>    
-            <Paginator 
-                       pageSize={pageSize}
-                       currentPage={currentPage}
-                       totalUsersCount={totalUsersCount}
-                       changeCurrentPage={changeCurrentPage}
-                       blockSize={blockSize}
+                        changeFilter={changeFilter}/>
+            <Pagination count={pagesCount} page={currentPage} showFirstButton showLastButton onChange={changeCurrentPage}
+                        boundaryCount={1} color="secondary" siblingCount={5}
             />
             {isFetching && <Loading />}  
-             <Users>             
+            <Users>             
                 {users.map(user => ( 
                     <User key={user.id}
-                          user={user}
-                          followingInProgress={followingInProgress}
-                          setFollowUser={setFollowUser}
-                          setUnfollowUser={setUnfollowUser}
+                        user={user}
+                        followingInProgress={followingInProgress}
+                        setFollowUser={setFollowUser}
+                        setUnfollowUser={setUnfollowUser}
                     />
-                 ))}
+                ))}
             </Users>
-        </div>
+        </UsersWrapper>
     )
 }
 

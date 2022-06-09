@@ -5,6 +5,7 @@ const News: FC = () => {
     return (
         <div>
             <h1>News</h1>
+            <div>The component is in development porocess</div>
         </div>
     )
 }

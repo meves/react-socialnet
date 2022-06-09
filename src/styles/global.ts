@@ -29,16 +29,19 @@ export default createGlobalStyle`
 
         /* background colors */
         --bg-header: var(--bluegray-dark);
-        --bg-footer: var(--bluegray-dark);
         --bg-navbar: var(--bluegray-medium);
-        --bg-menuitem: var(--bluegray-light);
+        --bg-footer: var(--bluegray-dark);
         --bg-page: var(--bluegray-superlight);
+        
         --bg-block: var(--bluegray-lightdark);
-        --bg-blockitem: var(--bluegray-lightdark);
         --bg-imageblock: var(--bluegray-medium);
         
-        --bg-chat-message-item: var(--bluegray-light);
-        --bg-chat-message-item-shadow: var(--bluegray-medium);
+        --bg-blockitem: var(--bluegray-lightdark);
+        --bg-menuitem: var(--bluegray-light);
+        
+        --bg-post-item: var(--bluegray-light);
+        --bg-post-item-shadow: var(--bluegray-medium);
+        --bg-button-border: var(--bluegray-medium);
 
         --bg-error-color: var(--red-color);
 

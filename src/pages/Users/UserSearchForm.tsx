@@ -4,13 +4,14 @@ import { FilterType } from "../../redux/reducers/users-reducer";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { receiveFilter } from "../../redux/selectors/users-selectors";
-import { Button } from "../../styles/components";
+import { Button } from "@mui/material";
 
 /**
  * * styled-components
  */
 const FormWrapper = styled.div`
-    background-color: var(--bg-color-medium);
+    background-color: var(--bg-post-item);
+    box-shadow: 0.1em 0.1em var(--bg-post-item-shadow);
     display: flex;
     padding: 0.5em;
     font-size: 1rem;
@@ -25,18 +26,17 @@ const FieldTerm = styled(Field)`
     width: 20em;
     border-radius: 0.3em;
     border: none;
+    margin-bottom: 0.75em;
 `;
 
 const FieldSelect = styled(Field)`
     margin-right: 1em;
     font-size: 0.75rem;
-    padding: 0.5em;
-    background-color: var(--bg-color-light);
+    padding: 0.4em;
+    border-radius: 0.2em;
+    background-color: var(--bluegray-light);
 `;
 
-const SearchButton = styled(Button)`
-    font-size: 0.5rem;
-`;
 
 /**
  * * React Component UserSearchForm
@@ -82,9 +82,14 @@ const UserSearchForm: FC<PropsType> = (props) => {
                             <option value="true">Followed</option>
                             <option value="false">Unfollowed</option>   
                     </FieldSelect>
-                    <SearchButton type="submit" disabled={isSubmitting}>
+                    <Button type="submit" disabled={isSubmitting} variant="outlined"
+                            sx={{
+                                borderColor: 'var(--bg-button-border)',
+                                color: 'var(--dark-text-color)',
+                                fontSize: '0.63rem',
+                            }}>
                         Submit
-                    </SearchButton>
+                    </Button>
                 </Form>
             )} 
             </Formik>

@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { AboutMe } from './AboutMe';
 import { MySkills } from './MySkills';
 import styled from 'styled-components';
+import { AppCarousel } from '../../components/common/Carousel/Carousel';
 
 /**
  * * styled-components
@@ -40,6 +41,7 @@ export const Home: FC = (props) => {
     const [isAbout, setAbout] = useState(true);
     return (
         <HomePage>
+        <AppCarousel />
             <TitleGroup>
                 <Title onClick={() => setAbout(true)}>About me</Title>
                 <Title onClick={() => setAbout(false)}>My slills</Title>

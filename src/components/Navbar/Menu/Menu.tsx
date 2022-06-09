@@ -42,10 +42,13 @@ export const AppMenu: FC = () => {
     return (
       <Menu>
         { menuItems.map((item: MenuItemType) => (
-          <LI key={item.id}>
-            <ListItemIcon children={<item.icon/>} />
-            <ListItemText> <Item to={item.path}>{item.name}</Item> </ListItemText>        
-          </LI>
+          <>
+            <LI key={item.id}>
+              <ListItemIcon children={<item.icon/>} />
+              <ListItemText> <Item to={item.path}>{item.name}</Item> </ListItemText>        
+            </LI>
+            { (item.id === 1 || item.id === 5) && <Divider/> } 
+          </>
         ))}        
       </Menu>
     )

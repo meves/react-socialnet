@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import UserImage from '../../assets/images/user_image.jpeg';
 import { UserType } from '../../types/types';
 import { NavLink } from 'react-router-dom';
-import { Button } from '../../styles/components';
+import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
 
 /**
  * * styled-components
@@ -15,7 +16,8 @@ const UserWrapper = styled.section`
     justify-content: flex-start;
     margin-bottom: 1.5em;
     padding: 0.5em;
-    background-color: var(--bg-color-light);
+    background-color: var(--bg-post-item);
+    box-shadow: 0.1em 0.1em var(--bg-post-item-shadow);
     border-radius: 0.3em;
 `;
 
@@ -25,33 +27,26 @@ const PhotoWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media(max-width: 400px) {
+        margin-right: 0.5em;
+    }
 `;
 
 const Photo = styled.img`
     object-fit: contain;
-    max-width: 4.5em;
+    max-width: 5em;
     padding: 0.3em;
-    border-radius: 1em;
-    background-color: var(--bg-color-light);
-`;
-
-const followUnfollow = css`
-    font-size: 0.5em;
-    padding: 0.5em 1em;
-`;
-
-const FollowButton = styled(Button)`
-    ${followUnfollow}
-`;
-
-const UnfollowButton = styled(Button)`
-    ${followUnfollow}
+    border-radius: 50%;
 `;
 
 const InfoWrapper = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    color: var(--white-text-color);
+    display: flex;
+    color: var(--medium-text-color);
+
+    @media(max-width: 780px) {
+        flex-direction: column;
+    }
 `;
 
 const UserInfo = styled.div`
@@ -59,6 +54,7 @@ const UserInfo = styled.div`
     margin-right: 2em;
     padding: 0.5em 0 0.5em 0.75em;
     border-radius: 0.3em;
+    width: 100%;
 `;
 
 const LocationInfo = styled.div`
@@ -68,6 +64,8 @@ const LocationInfo = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+
 `;
 
 const UserSiteLink = styled.a`
@@ -96,24 +94,43 @@ export const User: FC<PropsType> = (props) => {
             <PhotoWrapper>
                 <NavLink to={`/profile/${user.id}`}>
                     <Photo src={user.photos.large || user.photos.small || UserImage} 
-                           alt="user" />
+                        alt="user" />
                 </NavLink>
                 { user.followed
-                    ? <FollowButton disabled={followingInProgress.some(id => id === user.id)} 
-                              onClick={() => setUnfollowUser(user.id)}>Unfollow</FollowButton>
-                    : <UnfollowButton disabled={followingInProgress.some(id => id === user.id)} 
-                              onClick={() => setFollowUser(user.id)}>Follow</UnfollowButton>
-                }                            
+                    ? <Button variant="outlined" size="small"
+                            sx={{
+                                color: 'var(--dark-text-color)',
+                                borderColor: 'var(--bg-button-border)',
+                                fontSize: '0.5rem', 
+                            }}
+                            disabled={followingInProgress.some(id => id === user.id)} 
+                            onClick={() => setUnfollowUser(user.id)}>Unfollow</Button>
+                    : <Button variant="outlined" size="small" 
+                            sx={{
+                                color: 'var(--dark-text-color)',
+                                borderColor: 'var(--bg-button-border)',
+                                fontSize: '0.5rem',
+                            }}
+                            disabled={followingInProgress.some(id => id === user.id)} 
+                            onClick={() => setFollowUser(user.id)}>Follow</Button>
+                }                   
             </PhotoWrapper>
             <InfoWrapper>
                 <UserInfo>
-                    <div>{user.name}</div>
-                    <div>{user.status}</div>
+                    <Typography gutterBottom variant="subtitle1" component="div">
+                        <div>{user.name}</div>
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle2" component="div">
+
+                        <div>{user.status}</div>
+                    </Typography>
                 </UserInfo>
                 <LocationInfo>
-                    <div>user.location.country</div>
-                    <div>user.location.city</div>
-                    <UserSiteLink href={'user.uniqueUrlName'}>User site</UserSiteLink>
+                    <Typography variant="body2" color="text.secondary">
+                        <div>user.location.country</div>
+                        <div>user.location.city</div>
+                        <UserSiteLink href={'user.uniqueUrlName'}>User site</UserSiteLink>
+                    </Typography>
                 </LocationInfo>
             </InfoWrapper>
         </UserWrapper>
