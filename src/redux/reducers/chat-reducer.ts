@@ -2,11 +2,11 @@ import { Dispatch } from "redux";
 import { chatAPI } from "../../api/chat-api";
 import { ChatMessageType, ChatStatusType } from "../../types/types";
 import { InferActionsTypes, ThunkActionType } from "../redux-store";
+import { v4 as uuidv4 } from 'uuid';
 
-
-
+type ChatMessageTypeWithId = ChatMessageType & { id: string }
 const initialState = {
-    messages: [] as ChatMessageType[],
+    messages: [] as ChatMessageTypeWithId[],
     status: 'pending' as ChatStatusType
 }
 type InitialStateType = typeof initialState;
@@ -17,7 +17,8 @@ const chatReducer = (state = initialState, action: ActionsTypes): InitialStateTy
         case "ADD_CHAT_MESSAGE":
             return {
                 ...state,
-                messages: [...state.messages, ...action.payload.messages].filter((element, index, array) => index >= array.length - 100)
+                messages: [...state.messages, ...action.payload.messages.map(message => ({...message, id: uuidv4()}))]
+                        .filter((el, index, array) => index >= array.length - 30)                        
             }
         case 'SET_CHAT_STATUS':
             return {

@@ -10,9 +10,18 @@ const Wrapper = styled.section`
     margin-bottom: 3em;
 `;
 
+const Title = styled.h2`
+    text-align: center;
+`;
+
 const Figures = styled.div`
     display: flex;
-    justify-content: space-around;    
+    justify-content: space-around;  
+    
+    @media(max-width: 415px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 export const FriendsBlock: FC = () => {
@@ -22,7 +31,7 @@ export const FriendsBlock: FC = () => {
     )
     return (
         <Wrapper>
-            <h2>Friends</h2>
+            <Title>Friends</Title>
             <Figures>
                 { friendsNamesItems }
             </Figures>

@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { recieveLogin, recieveIsAuth } from '../../redux/selectors/auth-selectors';
 import styled from 'styled-components';
 import { Button } from '@mui/material';
+import { Logo } from '../common/Logo/Logo';
 
 /**
  * * styled-components
@@ -17,13 +18,16 @@ const Header = styled.header`
   padding: 0.3em 0;
 `;
 
-const Logo = styled.div`
-  font-size: 0.75rem;
+const LogoWrapper = styled.div`
   margin-left: 0.5em;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  padding: 0.5em;
-  color: var(--light-text-color);
+  margin-right: 2em;
+  
+  @media(max-width: 600px) {
+    margin-right: 1em;
+  }
+  @media(max-width: 380px) {
+    margin-right: 0;
+  }
 `;
 
 const Title = styled.h1`
@@ -32,17 +36,8 @@ const Title = styled.h1`
   font-size: 2rem;
   font-weight: 100;
   color: var(--light-text-color);
-  margin: 0 0 0 2em;
-
-  @media(max-width: 380px) {
-    margin-left: 1em;
-  }
-  @media(max-width: 340px) {
-    margin-left: 0;
-  }
+  margin: 0;
 `;
-
-
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -51,12 +46,21 @@ const LoginWrapper = styled.div`
   letter-spacing: 0.1em;
   margin-left: auto;
   margin-right: 0.5em;
+
+  @media(max-width: 383px) {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
 const Login = styled.div`
-font-size: 0.75rem;
+  font-size: 0.75rem;
   color:  var(--light-text-color);
   margin-right: 1em;
+
+  @media(max-width: 383px) {
+    margin-bottom: 0.5em;
+  }
 `;
 
 /**
@@ -72,7 +76,7 @@ export const AppHeader: FC = (props) => {
   }
   return (
     <Header>
-      <Logo>SM</Logo>
+      <LogoWrapper><Logo /></LogoWrapper>
       <Title>Sergey Medvedkin</Title>
       { isAuth 
       ? <LoginWrapper>

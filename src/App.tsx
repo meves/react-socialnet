@@ -40,14 +40,15 @@ const App: FC<AppPropsType> = (props) => {
     
   return (
     <Container maxWidth="lg">
-      <Grid container spacing={1}>
+      <Grid container spacing={3}>
         <Grid item xs={12}>
           <AppHeader/>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={4} md={3}>
           <AppNavbar/>              
         </Grid>
-        <Grid item xs={10}>
+        <Grid item xs={8} md={9}>
+
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="profile" element={withSuspense(ProfilePage)} />

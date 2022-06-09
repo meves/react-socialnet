@@ -1,16 +1,56 @@
+import { Box, Button, CardContent, Input, TextField, Typography } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/reducers/chat-reducer';
 import { receiveChatMessages, receiveChatSatus } from '../../redux/selectors/chat-selectors';
 import { ChatMessageType } from '../../types/types';
 
-const ChatPage: FC = (props) => {
-    return (
-        <Chat/>
-    )
-}
+/**
+ * styled-components
+ */
+const ChatWrapper = styled.section`
+    height: 150vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.5em 0;
+    background-color: var(--bg-page);
+`;
 
-const Chat: FC = (props) => {
+const Error = styled.div`
+    border-radius: 2em;
+    background-color: var(--bg-error-color);
+    color: var(--light-text-color);
+`;
+
+const MessagesWrapper = styled.div`
+    overflow: auto;
+`;
+
+const MessageWrapper = styled.section`
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1em 2em;
+    background-color: var(--bg-chat-message-item);
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 0.1em 0.1em var(--bg-chat-message-item-shadow);
+`;
+
+const Image = styled.img`
+    min-width: 1.5em;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+`;
+
+/**
+ * React cmponents
+ */
+const ChatPage: FC = (props) => {
     const chatStatus = useSelector(receiveChatSatus);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -20,11 +60,11 @@ const Chat: FC = (props) => {
         }
     }, [dispatch]);
     return (
-        <div>
-            { chatStatus === 'error' && <div>{`Connection Error. Please reload page.`}</div> }
+        <ChatWrapper>
+            { chatStatus === 'error' && <Error>{`Connection Error. Please reload page.`}</Error> }
             <Messages /> 
             <AddMessageChatForm />            
-        </div>
+        </ChatWrapper>
     )
 }
 
@@ -40,19 +80,19 @@ const Messages: FC =() => {
     }, [messages, isAutoScroll]);
     const scrollHandler = (event: React.UIEvent<HTMLDivElement>) => {
         const scrolledBox = event.currentTarget;
-        if (Math.abs((scrolledBox.scrollHeight - scrolledBox.scrollTop) - scrolledBox.clientHeight) < 100) {
+        if (Math.abs((scrolledBox.scrollHeight - scrolledBox.scrollTop) - scrolledBox.clientHeight) < 700) {
             !isAutoScroll && setisAutoScroll(true);
         } else {
             isAutoScroll && setisAutoScroll(false);
         }
     }
     return (
-        <div style={{height: '55vh', overflow: 'auto'}} onScroll={scrollHandler}>
+        <MessagesWrapper onScroll={scrollHandler}>
             {messages.map((message) => (
-                <Message key={message.userId} message={message}/>
+                <Message key={message.id} message={message}/>
             ))}
             <div ref={messagesAnchorRef}></div>
-        </div>
+        </MessagesWrapper>
     )
 }
 
@@ -62,11 +102,24 @@ type MessagePropsType = {
 const Message: FC<MessagePropsType> = React.memo((props) => {
     const message: ChatMessageType =  props.message;
     return (
-        <div style={{display: "flex", alignItems: 'end', justifyContent: 'flex-start', padding: '2em', borderBottom: '2px solid black'}}>
-            <img src={message.photo} alt="User Avatar" style={{width: '50px'}}/>
-            <h2 style={{marginLeft: '2em'}}>{message.userName}</h2>
-            <p style={{marginLeft: '2em'}}>{message.message}</p>
-        </div>
+        <MessageWrapper>
+            <Box sx={{ width: 60, height: 60, backgroundColor: 'transparent', borderRadius: '50%',
+                    '&:hover': {
+                        opacity: [0.9, 0.8, 0.7],
+                        cursor: 'pointer'
+                    },}}
+            >
+                <Image src={message.photo} alt="User Avatar"/>
+            </Box>
+            <CardContent style={{marginLeft: '2em', paddingTop: '0'}}>
+                <Typography gutterBottom variant="h6" component="div">
+                    {message.userName}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {message.message}
+                </Typography>
+            </CardContent>
+        </MessageWrapper>
     )
 })
 
@@ -84,12 +137,14 @@ const AddMessageChatForm: FC =() => {
     }
     return (
         <div style={{marginTop: '2em'}}>
-            <div>
-                <textarea value={message} onChange={handleChange} cols={50} rows={5}></textarea>
-            </div>
-            <div>
-                <button disabled={chatStatus === 'pending'} onClick={handleClick}>Send</button>
-            </div>
+            <Box component="form" sx={{ '& .MuiTextField-root': { m: 1, minWidth: '28ch' } }} noValidate autoComplete="off">
+                <TextField  id="outlined-multiline-flexible" label="enter your message" multiline
+                            maxRows={5} value={message} onChange={handleChange}
+                />
+            </Box>
+            <Box component={Button}>
+                <Button variant="contained" disabled={chatStatus === 'pending'} onClick={handleClick}>Send</Button>
+            </Box>
         </div>
     )
 }

@@ -20,25 +20,31 @@ export default createGlobalStyle`
         --bluegray-medium: #878A99;
         --bluegray-light: #DCDFEE;
         --bluegray-superlight: #F7F8FC;
+        --red-color: #D80907;
 
         /** text colors */
         --light-text-color: var(--bluegray-light);
         --medium-text-color: var(--bluegray-medium);
-        --dark-text-color: var(--bluegray-dark);
-
-        /** color palette blue */
+        --dark-text-color: var(--bluegray-dark);        
 
         /* background colors */
         --bg-header: var(--bluegray-dark);
         --bg-footer: var(--bluegray-dark);
         --bg-navbar: var(--bluegray-medium);
         --bg-menuitem: var(--bluegray-light);
-        --bg-page: var(--bluegray-light);
+        --bg-page: var(--bluegray-superlight);
         --bg-block: var(--bluegray-lightdark);
         --bg-blockitem: var(--bluegray-lightdark);
         --bg-imageblock: var(--bluegray-medium);
+        
+        --bg-chat-message-item: var(--bluegray-light);
+        --bg-chat-message-item-shadow: var(--bluegray-medium);
 
+        --bg-error-color: var(--red-color);
 
+        /** 
+        * old colors 
+        */
         --bg-color-medium: hsl(231, 44%, 56%);
         --bg-color-light: hsl(233, 81%, 75%);
         --bg-item-color: hsl(180, 81%, 26%);
