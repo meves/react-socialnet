@@ -1,51 +1,54 @@
-import React from "react";
+import React, { FC } from "react";
+import { Box, Stack, Typography } from "@mui/material";
+import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 
-const Wrapper = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
+const SkillItem = styled.div`
+    width: 90%;
     padding: 0.5em;
-    background-color: var(--bg-block);
-    border-radius: 0.5em;
-`;
-
-const SkillsBlock = styled.div`
-    display: flex;
+    flex: 1;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items:center;
-`;
-
-const Skill = styled.div`
-    padding: 0.5em;
-    margin: 0.5em 0.25em;
-    flex: 1 1 10em;
     border-radius: 0.3em;
-    background-color: var(--bg-color-dark);
-    transition: transform 0.2s, border-radius 0.2s;
+    background-color: var(--bg-skill-item-hover);
 
     &:hover {
         cursor: pointer;
-        transform: scale(1.02);
-        border-radius: 0.2em;
-        background-color: var(--selected-text-solor);
+        background-color: var(--bg-skill-item);
     }
 `;
 
-export const MySkills: React.FC = () => {
-    const skills = ["JavaScript", "ES-6+", "TypeScript", "React", "Redux", "REST", "HTTP", "Unit testing",
+const Scale = styled.div`
+    width: 100%;
+    height: 2vh;
+    margin-top: 0.3em;
+    background-image: linear-gradient(to right, blue 77%, white);
+`;
+
+export const MySkills: FC = React.memo(() => {
+    const skills = ["JavaScript / TypeScript", "React / Redux", "REST/HTTP","Unit testing",
                     "CSS/SASS", "Webpack", "Git"];
     return (
-        <Wrapper>
-            <h2>My skills</h2>
-            <SkillsBlock>
+        <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', 
+                backgroundColor: 'var(--bg-block)', marginTop: '2em',
+                '&:hover': {
+                backgroundColor: 'var(--bg-block-hover)',
+                color: 'var(--light-text-color)',
+                opacity: [0.9, 1, 0.7], cursor: 'pointer'
+                }
+            }}
+            >
+            <Typography variant="h5">My skills</Typography>
+            <Box sx={{width: '100%'}}>
+            <Stack spacing={2} sx={{display: 'flex', alignItems: 'center', padding: '1em'}}> 
                 {skills.map((value, index) => (
-                    <Skill key={index}>{value}</Skill>
+                    <SkillItem key={uuidv4()}>
+                        {value}
+                        <Scale/>
+                    </SkillItem>
                 ))}
-            </SkillsBlock>
-        </Wrapper>
+            </Stack>
+
+            </Box>
+        </Box>
     )
-}
+})

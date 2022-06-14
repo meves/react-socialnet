@@ -66,9 +66,9 @@ const Login = styled.div`
 /**
  * * React Component
 */
-export const AppHeader: FC = (props) => {
+export const AppHeader: FC = () => {
   const login = useSelector(recieveLogin);
-  const isAuth = useSelector(recieveIsAuth);
+  const isAuth: boolean = useSelector(recieveIsAuth);
 
   const dispatch = useDispatch();
   const handleLogout = (): void => {
@@ -84,7 +84,7 @@ export const AppHeader: FC = (props) => {
           <Button variant="contained" color="primary" onClick={handleLogout} >Logout</Button>
         </LoginWrapper> 
       : <LoginWrapper>
-          <NavLink to="/login">
+          <NavLink to="/login" style={{textDecoration: 'none'}}>
             <Button variant="contained" color="primary">Login</Button>
           </NavLink>
         </LoginWrapper>
@@ -92,3 +92,4 @@ export const AppHeader: FC = (props) => {
     </Header>        
   )
 }
+

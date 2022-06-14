@@ -40,13 +40,13 @@ export const ProfileInfo: FC<PropsType> = (props) => {
             <ProfileStatus />
             { !editMode ? 
             <ProfileData userProfile={profile}
-                         isOwner={props.isOwner}
-                         activateEditMode={activateEditMode}             
+                        isOwner={props.isOwner}
+                        activateEditMode={activateEditMode}             
             />  :
             <ProfileReduxForm onSubmit={onSubmit} 
-                              initialValues={profile}
-                              contacts={profile.contacts}
-                              deactivateEditMode={deactivateEditMode}
+                            initialValues={profile}
+                            contacts={profile.contacts}
+                            deactivateEditMode={deactivateEditMode}
             />}
         </>
     )

@@ -36,7 +36,7 @@ type PropsType = {
     name: string
 }
 
-export const DialogItem: FC<PropsType> = (props) => {
+export const DialogItem: FC<PropsType> = React.memo((props) => {
     const path: string = `/dialogs/${props.id}`;
     return (
         <Dialog className={navData => navData.isActive ? '' : ''} to={path}>
@@ -44,4 +44,4 @@ export const DialogItem: FC<PropsType> = (props) => {
             <Name>{props.name}</Name>
         </Dialog>
     )
-}
+})

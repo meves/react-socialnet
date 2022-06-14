@@ -1,12 +1,15 @@
 .formControl.error input,
 .formControl.error textarea {
-    border: 2px solid rgb(255, 0, 0);
+    border: 4px solid var(--red-color);
 }
  
-.formControl.error span {
-    color: var(--white-color);
+.formControl.error div {
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--red-color);
+    margin-top: 0.2em;
 }
 
 .formSummaryError {
-    color:crimson;
+    color: var(--red-color);
 }

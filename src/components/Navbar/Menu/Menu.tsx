@@ -1,8 +1,8 @@
-import { Divider, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { menuItems, MenuItemType } from './menuItems';
+import styled from 'styled-components';
+import { Divider, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material';
 
 /**
  * * styled-components
@@ -38,7 +38,7 @@ const LI = styled(ListItem)`
  * * React Component "Menu"
  */
 
-export const AppMenu: FC = () => {
+export const AppMenu: FC = React.memo(() => {
     return (
       <Menu>
         { menuItems.map((item: MenuItemType) => (
@@ -52,4 +52,4 @@ export const AppMenu: FC = () => {
         ))}        
       </Menu>
     )
-}
+})

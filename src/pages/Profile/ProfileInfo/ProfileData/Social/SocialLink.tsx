@@ -27,10 +27,10 @@ type PropsType = {
     linkName: string
     linkValue: string
 }
-export const SocialLink: FC<PropsType> = (props) => {
+export const SocialLink: FC<PropsType> = React.memo((props) => {
     return (
         <Item>
             <Link href={props.linkValue}>{ props.linkName }</Link>
         </Item>
     )
-}
+})

@@ -20,11 +20,11 @@ type PropsType = {
     name: string
 }
 
-export const FriendItem: FC<PropsType> = (props) => {
+export const FriendItem: FC<PropsType> = React.memo((props) => {
     return (
         <Figure>
             <Image src={UserImage} alt={props.name} />
             <Name>{props.name}</Name>
         </Figure>
     )
-}
+})

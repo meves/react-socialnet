@@ -22,8 +22,8 @@ export const Login: FC = () => {
     const isAuth = useSelector(recieveIsAuth);
     const dispatch = useDispatch();
     const onSubmit = (formData: FormDataType) => {
-       const { email, password, rememberMe, captcha } = formData;
-       dispatch(login(email, password, rememberMe, captcha));
+        const { email, password, rememberMe, captcha } = formData;
+        dispatch(login(email, password, rememberMe, captcha));
     }
     if (isAuth) {
         return <Navigate to="/" />

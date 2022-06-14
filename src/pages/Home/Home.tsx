@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { AboutMe } from './AboutMe';
 import { MySkills } from './MySkills';
 import styled from 'styled-components';
-import { AppCarousel } from '../../components/common/Carousel/Carousel';
+import ControlledAccordions from '../../components/common/Panels/Accordion';
 
 /**
  * * styled-components
@@ -12,41 +12,12 @@ const HomePage = styled.section`
     background-color: var(--bg-page)
 `;
 
-const TitleGroup = styled.hgroup`
-    display: flex;
-    justify-content: flex-start;
-    padding: 0;
-`;
-
-const Title = styled.h2`
-    background-color: var(--bg-blockitem);
-    text-transform: uppercase;
-    font-size: 1rem;
-    padding: 0.5em 0.75em;
-    border-radius: 0.3em;
-    margin-top: 0;
-    margin-bottom: 0.9em;
-    
-    Title:hover {
-        cursor: pointer;
-    }
-
-    Title:first-child {
-        margin-right: 0.3em;
-        margin-left: 0.1em;
-    }
-`;
-
-export const Home: FC = (props) => {
-    const [isAbout, setAbout] = useState(true);
+export const Home: FC = () => {
     return (
         <HomePage>
-        <AppCarousel />
-            <TitleGroup>
-                <Title onClick={() => setAbout(true)}>About me</Title>
-                <Title onClick={() => setAbout(false)}>My slills</Title>
-            </TitleGroup>
-            {isAbout ? <AboutMe/> : <MySkills/>}
+            <AboutMe/>
+            <ControlledAccordions/>
+            <MySkills/>
         </HomePage>
     )
 }

@@ -6,10 +6,11 @@ import UserSearchForm from './UserSearchForm';
 import { FilterType, followUser, getUsersChanged, unfollowUser } from '../../redux/reducers/users-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiveFilter, recieveCurrentPage, recieveFollowingInProgress,
-         recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
+        recieveIsFetching, recievePageSize, recieveTotalUsersCount, recieveUsers } from '../../redux/selectors/users-selectors';
 import { User } from './User';
 import { parseSearchString } from '../../utils/processSearchString/processSearchString';
 import { Pagination } from '@mui/material';
+import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
 const UsersWrapper = styled.section`
     background-color: var(--bg-page);
@@ -76,4 +77,4 @@ const UsersPage: FC = (props) => {
     )
 }
 
-export default UsersPage;
+export default withAuthNavigate(UsersPage);

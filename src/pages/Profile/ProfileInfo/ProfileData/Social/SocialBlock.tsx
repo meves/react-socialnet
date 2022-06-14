@@ -14,7 +14,7 @@ type PropsTypes = {
     profile: UserProfileType
 }
 
-export const SocialBlock: FC<PropsTypes> = (props) => {
+export const SocialBlock: FC<PropsTypes> = React.memo((props) => {
     const items = [];
     for (let [key, value] of Object.entries(props.profile.contacts)) {
         items.push(<SocialLink key={key} linkName={key} linkValue={value}/>);       
@@ -25,4 +25,4 @@ export const SocialBlock: FC<PropsTypes> = (props) => {
             <List>{ items }</List>
         </div>
     )
-}
+})

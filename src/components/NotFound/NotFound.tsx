@@ -24,11 +24,11 @@ const Text = styled.p`
     color: var(--error-color);
 `;
 
-export const NotFound: FC = () => {
+export const NotFound: FC = React.memo(() => {
     return (
         <Wrapper>
             <Title>The Requested Page Was Not Found</Title>
             <Text>Please, try another url address</Text>
         </Wrapper>
     )
-}
+})

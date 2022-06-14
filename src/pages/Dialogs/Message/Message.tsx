@@ -19,10 +19,10 @@ type PropsType = {
     message: string
 }
 
-export const Message: FC<PropsType> = (props) => {
+export const Message: FC<PropsType> = React.memo((props) => {
     return (
         <Wrapper>
             {props.message}
         </Wrapper>
     )
-}
+})

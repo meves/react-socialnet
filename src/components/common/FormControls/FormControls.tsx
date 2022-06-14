@@ -19,7 +19,7 @@ export const Input: FC<PropsType> = ({input, type, placeholder, label, meta: {to
             <label htmlFor={label}>                         
                 <input {...input} type={type} placeholder={placeholder} />
             </label>
-            {touched &&  ( (error && <span>{error}</span>) || (warning && <span>{warning}</span>) )}
+            {touched &&  ( (error && <div>{error}</div>) || (warning && <div>{warning}</div>) )}
         </div>
     )
 }
@@ -29,7 +29,7 @@ export const Textarea: FC<PropsType> = ({input, placeholder, cols, rows, meta: {
     return (
         <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
             <textarea {...input} placeholder={placeholder} cols={cols} rows={rows} />
-            {touched &&  ( (error && <span>{error}</span>) || (warning && <span>{warning}</span>) )}
+            {touched &&  ( (error && <div>{error}</div>) || (warning && <div>{warning}</div>) )}
         </div>
     )
 }
@@ -42,7 +42,7 @@ export const Checkbox: FC<PropsType> = ({input, type, meta: {touched, error, war
                 <input {...input} type={type} />
                 Remember me
             </label>
-            {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+            {touched && ((error && <div>{error}</div>) || (warning && <div>{warning}</div>))}
         </div>
     )
 }

@@ -27,7 +27,7 @@ type OwnPropsType = {
     deactivateEditMode: () => void
 }
 
-const ProfileForm: FC<InjectedFormProps<UserProfileType, OwnPropsType> & OwnPropsType> = (props) => {
+const ProfileForm: FC<InjectedFormProps<UserProfileType, OwnPropsType> & OwnPropsType> = React.memo((props) => {
     const contactInputs = Object.keys(props.contacts).map(contact => <Contact contact={contact}/>)
     return (
         <form onSubmit={props.handleSubmit}>
@@ -46,6 +46,6 @@ const ProfileForm: FC<InjectedFormProps<UserProfileType, OwnPropsType> & OwnProp
             </Fieldset>
         </form>
     )
-}
+})
 
 export default reduxForm<UserProfileType, OwnPropsType>({form: 'profileForm'})(ProfileForm);

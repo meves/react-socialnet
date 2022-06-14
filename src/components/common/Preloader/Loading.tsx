@@ -51,10 +51,11 @@ const Circle = styled.span`
     }
 `;
 
-export const Loading: FC = props => {
+export const Loading: FC = React.memo(() => {
+    const circles = Array.from(new Array<number>(5));
     return (
         <LoadingWrapper>
-            <Circle></Circle><Circle></Circle><Circle></Circle><Circle></Circle><Circle></Circle>
+            {circles.map(() => ( <Circle></Circle> ))}
         </LoadingWrapper>
     )
-}
+})

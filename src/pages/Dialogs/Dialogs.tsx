@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { NewMessage } from './NewMessage/NewMessage';
 import { useGenerateDialogsElements, useGenerateMessagesElements } from './hooks/dialogs-hooks';
 import styled from 'styled-components';
+import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
 const DialogsPageWrapper = styled.section`
     background-color: var(--bg-page);
@@ -37,4 +38,4 @@ const DialogsPage: FC = () => {
         </DialogsPageWrapper>
     )
 }
-export default DialogsPage; 
+export default withAuthNavigate(DialogsPage); 

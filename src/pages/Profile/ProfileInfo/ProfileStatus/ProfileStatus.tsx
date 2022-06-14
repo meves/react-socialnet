@@ -54,19 +54,19 @@ export const ProfileStatus: FC = () => {
     return (
         <StatusWrapper> 
         { !editMode 
-            ? <div>
+            ?   <div>
                 <StatusDisplay onDoubleClick={activateEditMode} 
-                               title="double click to change status">
+                                title="double click to change status">
                     {statusFromState}
                 </StatusDisplay>
-              </div>
+            </div>
             : <div>
                 <StatusInput onBlur={deactivateEditMode} 
-                             value={status}
-                             onChange={handleChangeStatus}
-                             autoFocus 
+                            value={status}
+                            onChange={handleChangeStatus}
+                            autoFocus 
                 />
-              </div> 
+            </div> 
         }
         </StatusWrapper>
     )    

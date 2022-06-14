@@ -21,52 +21,43 @@ export default createGlobalStyle`
         --bluegray-light: #DCDFEE;
         --bluegray-superlight: #F7F8FC;
         --red-color: #D80907;
+        --blueviolet-color: #8a2be2;
 
         /** text colors */
         --light-text-color: var(--bluegray-light);
         --medium-text-color: var(--bluegray-medium);
-        --dark-text-color: var(--bluegray-dark);        
+        --dark-text-color: var(--bluegray-dark);  
+        --checkbox-text-color: var(--bluegray-superlight);      
 
         /* background colors */
         --bg-header: var(--bluegray-dark);
         --bg-navbar: var(--bluegray-medium);
         --bg-footer: var(--bluegray-dark);
         --bg-page: var(--bluegray-superlight);
-        
+
+        --bg-login-form: var(--bluegray-medium);
+        --bg-login-form-shadow: var(--bluegray-lightdark);
+
         --bg-block: var(--bluegray-lightdark);
+        --bg-block-hover: var(--bluegray-dark);
         --bg-imageblock: var(--bluegray-medium);
-        
+
         --bg-blockitem: var(--bluegray-lightdark);
         --bg-menuitem: var(--bluegray-light);
         
         --bg-post-item: var(--bluegray-light);
         --bg-post-item-shadow: var(--bluegray-medium);
+
+        --bg-skill-item: var(--bluegray-dark);
+        --bg-skill-item-hover: var(--blueviolet-color);
+        
         --bg-button-border: var(--bluegray-medium);
 
-        --bg-error-color: var(--red-color);
-
-        /** 
-        * old colors 
-        */
-        --bg-color-medium: hsl(231, 44%, 56%);
-        --bg-color-light: hsl(233, 81%, 75%);
-        --bg-item-color: hsl(180, 81%, 26%);
-        /* text colors */
-        --white-text-color: hsl(0, 0%, 100%);
-        --dark-text-color: hsl(10, 4%, 10%);
-        --selected-text-solor: hsl(310, 80%, 31%);
-        --gray-text-color: hsl(240, 21%, 85%);
-        --error-color: hsl(0, 80%, 50%);
-        --link-color: rgb(17, 151, 175);
-        /* other colors */
-        --wthite-color: hsl(0, 0%, 100%);
-        --gray-color: hsl(0, 0%, 50%);
-        --black-color: hsl(0, 0%, 0%);
-        /* buttons */
-        --bg-button: navy;
-        --color-button: aliceblue;
-        --bg-hover-button: rgba(0, 0, 128, 0.384);
-        --color-hover-button: rgb(233, 57, 13);
+        --bg-error-color: var(--red-color);   
+        
+        --checkbox-bg-color: var(--bluegray-superlight);
+        --checkbox-hover-color: var(--bluegray-lightdark);
+        --checkbox-checked-color: var(--bluegray-dark);
     }
 
     body {

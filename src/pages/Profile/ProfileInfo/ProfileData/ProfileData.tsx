@@ -91,8 +91,8 @@ export const ProfileData: FC<PropsType> = (props) => {
                     }
                     <Figure>
                         <Image src={profile?.photos.large || profile?.photos.small || UserIcon} 
-                               alt={profile?.fullName} 
-                               title="user profile photo"/>                           
+                                alt={profile?.fullName} 
+                                title="user profile photo"/>                           
                     </Figure>
                     { props.isOwner && 
                         <FileInput type="file" onChange={saveProfilePhoto} />

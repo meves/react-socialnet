@@ -24,7 +24,7 @@ const Figures = styled.div`
     }
 `;
 
-export const FriendsBlock: FC = () => {
+export const FriendsBlock: FC = React.memo(() => {
     const friendsNames = useSelector(receiveFriendsNames);
     const friendsNamesItems = friendsNames.map(friend => (
         <FriendItem name={friend.name} key={friend.id} />)
@@ -37,4 +37,4 @@ export const FriendsBlock: FC = () => {
             </Figures>
         </Wrapper>
     )
-}
+})

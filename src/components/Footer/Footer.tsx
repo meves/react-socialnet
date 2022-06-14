@@ -21,15 +21,15 @@ const Footer = styled.footer`
     }
 `;
 
-export const AppFooter: FC = (props) => {
+export const AppFooter: FC = React.memo(() => {
     return (
         <Footer>
-           <p>All Rights Reserved ©2020</p> 
-           <p>Created by Sergey Medvedkin
+            <p>All Rights Reserved ©2020</p> 
+            <p>Created by Sergey Medvedkin
             <time dateTime="2020-08-20">&nbsp; 20.08.2020</time>
-           </p>
-           <p><a href="tel:8-918-253-8109">tel: 8-918-253-8109</a></p>
-           <p><a href="mailto:meves.sergey@gmail.com">email: meves.sergey@gmail.com</a></p>
+            </p>
+            <p><a href="tel:8-918-253-8109">tel: 8-918-253-8109</a></p>
+            <p><a href="mailto:meves.sergey@gmail.com">email: meves.sergey@gmail.com</a></p>
         </Footer>
     );
-}
+})

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { recieveUserId } from '../../redux/selectors/auth-selectors';
 import { getProfile, getUserStatus } from '../../redux/reducers/profile-reducer';
 import styled from 'styled-components';
+import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
 const Wrapper = styled.section`
     width: 100%;
@@ -33,4 +34,4 @@ const ProfilePage: FC = () => {
     )
 }
 
-export default ProfilePage;
+export default withAuthNavigate(ProfilePage);

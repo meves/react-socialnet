@@ -2,6 +2,7 @@ import { Box, Button, CardContent, TextField, Typography } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/reducers/chat-reducer';
 import { receiveChatMessages, receiveChatSatus } from '../../redux/selectors/chat-selectors';
 import { ChatMessageType } from '../../types/types';
@@ -50,7 +51,8 @@ const Image = styled.img`
 /**
  * React cmponents
  */
-const ChatPage: FC = (props) => {
+/** --ChatPage------------------------------------------------------------ */
+const ChatPage: FC = () => {
     const chatStatus = useSelector(receiveChatSatus);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -67,8 +69,8 @@ const ChatPage: FC = (props) => {
         </ChatWrapper>
     )
 }
-
-const Messages: FC =() => {
+/** --Messages------------------------------------------------------------ */
+const Messages: FC =  React.memo(() => {
     const [isAutoScroll, setisAutoScroll] = useState(true);
     const messages = useSelector(receiveChatMessages);    
     const messagesAnchorRef = useRef<HTMLDivElement>(null);
@@ -94,8 +96,8 @@ const Messages: FC =() => {
             <div ref={messagesAnchorRef}></div>
         </MessagesWrapper>
     )
-}
-
+})
+/** --Message------------------------------------------------------------- */
 type MessagePropsType = {
     message: ChatMessageType
 }
@@ -122,8 +124,8 @@ const Message: FC<MessagePropsType> = React.memo((props) => {
         </MessageWrapper>
     )
 })
-
-const AddMessageChatForm: FC =() => {
+/** --AddMessageChatForm-------------------------------------------------- */
+const AddMessageChatForm: FC = React.memo(() => {
     const [message, setMessage] = useState<string>('');
     const chatStatus = useSelector(receiveChatSatus);
     const dispatch = useDispatch();
@@ -147,6 +149,6 @@ const AddMessageChatForm: FC =() => {
             </Box>
         </div>
     )
-}
+})
 
-export default ChatPage;
+export default withAuthNavigate(ChatPage);

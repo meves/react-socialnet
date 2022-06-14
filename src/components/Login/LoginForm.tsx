@@ -2,41 +2,34 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { reduxForm, Field, InjectedFormProps } from 'redux-form';
 import { receiveCaptchaUrl } from '../../redux/selectors/auth-selectors';
-import { SendButton } from '../../styles/components';
 import { email, maxLength30, minLength6, required } from '../../utils/validators/validators';
 import { Input, Checkbox } from '../common/FormControls/FormControls';
 import styles from '../common/FormControls/FormControls.module.scss';
 import styled from 'styled-components';
+import { Button } from '@mui/material';
 
 /**
  * * styled-components
  */
 const Fieldset = styled.fieldset`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 1em;
-    border: 2px solid var(--white-color);
-    border-radius: 0.3em;
-    background-color: hsl(240, 60%, 40%);
-`;
-
-const Legend = styled.legend`
-    color: var(--white-color);
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    box-shadow: 0.4em 0.4em var(--bg-login-form-shadow);
+    border-radius: 0.4em;
+    background-color: var(--bg-login-form);
 `;
 
 const InputField = styled.div`
     margin-bottom: 0.75em;
 
     input {
-        width: 60%;
-        font-size: 0.75rem;
+        width: 100%;
+        font-size: 0.7rem;
         border-radius: 0.3em;
-        padding: 0.2em 0.5em;
-        margin-right: 0.5em;
-        outline: none;
-        letter-spacing: 0.05em;
+        padding: 0.3em 0.5em;
     }
 `;
 
@@ -51,8 +44,7 @@ const CheckboxField = styled.div`
         height: 2em;
         width: 2em;
         margin-right: 1.5em;
-        background-color: rgb(255, 255, 255);
-        border: 3px solid rgb(27, 199, 21);
+        background-color: var(--checkbox-bg-color);
         border-radius: 0.5em;
         cursor: pointer;
         display: inline-flex;
@@ -66,17 +58,17 @@ const CheckboxField = styled.div`
             content: "\f14a";
             font-weight: 900;
             font-size: 1rem;
-            color:rgb(255, 255, 255);
+            color: var(--checkbox-text-color);
             display: block;
             visibility: hidden;
         }
 
         &:hover {
-            background-color: rgba(69, 240, 17, 0.822);
+            background-color: var(--checkbox-hover-color);
         }   
 
         &:checked {
-            background-color: rgb(45, 197, 25);
+            background-color: var(--checkbox-checked-color);
         }
 
         &:checked::after {
@@ -85,11 +77,8 @@ const CheckboxField = styled.div`
     }
 
     label {
-        color: #fff;
+        color: var(--checkbox-text-color);
     }
-
-
-
 `;
 
 /**
@@ -107,30 +96,29 @@ const LoginForm: FC<InjectedFormProps<FormDataType, {}> & {}> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <Fieldset>
-                <Legend>Login form</Legend>
                 <InputField>                
                     <Field type="text" 
-                           placeholder="login" 
-                           label="login" 
-                           name="email" 
-                           component={Input} 
-                           validate={[required, maxLength30, email]} 
+                            placeholder="login" 
+                            label="login" 
+                            name="email" 
+                            component={Input} 
+                            validate={[required, maxLength30, email]} 
                     />
                 </InputField>
                 <InputField>
                     <Field type="password" 
-                           placeholder="password" 
-                           label="password" 
-                           name="password" 
-                           component={Input} 
-                           validate={[required, minLength6]} 
+                            placeholder="password" 
+                            label="password" 
+                            name="password" 
+                            component={Input} 
+                            validate={[required, minLength6]} 
                     />
                 </InputField>
                 <CheckboxField>
                     <Field type="checkbox" 
-                           label="rememberMe" 
-                           name="rememberMe" 
-                           component={Checkbox}
+                            label="rememberMe" 
+                            name="rememberMe" 
+                            component={Checkbox}
                     />                    
                 </CheckboxField>
                 { captchaUrl && <div>
@@ -144,7 +132,10 @@ const LoginForm: FC<InjectedFormProps<FormDataType, {}> & {}> = (props) => {
                     </div>
                 }
                 <div>
-                    <SendButton>Login</SendButton>
+                    <Button variant="contained" type="submit"
+                            sx={{color: '#F7F8FC', backgroundColor: '#545365', '&:hover': {backgroundColor: '#202136'}}}>
+                        Login
+                    </Button>
                 </div>
             </Fieldset>
         </form>

@@ -13,7 +13,7 @@ const Title = styled.h2`
     color: var(--white-text-color);
 `;
 
-export const NewMessage: FC = () => {
+export const NewMessage: FC = React.memo(() => {
     const dispatch = useDispatch();
     const { addMessage } = actions;
 
@@ -27,4 +27,4 @@ export const NewMessage: FC = () => {
             <MessageForm onSubmit={onAddMessage}/>
         </Wrapper> 
     )
-}
+})

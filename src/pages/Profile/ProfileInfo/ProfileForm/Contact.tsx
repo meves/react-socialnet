@@ -6,16 +6,16 @@ type PropsType = {
     contact: string
 }
 
-const Contact: FC<PropsType> = props => {
+const Contact: FC<PropsType> = React.memo((props) => {
     const contact = props.contact;
     return (
         <div>
             <span>{`${contact}: `}</span>
             <Field component={Input} type="url" name={`contacts.${contact}`} 
-                   placeholder={`${contact}...`} label={contact} key={contact}
+                    placeholder={`${contact}...`} label={contact} key={contact}
             />   
         </div>
     )
-}
+})
 
 export default Contact;
