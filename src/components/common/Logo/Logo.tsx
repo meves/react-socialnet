@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 export const Logo: FC = React.memo(() => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="50.0pt" height="40.0pt" viewBox="0 0 50.0pt 40.0pt"
+            width="50" height="40.0pt" viewBox="0 0 70 40"
             preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.0, 56.0) scale(0.1, -0.1)"
             fill="#DCDFEE" stroke="none">

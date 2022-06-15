@@ -1,4 +1,4 @@
-import { Box, Button, CardContent, TextField, Typography } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -6,10 +6,9 @@ import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/reducers/chat-reducer';
 import { receiveChatMessages, receiveChatSatus } from '../../redux/selectors/chat-selectors';
 import { ChatMessageType } from '../../types/types';
+import { Message as MessageWrapper } from '../../components/common/Message/Message';
 
-/**
- * styled-components
- */
+/** styled-components */
 const ChatWrapper = styled.section`
     height: 150vh;
     display: flex;
@@ -29,28 +28,7 @@ const MessagesWrapper = styled.div`
     overflow: auto;
 `;
 
-const MessageWrapper = styled.section`
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 1em 2em;
-    background-color: var(--bg-post-item);
-    margin-bottom: 0.5em;
-    margin-right: 0.5em;
-    border-radius: 0.5em;
-    box-shadow: 0.1em 0.1em var(--bg-post-item-shadow);
-`;
-
-const Image = styled.img`
-    min-width: 1.5em;
-    width: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-`;
-
-/**
- * React cmponents
- */
+/** React cmponents */
 /** --ChatPage------------------------------------------------------------ */
 const ChatPage: FC = () => {
     const chatStatus = useSelector(receiveChatSatus);
@@ -104,24 +82,7 @@ type MessagePropsType = {
 const Message: FC<MessagePropsType> = React.memo((props) => {
     const message: ChatMessageType =  props.message;
     return (
-        <MessageWrapper>
-            <Box sx={{ width: 60, height: 60, backgroundColor: 'transparent', borderRadius: '50%',
-                    '&:hover': {
-                        opacity: [0.9, 0.8, 0.7],
-                        cursor: 'pointer'
-                    },}}
-            >
-                <Image src={message.photo} alt="User Avatar"/>
-            </Box>
-            <CardContent style={{marginLeft: '2em', paddingTop: '0'}}>
-                <Typography gutterBottom variant="h6" component="div">
-                    {message.userName}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {message.message}
-                </Typography>
-            </CardContent>
-        </MessageWrapper>
+        <MessageWrapper message={message}/>            
     )
 })
 /** --AddMessageChatForm-------------------------------------------------- */

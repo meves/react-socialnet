@@ -4,6 +4,7 @@ import { useGenerateDialogsElements, useGenerateMessagesElements } from './hooks
 import styled from 'styled-components';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
+/** styled-components */
 const DialogsPageWrapper = styled.section`
     background-color: var(--bg-page);
 `;
@@ -25,6 +26,7 @@ const Messages = styled.div`
     color: var(--white-text-color);
 `;
 
+/** React component DialogsPage */
 const DialogsPage: FC = () => {
     const dialogs = useGenerateDialogsElements();
     const messages = useGenerateMessagesElements();

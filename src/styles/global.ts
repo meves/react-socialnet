@@ -20,7 +20,10 @@ export default createGlobalStyle`
         --bluegray-medium: #878A99;
         --bluegray-light: #DCDFEE;
         --bluegray-superlight: #F7F8FC;
+
+        --white-color: #fff;
         --red-color: #D80907;
+        --blue-color: #00f;
         --blueviolet-color: #8a2be2;
 
         /** text colors */

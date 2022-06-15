@@ -1,16 +1,13 @@
 import React, { FC } from 'react';
-import MessageForm from './NewMessageForm';
-import { FormDataType } from './NewMessageForm';
+import PostForm, { FormDataType } from '../../../components/common/Forms/PostForm';
 import { actions } from '../../../redux/reducers/dialog-reducer';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { Typography } from '@mui/material';
 
 const Wrapper = styled.div`
     padding: 1em;
-`;
-
-const Title = styled.h2`
-    color: var(--white-text-color);
+    margin-bottom: 2em;
 `;
 
 export const NewMessage: FC = React.memo(() => {
@@ -18,13 +15,13 @@ export const NewMessage: FC = React.memo(() => {
     const { addMessage } = actions;
 
     const onAddMessage = (formData: FormDataType) => {
-        dispatch(addMessage(formData.newMessage));
+        dispatch(addMessage(formData.post));
     }
     
     return (
         <Wrapper>
-            <Title>New message</Title>
-            <MessageForm onSubmit={onAddMessage}/>
+            <Typography variant="h5">New message</Typography>
+            <PostForm onSubmit={onAddMessage} />
         </Wrapper> 
     )
 })

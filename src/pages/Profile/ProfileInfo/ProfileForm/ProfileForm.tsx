@@ -4,8 +4,8 @@ import { required } from '../../../../utils/validators/validators';
 import { Checkbox, Input, Textarea } from '../../../../components/common/FormControls/FormControls';
 import Contact from './Contact';
 import { ContactsType, UserProfileType } from '../../../../types/types';
-import { Button } from '../../../../styles/components';
 import styled from 'styled-components';
+import { Button } from '@mui/material';
 
 const Fieldset = styled.fieldset`
     border: 4px solid white;

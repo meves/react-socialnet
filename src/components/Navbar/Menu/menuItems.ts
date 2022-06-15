@@ -6,6 +6,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import SettingsIcon from '@mui/icons-material/Settings';
+import CollectionsIcon from '@mui/icons-material/Collections';
 
 export const menuItems = [
     { 
@@ -45,13 +46,19 @@ export const menuItems = [
         name: 'News'
     },
     { 
-        id: 7,
+        id: 8,
+        icon: CollectionsIcon,
+        path: '/gallery',
+        name: 'Gallery'
+    },
+    { 
+        id: 9,
         icon: LibraryMusicIcon,
         path: '/music',
         name: 'Music'
     },
     { 
-        id: 8,
+        id: 10,
         icon: SettingsIcon,
         path: '/settings',
         name: 'Settings'

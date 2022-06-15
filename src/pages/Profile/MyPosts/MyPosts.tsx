@@ -1,22 +1,20 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
-import { Post } from './Post/Post';
-import MyPostForm, { FormDataType } from './MyPostsForm';
+import { FormDataType } from '../../../components/common/Forms/PostForm';
 import { actions } from '../../../redux/reducers/profile-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { recievePosts } from '../../../redux/selectors/profile-selectors';
-import { MoreButton } from '../../../styles/components';
+import { IPostType } from '../../../types/types';
+import { Message } from '../../../components/common/Message/Message';
+import PostForm from '../../../components/common/Forms/PostForm';
+import styled from 'styled-components';
+import { Typography } from '@mui/material';
 
 const PostsWrapper = styled.div`
     padding: 1em;
 `;
 
-const Title = styled.h2`
-    color: var(--wthite-color);
-`;
-
-const MoreButtonWrapper = styled.div`
-    text-align: center;
+const PostItems = styled.div`
+    margin-top: 2em;
 `;
 
 export const MyPostsPage: FC = () => {   
@@ -24,21 +22,17 @@ export const MyPostsPage: FC = () => {
     const dispatch = useDispatch();
     const { addPost } = actions;
     
-    const postsItems = [...posts].reverse().map(post => (
-        <Post key={post.id} message={post.message} likesCount={post.likesCount} />
+    const postsItems = [...posts].reverse().map((post: IPostType) => (
+        <Message key={post.id} post={post} />
     )) 
     const onAddPost = (formData: FormDataType) => {
-        dispatch(addPost(formData.newPost));
+        dispatch(addPost(formData.post));
     }
     return (       
         <PostsWrapper>
-            <Title>New post</Title>
-            <MyPostForm onSubmit={onAddPost} />          
-            <div>{ postsItems }</div>
-            <MoreButtonWrapper>
-                <MoreButton>More ...</MoreButton>
-            </MoreButtonWrapper>
+            <Typography variant="h5">New post</Typography>
+            <PostForm onSubmit={onAddPost}/>          
+            <PostItems>{ postsItems }</PostItems>
         </PostsWrapper>         
     )
 }
-    

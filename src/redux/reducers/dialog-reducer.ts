@@ -26,8 +26,8 @@ export const dialogReducer = (state=initialState, action: ActionsTypes): Initial
                 messages: [
                     ...state.messages,  
                     {
-                      id: state.messages.length + 1,
-                      message: action.newMessage 
+                        id: state.messages.length + 1,
+                        message: action.newMessage 
                     }
                 ]
             }

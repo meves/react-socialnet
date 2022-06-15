@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 import { SocialLink } from './SocialLink';
 import styled from 'styled-components';
 import { UserProfileType } from '../../../../../types/types';
+import { Stack, Typography } from '@mui/material';
 
-const List = styled.ul`
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
-    padding-left: 0;
+const Wrapper = styled.div`
+    margin-top: 2em;
+    padding: 0.5em 1em;
+    color: var(--light-text-color);
+    background-color: var(--bg-block);
 `;
 
 type PropsTypes = {
@@ -20,9 +21,15 @@ export const SocialBlock: FC<PropsTypes> = React.memo((props) => {
         items.push(<SocialLink key={key} linkName={key} linkValue={value}/>);       
     }
     return (
-        <div>
-            <h3>Contacts: </h3>
-            <List>{ items }</List>
-        </div>
+        <Wrapper>
+            <Typography variant="h6">Social net links</Typography>
+            <Stack direction="row" spacing={0}
+                sx={{display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-around',
+                    listStyleType: 'none',
+                    paddingLeft: '0'}}
+            > { items } </Stack>
+        </Wrapper>
     )
 })

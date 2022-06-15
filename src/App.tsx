@@ -1,6 +1,6 @@
 import React, { FC, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // components
 import { AppHeader } from './components/Header/Header';
 import { AppNavbar } from './components/Navbar/Navbar';
@@ -12,29 +12,26 @@ import { NotFound } from './components/NotFound/NotFound';
 // utils
 import { initializeApp } from './redux/reducers/app-reducer';
 import { withSuspense } from './hoc/withSuspense';
-import { AppStateType } from './redux/redux-store';
 // styles
 import { Container, Grid } from '@mui/material';
+import { receiveInitializeApp } from './redux/selectors/app-selector';
 // lazy components
 const ProfilePage = lazy(() => import('./pages/Profile/Profile'));
 const DialogsPage = lazy(() => import('./pages/Dialogs/Dialogs'));
 const Chat = lazy(() => import('./pages/Chat/ChatPage'));
 const News = lazy(() => import('./pages/News/News'));
+const Gallery = lazy(() => import('./pages/Gallery/Gallery'));
 const Music = lazy(() => import('./pages/Music/Music'));
 const UsersPage = lazy(() => import('./pages/Users/Users'));
 const Settings = lazy(() => import('./pages/Settings/Settings'));
 
-type AppPropsType = {
-  initializeApp: () => void
-  initialized: boolean
-}
-
-const App: FC<AppPropsType> = (props) => {
+const App: FC = () => {
+  const initialized = useSelector(receiveInitializeApp);
+  const dispatch = useDispatch();
   useEffect(() => {    
-    props.initializeApp();
-    // eslint-disable-next-line
-  }, []);  
-  if (!props.initialized) {
+    dispatch(initializeApp());    
+  }, [dispatch]);  
+  if (!initialized) {
     return <Loading/>
   }
     
@@ -57,6 +54,7 @@ const App: FC<AppPropsType> = (props) => {
             <Route path="dialogs/:userId" element={withSuspense(ProfilePage)}/>
             <Route path="chat" element={withSuspense(Chat)}/>
             <Route path="news" element={withSuspense(News)} />
+            <Route path="gallery" element={withSuspense(Gallery)}/>
             <Route path="music" element={withSuspense(Music)} />
             <Route path="users" element={withSuspense(UsersPage)} />
             <Route path="settings" element={withSuspense(Settings)} />
@@ -64,20 +62,13 @@ const App: FC<AppPropsType> = (props) => {
             <Route path="*" element={withSuspense(NotFound)}/>
           </Routes>
         </Grid>
-       <Grid item xs={12}>
-        <AppFooter/>
-       </Grid>
+        <Grid item xs={12}>
+          <AppFooter/>
+        </Grid>
       </Grid>
     </Container>
   );
   
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-  initialized: state.app.initialized
-})
-
-type MapStatePropsType = ReturnType<typeof mapStateToProps>;
-type MapDispatchPropsType = { initializeApp: () => void }
-
-export default connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, { initializeApp })(App);
+export default App;

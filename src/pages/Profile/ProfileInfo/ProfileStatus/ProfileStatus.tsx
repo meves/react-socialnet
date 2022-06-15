@@ -6,15 +6,15 @@ import styled from 'styled-components';
 
 const StatusWrapper = styled.div`
     margin-bottom: 2em;
+    background-color: var(--bg-block);
 `;
 
 const StatusDisplay = styled.span`
-    background-color: var(--bg-color-light);
-    font-size: 1rem;
-    padding: 0.5em 1em;
-    border-radius: 0.3em;
     display: inline-block;
-    
+    width: 100%;
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    color: var(--light-text-color);
     &:hover {
         cursor: auto;
     }
@@ -22,10 +22,11 @@ const StatusDisplay = styled.span`
 
 const StatusInput = styled.input`
     &:focus {
-        font-size: 0.9rem;
-        outline: none;
+        width: 100%;
         padding: 0.5em 1em;
         border-radius: 0.3em;
+        outline: none;
+        font-size: 0.9rem;
     }
 `;
 

@@ -27,9 +27,9 @@ const profileReducer = (state=initialState, action: ActionsTypes): InitialStateT
                 posts: [
                     ...state.posts, 
                     {
-                      id: state.posts.length + 1,
-                      message: action.newPostText,
-                      likesCount: 7 
+                        id: state.posts.length + 1,
+                        message: action.newPostText,
+                        likesCount: 7 
                     }
                 ]
             }  

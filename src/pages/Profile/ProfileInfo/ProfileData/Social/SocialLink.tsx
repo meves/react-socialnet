@@ -2,16 +2,20 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const Item = styled.li`
-    padding: 0.5em 1em;
-    border: 1px solid var(--gray-color);
-    border-radius: 0.5em;
+    min-width: 5em;
+    margin: 0.5em;
+    padding: 0.4em 0.75em;
+    border: 3px solid var(--bg-button-border);
+    border-radius: 0.3em;
     text-align: center;
-    transition: font-weight 0.3s, border-color 0.3s;
+    transition: border-color 0.3s;
 
     &:hover {
         cursor: pointer;
-        font-weight: bold;
-        border-color: var(--wthite-color);
+        border-color: var(--blue-color);
+        a {
+            color: var(--blue-color);
+        }
     }
 `;
 
@@ -20,7 +24,8 @@ const Link = styled.a`
     margin-left: 0;
     font-size: 0.75rem;
     text-decoration: none;
-    color: var(--white-text-color);
+    color: var(--light-text-color);
+    transition: color 0.3s;
 `;
 
 type PropsType = {
@@ -30,7 +35,7 @@ type PropsType = {
 export const SocialLink: FC<PropsType> = React.memo((props) => {
     return (
         <Item>
-            <Link href={props.linkValue}>{ props.linkName }</Link>
+            <Link href={props.linkValue} target="_blank">{ props.linkName }</Link>
         </Item>
     )
 })

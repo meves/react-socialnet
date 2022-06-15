@@ -42,13 +42,13 @@ export const AppMenu: FC = React.memo(() => {
     return (
       <Menu>
         { menuItems.map((item: MenuItemType) => (
-          <>
-            <LI key={item.id}>
+          <div key={item.id}>
+            <LI>
               <ListItemIcon children={<item.icon/>} />
               <ListItemText> <Item to={item.path}>{item.name}</Item> </ListItemText>        
             </LI>
             { (item.id === 1 || item.id === 5) && <Divider/> } 
-          </>
+          </div> 
         ))}        
       </Menu>
     )

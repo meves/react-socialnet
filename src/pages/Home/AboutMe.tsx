@@ -1,14 +1,12 @@
 import React from "react";
-import Author from '../../assets/images/Sergey_Medvedkin.jpg';
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { recieveUserProfilePhoto } from "../../redux/selectors/profile-selectors";
 import { Alert, Box, Typography } from "@mui/material";
+import { FigureImage } from "../../components/common/FigureImage/FigureImage";
+import Icon from '../../assets/images/Sergey_Medvedkin.jpg';
 
-/**
- * * styled-components
- */
+/*** styled-components */
 const TextBlock = styled.article`
     max-width: 75%;
     margin-right: 1em;
@@ -16,35 +14,7 @@ const TextBlock = styled.article`
     line-height: 1.5;
 `;
 
-const Figure = styled.figure`
-    width: 30%;
-    transform: scale(0.9);
-    transition: transform 0.5s;
-    padding: 0;
-    margin: 0 2em 0 0;
-    border-radius: 50%;
-    float: left;
-    &:hover {
-        transform: scale(0.95);
-        transition: transform 0.5s;
-        cursor: pointer;
-    }
-`;
-
-const Image = styled.img`
-    width: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-`;
-
-const Figcaption = styled.figcaption`
-    font-size: 0.5rem;
-    text-align: center;
-`;
-
-/**
- * * React Component "AboutMe"
- */
+/** React Component "AboutMe" */
 export const AboutMe: React.FC = React.memo(() => {
     const photos = useSelector(recieveUserProfilePhoto);
     return (
@@ -63,16 +33,8 @@ export const AboutMe: React.FC = React.memo(() => {
             >
             <TextBlock>
                 <Typography variant="h5" sx={{marginBottom: '1em'}}>My name is Sergey Medvedkin</Typography>
-                <Figure>
-                    <NavLink to="/profile">
-                        <Image src={ photos?.large || photos?.small || Author } 
-                                alt="Sergey Medvedkin. Author of this site"
-                                title="Author Sergey Medvedkin"/>
-                    </NavLink>
-                    <Figcaption>Sergey Medvedkin</Figcaption>                    
-                </Figure>
-                <Typography variant="body2" sx={{marginTop: '1em'}}> Hello, I am Sergey Medvedkin. 
-                    .
+                <FigureImage photos={photos} icon={Icon} userName="Sergey Medvedkin" userId={19836}/>                    
+                <Typography variant="body2" sx={{marginTop: '1em'}}> Hello, I am Sergey Medvedkin.
                     I practice in web development. This is my personal web-site. 
                     About my skills you can find out on my skills page. I specialize in front-end, but I also 
                     make backend API server on Node using Express and Nest. My site hosts on Timeweb servers.

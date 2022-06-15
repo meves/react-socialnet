@@ -1,6 +1,6 @@
+import { Button } from '@mui/material';
 import React, { BaseSyntheticEvent, FC, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Button } from '../../styles/components';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -39,23 +39,7 @@ const SelectedNumber = styled(PageNumber)`
     font-weight: bold;
 `;
 
-const marginRight = css`
-    margin-right: 0.3em;
-`;
-const StartButton = styled(Button)`
-    ${marginRight}
-`;
-
-const marginLeft = css`
-    margin-left: 0.3em;
-`;
-const EndButton = styled(Button)`
-    ${marginLeft}
-`;    
-
-/**
- * * React Component Paginator
- */
+/** React Component Paginator */
 type PropsType = {
     totalUsersCount: number
     pageSize: number
@@ -108,11 +92,11 @@ const Paginator: FC<PropsType> = ({totalUsersCount, pageSize, currentPage, chang
     return (
         <Wrapper>
             <Pagination>
-                <StartButton onClick={handleStartClick}>start</StartButton>
+                <Button sx={{marginRight: '0.3em'}} onClick={handleStartClick}>start</Button>
                 <Button onClick={handlePrevClick}>prev</Button>
                 <Pages onClick={handleClick}>{ pagesItems }</Pages>
                 <Button onClick={handleNextClick}>next</Button>
-                <EndButton onClick={handleLastClick}>end</EndButton>
+                <Button sx={{marginLeft: '0.3em'}} onClick={handleLastClick}>end</Button>
             </Pagination>
         </Wrapper>  
     )
