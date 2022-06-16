@@ -3,27 +3,19 @@ import { NewMessage } from './NewMessage/NewMessage';
 import { useGenerateDialogsElements, useGenerateMessagesElements } from './hooks/dialogs-hooks';
 import styled from 'styled-components';
 import { withAuthNavigate } from '../../hoc/withAuthNavigate';
+import { Alert, Paper, Stack } from '@mui/material';
 
 /** styled-components */
 const DialogsPageWrapper = styled.section`
+
     background-color: var(--bg-page);
 `;
 
 const DialogsWrapper = styled.div`
     display: flex;
+    justify-content: flex-start;
     padding: 1em;
-`;
-
-const Dialogs = styled.div`
-    padding: 1em 0;
-    flex: 1 1 19em;
-    margin-right: 3em;
-`;
-
-const Messages = styled.div`
-    padding: 1em 0;
-    flex: 2 2 20em;
-    color: var(--white-text-color);
+    height: 50vh;
 `;
 
 /** React component DialogsPage */
@@ -32,9 +24,14 @@ const DialogsPage: FC = () => {
     const messages = useGenerateMessagesElements();
     return (
         <DialogsPageWrapper>
+            <Alert severity="error">The component is in development porocess!</Alert>
             <DialogsWrapper>
-                <Dialogs>{dialogs}</Dialogs>            
-                <Messages>{messages}</Messages>  
+                <Paper variant="elevation" elevation={3} sx={{flex: '2', overflow: 'auto', padding: '0.5em'}}>
+                    <Stack>{dialogs}</Stack>            
+                </Paper>
+                <Paper variant="elevation" elevation={3} sx={{flex: '3', overflow: 'auto', padding: '0.5em'}}>
+                    <Stack>{messages}</Stack>
+                </Paper>
             </DialogsWrapper>
             <NewMessage/>        
         </DialogsPageWrapper>

@@ -41,11 +41,10 @@ const App: FC = () => {
         <Grid item xs={12}>
           <AppHeader/>
         </Grid>
-        <Grid item xs={4} md={3}>
+        <Grid item xs={4} sm={4} md={3} sx={{position: 'relative'}}>
           <AppNavbar/>              
         </Grid>
-        <Grid item xs={8} md={9}>
-
+        <Grid item xs={12} sm={8} md={9}> 
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="profile" element={withSuspense(ProfilePage)} />

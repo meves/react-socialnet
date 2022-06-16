@@ -7,18 +7,19 @@ const Dialog = styled(NavLink)`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 2em;
-    padding: 0.75em 1em;
-    background-color: var(--bg-color-light);
-    border-radius: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 0.3em 1em;
+    background-color: var(--bg-post-item);
+    box-shadow: 0.1em 0.1em var(--bg-post-item-shadow);
+    border-radius: 0.1em;
     text-decoration: none;
     color: inherit;
     transition: background-color 0.3s;
 
     &:hover {
         cursor: pointer;
-        background-color: var(--bg-item-color);
-        color: var(--gray-text-color);
+        background-color: var(--bluegray-medium);
+        color: var(--dark-text-color);
     }  
 `;
 

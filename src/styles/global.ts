@@ -30,7 +30,7 @@ export default createGlobalStyle`
         --light-text-color: var(--bluegray-light);
         --medium-text-color: var(--bluegray-medium);
         --dark-text-color: var(--bluegray-dark);  
-        --checkbox-text-color: var(--bluegray-superlight);      
+        --checkbox-text-color: var(--bluegray-lightdark);      
 
         /* background colors */
         --bg-header: var(--bluegray-dark);
@@ -54,13 +54,14 @@ export default createGlobalStyle`
         --bg-skill-item: var(--bluegray-dark);
         --bg-skill-item-hover: var(--blueviolet-color);
         
-        --bg-button-border: var(--bluegray-medium);
-
         --bg-error-color: var(--red-color);   
         
-        --checkbox-bg-color: var(--bluegray-superlight);
+        --bg-button-border: var(--bluegray-medium);
+        --border-color: var(--bluegray-medium);
+        
+        --checkbox-bg-color: var(--bluegray-lightdark);
         --checkbox-hover-color: var(--bluegray-lightdark);
-        --checkbox-checked-color: var(--bluegray-dark);
+        --checkbox-checked-color: var(--bluegray-light);
     }
 
     body {

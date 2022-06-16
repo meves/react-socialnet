@@ -34,13 +34,13 @@ export const Textarea: FC<PropsType> = ({input, placeholder, cols, rows, meta: {
     )
 }
 
-export const Checkbox: FC<PropsType> = ({input, type, meta: {touched, error, warning}}) => {
+export const Checkbox: FC<PropsType> = ({input, type, label, meta: {touched, error, warning}}) => {
     const hasError = touched && (error || warning);
     return (
         <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
-            <label htmlFor="rememberMe"> 
+            <label> 
                 <input {...input} type={type} />
-                Remember me
+                {label}
             </label>
             {touched && ((error && <div>{error}</div>) || (warning && <div>{warning}</div>))}
         </div>

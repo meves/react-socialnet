@@ -4,9 +4,7 @@ import { menuItems, MenuItemType } from './menuItems';
 import styled from 'styled-components';
 import { Divider, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material';
 
-/**
- * * styled-components
- */
+/** styled-components */
 const Menu = styled(MenuList)`
   padding: 1em 0 0 0;
 `;
@@ -34,9 +32,7 @@ const LI = styled(ListItem)`
   }
 `;
 
-/**
- * * React Component "Menu"
- */
+/** React Component "Menu */
 
 export const AppMenu: FC = React.memo(() => {
     return (

@@ -21,7 +21,9 @@ const PostForm: FC<InjectedFormProps<FormDataType>> = React.memo((props) => {
                         name="post"
                         placeholder="print your message here..."
                         cols="40" rows="7"
-                        validate={[required, maxLength300]} />
+                        validate={[required, maxLength300]} 
+                        style={{width: '100%'}}        
+                />
             </div>
             <Button type="submit" variant="contained"
                     sx={{backgroundColor: 'var(--bluegray-lightdark)',
