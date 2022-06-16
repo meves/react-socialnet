@@ -37,6 +37,9 @@ export const AppNavbar: FC = () => {
         setOpened(prevOpened => !prevOpened)
         const navbar = event.currentTarget.parentElement;
         const burger = event.currentTarget;
+        moveMenu(navbar, burger);
+    }
+    const moveMenu = (navbar: HTMLElement | null, burger: EventTarget & HTMLButtonElement) => {
         if (navbar) {
             if (opened === true) {
                 navbar.style.left = '-464px';
@@ -47,6 +50,9 @@ export const AppNavbar: FC = () => {
             }
         }
     }
+    const changeOpenedState = () => {
+        setOpened(prevOpened => !prevOpened)
+    }
     return (
         <Navbar>
             <Burger onClick={handleBurgerClick}>
@@ -55,8 +61,9 @@ export const AppNavbar: FC = () => {
                 : <MenuIcon fontSize="large"/>
                 }
             </Burger>
-            <AppMenu />
-            <FriendsBlock />
+            <AppMenu changeOpenedState={changeOpenedState}
+                    moveMenu={moveMenu}/>
+            <FriendsBlock/>
         </Navbar>
     )
 }

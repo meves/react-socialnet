@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { menuItems, MenuItemType } from './menuItems';
 import styled from 'styled-components';
@@ -33,19 +33,33 @@ const LI = styled(ListItem)`
 `;
 
 /** React Component "Menu */
-
-export const AppMenu: FC = React.memo(() => {
-    return (
-      <Menu>
-        { menuItems.map((item: MenuItemType) => (
-          <div key={item.id}>
-            <LI>
-              <ListItemIcon children={<item.icon/>} />
-              <ListItemText> <Item to={item.path}>{item.name}</Item> </ListItemText>        
-            </LI>
-            { (item.id === 1 || item.id === 5) && <Divider/> } 
-          </div> 
-        ))}        
-      </Menu>
-    )
+type PropsType = {
+  changeOpenedState: () => void
+  moveMenu: (navbar: HTMLElement | null, burger: EventTarget & HTMLButtonElement) => void
+}
+export const AppMenu: FC<PropsType> = React.memo((props) => {
+  const handleMenuClick = (event: MouseEvent<HTMLUListElement>) => {
+    const navbar = event.currentTarget.parentElement;
+    let burger: EventTarget & HTMLButtonElement;
+    if (navbar) { 
+      //@ts-ignore
+      burger = navbar.children[0];
+    }
+    //@ts-ignore
+    props.moveMenu(navbar, burger); 
+    props.changeOpenedState();
+  }  
+  return (
+    <Menu onClick={handleMenuClick}>
+      { menuItems.map((item: MenuItemType) => (
+        <div key={item.id}>
+          <LI>
+            <ListItemIcon children={<item.icon/>} />
+            <ListItemText> <Item to={item.path}>{item.name}</Item> </ListItemText>        
+          </LI>
+          { (item.id === 1 || item.id === 5) && <Divider/> } 
+        </div> 
+      ))}        
+    </Menu>
+  )
 })
