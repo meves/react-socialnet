@@ -17,3 +17,5 @@ const minLength: MinMaxType = min => value =>
     value && value.length >= min ? undefined : `Characters has to be more than ${min}`
 
 export const minLength6 = minLength(6)
+export const minLength4 = minLength(4)
+

@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { NewMessage } from './NewMessage/NewMessage';
 import { useGenerateDialogsElements, useGenerateMessagesElements } from './hooks/dialogs-hooks';
 import styled from 'styled-components';
-import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { Alert, Paper, Stack } from '@mui/material';
+import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
 /** styled-components */
 const DialogsPageWrapper = styled.section`

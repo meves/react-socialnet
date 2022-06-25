@@ -1,6 +1,7 @@
 import { Alert } from '@mui/material';
 import React, { FC } from 'react';
 import { TitlebarBelowImageList } from '../../components/common/Panels/ImageList';
+import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
 const Gallery: FC = () => {
     return (
@@ -12,4 +13,4 @@ const Gallery: FC = () => {
     )
 }
 
-export default Gallery;
+export default withAuthNavigate(Gallery);

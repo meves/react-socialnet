@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { recieveUserProfilePhoto } from "../../redux/selectors/profile-selectors";
+import { recieveUserProfilePhoto } from "redux/selectors/profile-selectors";
 import { Alert, Box, Typography } from "@mui/material";
-import { FigureImage } from "../../components/common/FigureImage/FigureImage";
-import Icon from '../../assets/images/Sergey_Medvedkin.jpg';
+import { FigureImage } from "components/common/FigureImage/FigureImage";
+import Icon from 'assets/images/Sergey_Medvedkin.jpg';
+import { aboutMeData } from "./data/aboutMe";
 
 /*** styled-components */
 const TextBlock = styled.article`
@@ -32,12 +33,12 @@ export const AboutMe: React.FC = React.memo(() => {
             }}
             >
             <TextBlock>
-                <Typography variant="h5" sx={{marginBottom: '1em'}}>My name is Sergey Medvedkin</Typography>
+                <Typography variant="h5" sx={{marginBottom: '1em'}}>
+                    { aboutMeData.title }
+                </Typography>
                 <FigureImage photos={photos} icon={Icon} userName="Sergey Medvedkin" userId={19836}/>                    
-                <Typography variant="body2" sx={{marginTop: '1em'}}> Hello, I am Sergey Medvedkin.
-                    I practice in web development. This is my personal web-site. 
-                    About my skills you can find out on my skills page. I specialize in front-end, but I also 
-                    make backend API server on Node using Express and Nest. My site hosts on Timeweb servers.
+                <Typography variant="body2" sx={{marginTop: '1em'}}>
+                    { aboutMeData.text }
                 </Typography>
             </TextBlock>
         </Box>

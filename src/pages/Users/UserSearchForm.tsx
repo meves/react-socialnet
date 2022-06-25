@@ -29,18 +29,7 @@ const FieldTerm = styled(Field)`
     margin-bottom: 0.75em;
 `;
 
-const FieldSelect = styled(Field)`
-    margin-right: 1em;
-    font-size: 0.75rem;
-    padding: 0.4em;
-    border-radius: 0.2em;
-    background-color: var(--bluegray-light);
-`;
-
-
-/**
- * * React Component UserSearchForm
- */
+/** React Component UserSearchForm */
 const userSearchFormValidate = (values: any) => {
     const errors = {};
     return errors;
@@ -77,11 +66,19 @@ const UserSearchForm: FC<PropsType> = (props) => {
             {({isSubmitting}) => (
                 <Form>
                     <FieldTerm type="text" name="term"/>
-                    <FieldSelect as="select" name="friend">
+                    <Field as="select" name="friend"
+                            style={{
+                                marginRight: '1em',
+                                fontSize: '0.75rem',
+                                padding: '0.4em',
+                                borderRadius: '0.2em',
+                                backgroundColor: 'var(--bluegray-light)'
+                            }} 
+                    >
                             <option value="null">All users</option> 
                             <option value="true">Followed</option>
                             <option value="false">Unfollowed</option>   
-                    </FieldSelect>
+                    </Field>
                     <Button type="submit" disabled={isSubmitting} variant="outlined"
                             sx={{
                                 borderColor: 'var(--bg-button-border)',

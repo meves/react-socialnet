@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { reduxForm, Field, InjectedFormProps } from 'redux-form';
 import { receiveCaptchaUrl } from '../../redux/selectors/auth-selectors';
-import { email, maxLength30, minLength6, required } from '../../utils/validators/validators';
+import { email, maxLength30, minLength4, required } from '../../utils/validators/validators';
 import { Input, Checkbox } from '../common/FormControls/FormControls';
 import styles from '../common/FormControls/FormControls.module.scss';
 import styled from 'styled-components';
@@ -51,7 +51,7 @@ const LoginForm: FC<InjectedFormProps<FormDataType, {}> & {}> = (props) => {
                             label="password" 
                             name="password" 
                             component={Input} 
-                            validate={[required, minLength6]} 
+                            validate={[required, minLength4]} 
                     />
                 </InputField>
                 <CheckboxField>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // components
 import { AppHeader } from './components/Header/Header';
 import { AppNavbar } from './components/Navbar/Navbar';
-import { Home } from './pages/Home/Home';
+import { Home } from './pages/Home';
 import { AppFooter } from './components/Footer/Footer';
 import { Login } from './components/Login/Login';
 import { Loading } from './components/common/Preloader/Loading';

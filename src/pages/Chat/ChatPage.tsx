@@ -2,11 +2,11 @@ import { Box, Button, TextField } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/reducers/chat-reducer';
 import { receiveChatMessages, receiveChatSatus } from '../../redux/selectors/chat-selectors';
 import { ChatMessageType } from '../../types/types';
 import { Message as MessageWrapper } from '../../components/common/Message/Message';
+import { withAuthNavigate } from '../../hoc/withAuthNavigate';
 
 /** styled-components */
 const ChatWrapper = styled.section`
