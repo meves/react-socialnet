@@ -1,8 +1,12 @@
-import { authAPI } from "../../api/auth-api"; 
-import { securityAPI } from "../../api/security-api";
 import { FormAction, stopSubmit } from "redux-form";
-import { InferActionsTypes, ThunkActionType } from "../redux-store";
-import { ResultCodes } from "../../enums/responseCodes";
+
+import { InferActionsTypes, ThunkActionType } from "redux/store";
+
+import { authAPI } from "shared/api/auth-api"; 
+import { securityAPI } from "shared/api/security-api";
+
+import { ResultCodes } from "enums/responseCodes";
+
 
 const initialState = {
     id: null as number | null,

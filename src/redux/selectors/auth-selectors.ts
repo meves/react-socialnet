@@ -1,4 +1,4 @@
-import { AppStateType } from "../redux-store";
+import { AppStateType } from "redux/store";
 
 export const recieveLogin = (state: AppStateType): string | null => state.auth.login;
 export const recieveIsAuth = (state: AppStateType): boolean => state.auth.isAuth;

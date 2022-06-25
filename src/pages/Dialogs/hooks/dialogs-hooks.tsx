@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { DialogItem } from "../Dialog/Dialog";
-import { Message } from "../Message/Message";
-import { receiveMessages, recieveDialogs } from "../../../redux/selectors/dialogs-selectors";
+
+import { DialogItem } from "pages/Dialogs/Dialog";
+import { Message } from "pages/Dialogs/Message";
+import { receiveMessages, recieveDialogs } from "redux/selectors/dialogs-selectors";
 
 export const useGenerateDialogsElements = () => {
     const dialogs = useSelector(recieveDialogs);

@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
+
 import { AboutMe } from './AboutMe';
 import { MySkills } from './MySkills';
-import styled from 'styled-components';
-import { Accordion } from '../../shared/ui/accordion';
 import { accordionDescriptionData } from './data/accordion'; 
+
+import { Accordion } from 'shared/ui';
+import styled from 'styled-components';
 
 /** styled-components */
 const HomePage = styled.section`

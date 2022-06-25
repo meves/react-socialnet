@@ -1,4 +1,4 @@
-import { SearchStringType } from "../../types/types";
+import { SearchStringType } from "types/types";
 
 export const parseSearchString = (searchString: string): SearchStringType => {
     const arr: Array<Array<string>>  = [];

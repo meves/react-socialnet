@@ -1,4 +1,5 @@
-import { PersonType } from "../../types/types";
+import { PersonType } from "types/types";
+
 
 const initialState = {
     friendsNames: [

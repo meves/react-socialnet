@@ -1,9 +1,12 @@
 import { FormAction, stopSubmit } from "redux-form";
-import { profileAPI } from "../../api/profile-api";
-import { createErrorObject } from "../../utils/createErrorObject/createErrorObject";
-import { IPostType, UserProfileType, PhotosType } from "../../types/types";
-import { InferActionsTypes, ThunkActionType } from "../redux-store";
-import { ResultCodes } from "../../enums/responseCodes";
+
+import { InferActionsTypes, ThunkActionType } from "redux/store";
+import { createErrorObject } from "utils/createErrorObject/createErrorObject";
+import { IPostType, UserProfileType, PhotosType } from "types/types";
+import { ResultCodes } from "enums/responseCodes";
+
+import { profileAPI } from "shared/api/profile-api";
+
 
 export const initialState = {    
         posts: [

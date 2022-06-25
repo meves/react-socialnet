@@ -1,5 +1,6 @@
+import { InferActionsTypes, ThunkActionType } from "redux/store";
 import { auth } from "./auth-reducer";
-import { InferActionsTypes, ThunkActionType } from "../redux-store";
+
 
 const initialState = {
     initialized: false

@@ -1,5 +1,6 @@
-import { PersonType, IMessageType } from "../../types/types";
-import { InferActionsTypes } from "../redux-store";
+import { InferActionsTypes } from "redux/store";
+import { PersonType, IMessageType } from "types/types";
+
 
 const initialState = {    
         dialogs: [

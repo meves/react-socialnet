@@ -2,28 +2,29 @@ import React, { FC, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // components
-import { AppHeader } from './components/Header/Header';
-import { AppNavbar } from './components/Navbar/Navbar';
-import { Home } from './pages/Home';
-import { AppFooter } from './components/Footer/Footer';
-import { Login } from './components/Login/Login';
-import { Loading } from './components/common/Preloader/Loading';
-import { NotFound } from './components/NotFound/NotFound';
+import { AppHeader } from 'components/Header';
+import { AppNavbar } from 'components/Navbar';
+import { AppFooter } from 'components/Footer';
+import { Home } from 'pages/Home';
+import { Login } from 'components/Login';
+import { Loading } from 'components/common/Preloader';
+import { NotFound } from 'components/NotFound';
 // utils
-import { initializeApp } from './redux/reducers/app-reducer';
-import { withSuspense } from './hoc/withSuspense';
+import { initializeApp } from 'redux/reducers/app-reducer';
+import { withSuspense } from 'hoc/withSuspense';
 // styles
-import { Container, Grid } from '@mui/material';
-import { receiveInitializeApp } from './redux/selectors/app-selector';
+import { Container, Grid } from 'shared/ui';
+import { receiveInitializeApp } from 'redux/selectors/app-selector';
 // lazy components
-const ProfilePage = lazy(() => import('./pages/Profile/Profile'));
-const DialogsPage = lazy(() => import('./pages/Dialogs/Dialogs'));
-const Chat = lazy(() => import('./pages/Chat/ChatPage'));
-const News = lazy(() => import('./pages/News/News'));
-const Gallery = lazy(() => import('./pages/Gallery/Gallery'));
-const Music = lazy(() => import('./pages/Music/Music'));
-const UsersPage = lazy(() => import('./pages/Users/Users'));
-const Settings = lazy(() => import('./pages/Settings/Settings'));
+const ProfilePage = lazy(() => import('pages/Profile'));
+const DialogsPage = lazy(() => import('pages/Dialogs'));
+const Chat = lazy(() => import('pages/Chat'));
+const News = lazy(() => import('pages/News'));
+const Gallery = lazy(() => import('pages/Gallery'));
+const Music = lazy(() => import('pages/Music'));
+const UsersPage = lazy(() => import('pages/Users'));
+const Settings = lazy(() => import('pages/Settings'));
+
 
 const App: FC = () => {
   const initialized = useSelector(receiveInitializeApp);

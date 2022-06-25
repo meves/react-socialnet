@@ -1,8 +1,11 @@
 import { Dispatch } from "redux";
-import { chatAPI } from "../../api/chat-api";
-import { ChatMessageType, ChatStatusType } from "../../types/types";
-import { InferActionsTypes, ThunkActionType } from "../redux-store";
 import { v4 as uuidv4 } from 'uuid';
+
+import { InferActionsTypes, ThunkActionType } from "redux/store";
+
+import { chatAPI } from "shared/api/chat-api";
+import { ChatMessageType, ChatStatusType } from "types/types";
+
 
 type ChatMessageTypeWithId = ChatMessageType & { id: string }
 const initialState = {

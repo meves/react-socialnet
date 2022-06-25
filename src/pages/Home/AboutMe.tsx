@@ -1,11 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
+
+import { FigureImage } from "components/common/FigureImage";
 import { recieveUserProfilePhoto } from "redux/selectors/profile-selectors";
-import { Alert, Box, Typography } from "@mui/material";
-import { FigureImage } from "components/common/FigureImage/FigureImage";
-import Icon from 'assets/images/Sergey_Medvedkin.jpg';
 import { aboutMeData } from "./data/aboutMe";
+import Icon from 'assets/images/Sergey_Medvedkin.jpg';
+
+import styled from "styled-components";
+import { Alert, Box, Typography } from "shared/ui";
 
 /*** styled-components */
 const TextBlock = styled.article`

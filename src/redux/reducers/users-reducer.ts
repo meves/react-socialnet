@@ -1,8 +1,11 @@
-import { usersAPI } from "../../api/users-api";
-import { followAPI } from "../../api/followAPI";
-import { ResultCodes } from "../../enums/responseCodes";
-import { UserType } from "../../types/types";
-import { InferActionsTypes, ThunkActionType } from "../redux-store";
+import { InferActionsTypes, ThunkActionType } from "redux/store";
+
+import { UserType } from "types/types";
+import { ResultCodes } from "enums/responseCodes";
+
+import { usersAPI } from "shared/api/users-api";
+import { followAPI } from "shared/api/followAPI";
+
 
 const initialState = {
     users: [] as Array<UserType>,

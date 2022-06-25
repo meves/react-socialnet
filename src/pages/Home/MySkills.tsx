@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import { Box, Stack, Typography } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
-import styled from "styled-components";
+
 import { skillsData } from "./data/skills";
+
+import styled from "styled-components";
+import { Box, Stack, Typography } from "shared/ui";
 
 const SkillItem = styled.div`
     width: 90%;
@@ -39,8 +41,6 @@ const Scale = styled.div`
     margin-top: 0.3em;
     background-image: linear-gradient(to right, #fc2007 0%, #fbc607 10%, white 50%, white 100%);
 `;
-
-
 
 export const MySkills: FC = React.memo(() => {
     return (

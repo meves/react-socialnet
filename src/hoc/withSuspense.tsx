@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
-import { Loading } from "../components/common/Preloader/Loading";
+
+import { Loading } from "components/common/Preloader";
 
 type InjectedProps = any;
 
