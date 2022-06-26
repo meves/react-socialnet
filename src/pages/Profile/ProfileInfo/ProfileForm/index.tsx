@@ -36,9 +36,8 @@ const ProfileForm: FC<InjectedFormProps<UserProfileType, OwnPropsType> & OwnProp
     return (
         <form onSubmit={props.handleSubmit}>
             <ButtonGroup disableElevation variant="contained">
-            <Button type="reset" onClick={props.deactivateEditMode}>Reset and Return</Button>
-            <Button type="submit" style={{marginLeft: "0.3em"}}>Save Profile</Button>
-
+                <Button type="reset" onClick={props.deactivateEditMode}>Reset and Return</Button>
+                <Button type="submit" style={{marginLeft: "0.3em"}}>Save Profile</Button>
             </ButtonGroup>
             <Fieldset>
                 <Legend>User Profile Data: </Legend>

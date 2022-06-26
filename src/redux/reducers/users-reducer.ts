@@ -77,7 +77,7 @@ export const usersReducer = (state=initialState, action: ActionsTypes): InitialS
             return {
                 ...state,
                 filter: action.payload.filter
-            }
+            }        
         default:
             return state;
     }
@@ -107,19 +107,10 @@ export const actions = {
     } as const),
     setFilter: (filter: FilterType) => ({
         type: "SET_FILTER", payload: { filter }
-    } as const)
+    } as const)    
 }
 
 type ThunkType = ThunkActionType<ActionsTypes>;
-
-// export const getUsersStarted = (currentPage: number, pageSize: number): ThunkType => 
-//     async (dispatch) => {
-//         dispatch(actions.toggleIsFetching(true));
-//         const data = await usersAPI.getUsers(currentPage, pageSize);
-//         dispatch(actions.setUsers(data.items));
-//         dispatch(actions.setTotalUsersCount(data.totalCount));
-//         dispatch(actions.toggleIsFetching(false));        
-//     }
 
 export const getUsersChanged = (currentPage: number, pageSize: number, filter: FilterType): ThunkType =>
     async (dispatch) => {
@@ -152,4 +143,5 @@ export const unfollowUser = (userId: number): ThunkType =>
         dispatch(actions.toggleFollowingInProgress(false, userId));            
     }
 
+    
 export default usersReducer;

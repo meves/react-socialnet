@@ -47,6 +47,7 @@ export default createGlobalStyle`
 
         --bg-blockitem: var(--bluegray-lightdark);
         --bg-menuitem: var(--bluegray-light);
+        --bg-menuitem-hover: var(--bluegray-superlight);
         
         --bg-post-item: var(--bluegray-light);
         --bg-post-item-shadow: var(--bluegray-medium);

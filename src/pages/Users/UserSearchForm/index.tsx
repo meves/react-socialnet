@@ -8,9 +8,7 @@ import { receiveFilter } from "redux/selectors/users-selectors";
 import styled from "styled-components";
 import { Button } from "shared/ui";
 
-/**
- * * styled-components
- */
+/** styled-components */
 const FormWrapper = styled.div`
     background-color: var(--bg-post-item);
     box-shadow: 0.1em 0.1em var(--bg-post-item-shadow);
@@ -20,7 +18,6 @@ const FormWrapper = styled.div`
     border-radius: 0.3em;
     margin-bottom: 2em;
 `;
-
 const FieldTerm = styled(Field)`
     margin-right: 1em;
     font-size: 0.75rem;

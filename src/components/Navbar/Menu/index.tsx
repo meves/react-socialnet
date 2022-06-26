@@ -1,10 +1,11 @@
-import React, { FC, MouseEvent } from 'react';
-import { Link } from 'react-router-dom';
+import React, { FC, MouseEvent, useState } from 'react';
 
 import { menuItems, MenuItemType } from './data/menuItems';
+import { useLocation } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { Divider, ListItemIcon, ListItemText, MenuItem, MenuList } from 'shared/ui';
+import { Item } from 'shared/ui/Item';
 
 
 /** styled-components */
@@ -16,22 +17,15 @@ const ListItem = styled(MenuItem)`
   padding: 0; 
 `;
 
-export const Item = styled(Link)`
-    display: block;
-    width: 100%;
-    padding: 0.5em 0.5em 0.5em 0.5em;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--dark-text-color);
-    text-decoration: none;    
-    text-transform: uppercase;
-`;
-
-const LI = styled(ListItem)`
+const ListItemWrapper = styled(ListItem)`
   display: flex;
 
   @media(max-width: 415px) {
     flex-direction: column;
+  }
+  &.active,
+  &.active:hover {
+    background-color: var(--bg-menuitem-hover);
   }
 `;
 
@@ -40,7 +34,19 @@ type PropsType = {
   changeOpenedState: () => void
   moveMenu: (navbar: HTMLElement | null, burger: EventTarget & HTMLButtonElement) => void
 }
-export const AppMenu: FC<PropsType> = React.memo((props) => {
+export const AppMenu: FC<PropsType> = (props) => {
+  const pathname = useLocation().pathname;
+
+  const [currentItemId, setCurrentItemId] = useState<number | null>(() => {
+      let itemId: number | null = null;
+      menuItems.forEach(item => {
+        if (item.path === pathname) {
+          itemId = item.id
+        }
+      })
+      return itemId;
+  });
+  
   const handleMenuClick = (event: MouseEvent<HTMLUListElement>) => {
     const navbar = event.currentTarget.parentElement;
     let burger: EventTarget & HTMLButtonElement;
@@ -51,18 +57,25 @@ export const AppMenu: FC<PropsType> = React.memo((props) => {
     //@ts-ignore
     props.moveMenu(navbar, burger); 
     props.changeOpenedState();
-  }  
+  } 
+
   return (
     <Menu onClick={handleMenuClick}>
       { menuItems.map((item: MenuItemType) => (
         <div key={item.id}>
-          <LI>
+          <ListItemWrapper 
+                        onClick={() => setCurrentItemId(item.id)}
+                        className={item.id === currentItemId ? 'active' : ''}>
             <ListItemIcon children={<item.icon/>} />
-            <ListItemText> <Item to={item.path}>{item.name}</Item> </ListItemText>        
-          </LI>
+            <ListItemText> 
+              <Item to={item.path}>
+                { item.name }
+              </Item> 
+            </ListItemText>        
+          </ListItemWrapper>
           { (item.id === 1 || item.id === 5) && <Divider/> } 
         </div> 
       ))}        
     </Menu>
   )
-})
+}

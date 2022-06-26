@@ -48,7 +48,7 @@ const UsersPage: FC = (props) => {
         dispatch(getUsersChanged(page, pageSize, filter));
     }
     const changeFilter = (filter: FilterType) => {
-        dispatch(getUsersChanged(currentPage, pageSize, filter));        
+        dispatch(getUsersChanged(1, pageSize, filter));        
     }
     const setFollowUser = (userId: number) => {
         dispatch(followUser(userId));
@@ -60,14 +60,22 @@ const UsersPage: FC = (props) => {
     return (
         <UsersWrapper>
             <UserSearchForm 
-                        changeFilter={changeFilter}/>
-            <Pagination count={pagesCount} page={currentPage} showFirstButton showLastButton onChange={changeCurrentPage}
-                        boundaryCount={1} color="secondary" siblingCount={5}
+                        changeFilter={changeFilter}
+            />
+            <Pagination count={pagesCount} 
+                        page={currentPage} 
+                        showFirstButton 
+                        showLastButton 
+                        onChange={changeCurrentPage}
+                        boundaryCount={1} 
+                        color="secondary" 
+                        siblingCount={5}
             />
             {isFetching && <Loading />}  
             <Users>             
                 {users.map(user => ( 
-                    <User key={user.id}
+                    <User 
+                        key={user.id}
                         user={user}
                         followingInProgress={followingInProgress}
                         setFollowUser={setFollowUser}

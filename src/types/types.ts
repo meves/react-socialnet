@@ -2,6 +2,22 @@ export type PersonType = {
     id: number
     name: string
 }
+export type FriendType = {
+    id: number
+    name: string
+    uniqueUrlName: string | null
+    photos: {
+        small: string | null
+        large: string | null
+    }
+    status: string | null
+    followed: boolean
+}
+export type FriendDataType = {
+    items: FriendType[]
+    totalCount: number
+    error: string | null
+}
 export interface IMessageType {
     id: number
     message: string

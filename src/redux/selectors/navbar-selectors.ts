@@ -1,4 +1,4 @@
 import { AppStateType } from "redux/store";
-import { PersonType } from "types/types";
+import { FriendType } from "types/types";
 
-export const receiveFriendsNames = (state: AppStateType): Array<PersonType> => state.navbar.friendsNames;
+export const receiveFriends = (state: AppStateType): Array<FriendType> => state.navbar.friends;

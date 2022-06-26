@@ -29,9 +29,11 @@ const Settings = lazy(() => import('pages/Settings'));
 const App: FC = () => {
   const initialized = useSelector(receiveInitializeApp);
   const dispatch = useDispatch();
+  
   useEffect(() => {    
     dispatch(initializeApp());    
   }, [dispatch]);  
+
   if (!initialized) {
     return <Loading/>
   }

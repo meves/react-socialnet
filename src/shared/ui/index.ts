@@ -1,7 +1,7 @@
 /** Custom */
-export { default as Accordion } from './accordion/Accordion';
-export { Checkbox as CheckboxUI } from './checkbox/Checkbox';
-export { Input as InputUI } from './input/Input';
+export { default as Accordion } from './accordion';
+export { Checkbox as CheckboxUI } from './checkbox';
+export { Input as InputUI } from './input';
 /** MUI material */
 export { Alert } from '@mui/material';
 export { Box } from '@mui/material';

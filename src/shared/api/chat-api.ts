@@ -23,7 +23,6 @@ const messageHandler = (event: MessageEvent) => {
 }
 
 const closeHandler = () => {
-    console.log(`WS CLOSED`);
     subscribers['status-changed'].forEach(s => s('pending'))
     setTimeout(createChannel, 10000);            
 }

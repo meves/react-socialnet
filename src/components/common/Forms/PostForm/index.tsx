@@ -33,7 +33,9 @@ const PostForm: FC<InjectedFormProps<FormDataType>> = React.memo((props) => {
                             backgroundColor: 'var(--bluegray-dark)'
                         }
                     }}
-            >Post</Button>            
+            >
+                Post
+            </Button>            
         </Form>
     )
 })

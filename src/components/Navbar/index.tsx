@@ -1,7 +1,7 @@
 import React, { FC, MouseEvent, useState } from 'react';
 
 import { AppMenu } from './Menu';
-import { FriendsBlock } from './Friends';
+import { Friends } from './Friends';
 
 import styled from 'styled-components';
 import { MenuIcon, MenuOpenIcon } from 'shared/ui';
@@ -65,7 +65,7 @@ export const AppNavbar: FC = () => {
             </Burger>
             <AppMenu changeOpenedState={changeOpenedState}
                     moveMenu={moveMenu}/>
-            <FriendsBlock/>
+            <Friends />
         </Navbar>
     )
 }
