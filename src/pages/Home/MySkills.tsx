@@ -39,7 +39,7 @@ const Scale = styled.div`
     width: 100%;
     height: 2vh;
     margin-top: 0.3em;
-    background-image: linear-gradient(to right, #fc2007 0%, #fbc607 10%, white 50%, white 100%);
+    background-image: linear-gradient(to right, #2df50a 0%, #2df50a 80%, white 100%);
 `;
 
 export const MySkills: FC = React.memo(() => {
