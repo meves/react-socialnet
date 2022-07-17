@@ -1,5 +1,5 @@
 import { InferActionsTypes } from "redux/store";
-import { PersonType, IMessageType } from "types/types";
+import { PersonType, IMessageType } from "shared/types";
 
 
 const initialState = {    

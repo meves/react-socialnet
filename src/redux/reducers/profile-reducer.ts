@@ -1,11 +1,11 @@
 import { FormAction, stopSubmit } from "redux-form";
 
 import { InferActionsTypes, ThunkActionType } from "redux/store";
-import { createErrorObject } from "utils/createErrorObject/createErrorObject";
-import { IPostType, UserProfileType, PhotosType } from "types/types";
-import { ResultCodes } from "enums/responseCodes";
+import { createErrorObject } from "redux/utils/createErrorObject";
+import { IPostType, UserProfileType, PhotosType } from "shared/types";
+import { ResultCodes } from "rest-api/enums/ResponseCodes";
 
-import { profileAPI } from "shared/api/profile-api";
+import { profileAPI } from "rest-api/profile-api";
 
 
 export const initialState = {    

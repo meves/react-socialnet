@@ -1,6 +1,6 @@
 import { InferActionsTypes, ThunkActionType } from "redux/store";
-import { usersAPI } from "shared/api/users-api";
-import { FriendType } from "types/types";
+import { usersAPI } from "rest-api/users-api";
+import { FriendType } from "shared/types";
 
 
 const initialState = {    

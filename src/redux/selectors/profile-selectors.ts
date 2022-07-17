@@ -1,5 +1,5 @@
 import { AppStateType } from "redux/store";
-import { IPostType, UserProfileType } from "types/types";
+import { IPostType, UserProfileType } from "shared/types";
 
 export const recievePosts = (state: AppStateType): Array<IPostType> => state.profilePage.posts;
 export const recieveUserProfile = (state: AppStateType): UserProfileType | null => state.profilePage.userProfile;

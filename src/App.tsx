@@ -3,26 +3,26 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // components
 import { AppHeader } from 'components/Header';
-import { AppNavbar } from 'components/Navbar';
+import { AppSidebar } from 'components/Sidebar';
 import { AppFooter } from 'components/Footer';
-import { Home } from 'pages/Home';
-import { Login } from 'components/Login';
-import { Loading } from 'components/common/Preloader';
+import { Home } from 'pages/Home/Home';
+import { Login } from 'components/Login/Login';
+import { Loading } from 'components/Preloader';
 import { NotFound } from 'components/NotFound';
 // utils
 import { initializeApp } from 'redux/reducers/app-reducer';
-import { withSuspense } from 'hoc/withSuspense';
+import { withSuspense } from 'shared/hoc/withSuspense';
 // styles
-import { Container, Grid } from 'shared/ui';
+import { Container, Grid } from 'components';
 import { receiveInitializeApp } from 'redux/selectors/app-selector';
 // lazy components
-const ProfilePage = lazy(() => import('pages/Profile'));
-const DialogsPage = lazy(() => import('pages/Dialogs'));
+const ProfilePage = lazy(() => import('pages/Profile/Profile'));
+const DialogsPage = lazy(() => import('pages/Dialogs/Dialogs'));
 const Chat = lazy(() => import('pages/Chat'));
 const News = lazy(() => import('pages/News'));
 const Gallery = lazy(() => import('pages/Gallery'));
 const Music = lazy(() => import('pages/Music'));
-const UsersPage = lazy(() => import('pages/Users'));
+const UsersPage = lazy(() => import('pages/Users/Users'));
 const Settings = lazy(() => import('pages/Settings'));
 
 
@@ -45,7 +45,7 @@ const App: FC = () => {
           <AppHeader/>
         </Grid>
         <Grid item xs={4} sm={4} md={3} sx={{position: 'relative'}}>
-          <AppNavbar/>              
+          <AppSidebar/>              
         </Grid>
         <Grid item xs={12} sm={8} md={9}> 
           <Routes>

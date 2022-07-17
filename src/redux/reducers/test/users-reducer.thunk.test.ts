@@ -1,7 +1,7 @@
 import { actions, followUser, unfollowUser } from "../users-reducer";
-import { followAPI } from "shared/api/followAPI";
-import { ResponseDataType } from "shared/api/types";
-import { ResultCodes } from "enums/responseCodes";
+import { followAPI } from "rest-api/followAPI";
+import { ResponseDataType } from "rest-api/types";
+import { ResultCodes } from "rest-api/enums/ResponseCodes";
 
 jest.mock("../api/followAPI");
 const followAPIMock = followAPI as jest.Mocked<typeof followAPI>;

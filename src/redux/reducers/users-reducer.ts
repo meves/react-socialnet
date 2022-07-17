@@ -1,10 +1,10 @@
 import { InferActionsTypes, ThunkActionType } from "redux/store";
 
-import { UserType } from "types/types";
-import { ResultCodes } from "enums/responseCodes";
+import { UserType } from "shared/types";
+import { ResultCodes } from "rest-api/enums/ResponseCodes";
 
-import { usersAPI } from "shared/api/users-api";
-import { followAPI } from "shared/api/followAPI";
+import { usersAPI } from "rest-api/users-api";
+import { followAPI } from "rest-api/followAPI";
 
 
 const initialState = {

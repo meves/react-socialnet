@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { skillsData } from "./data/skills";
 
 import styled from "styled-components";
-import { Box, Stack, Typography } from "shared/ui";
+import { Box, Stack, Typography } from "components";
 
 const SkillItem = styled.div`
     width: 90%;

@@ -2,10 +2,10 @@ import { FormAction, stopSubmit } from "redux-form";
 
 import { InferActionsTypes, ThunkActionType } from "redux/store";
 
-import { authAPI } from "shared/api/auth-api"; 
-import { securityAPI } from "shared/api/security-api";
+import { authAPI } from "rest-api/auth-api"; 
+import { securityAPI } from "rest-api/security-api";
 
-import { ResultCodes } from "enums/responseCodes";
+import { ResultCodes } from "rest-api/enums/ResponseCodes";
 
 
 const initialState = {

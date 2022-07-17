@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from 'react-test-renderer';
 
-import Home from "..";
+import Home from "../Home";
 
 describe('Home', () => {
     test('Home was rendered correctly', () => {

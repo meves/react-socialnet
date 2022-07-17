@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { InferActionsTypes, ThunkActionType } from "redux/store";
 
-import { chatAPI } from "shared/api/chat-api";
-import { ChatMessageType, ChatStatusType } from "types/types";
+import { chatAPI } from "rest-api/chat-api";
+import { ChatMessageType, ChatStatusType } from "shared/types";
 
 
 type ChatMessageTypeWithId = ChatMessageType & { id: string }
@@ -45,7 +45,7 @@ const actions = {
 }
 
 // memoization
-let _newMessageHandler: ((messages: ChatMessageType[]) =>void) | null = null;
+let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null;
 const newMessageHandlerCreator = (dispatch: Dispatch) => {
     if (_newMessageHandler === null) {
         _newMessageHandler = (messages: ChatMessageType[]) => {

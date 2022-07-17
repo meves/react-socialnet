@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { create, act } from 'react-test-renderer';
 
-import ProfileStatus from "..";
+import ProfileStatus from "../ProfileStatus";
 
 describe('ProfileStatus', () => {
     const status = "my profile status";
